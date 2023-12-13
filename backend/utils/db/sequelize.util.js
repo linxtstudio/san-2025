@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize')
-const { postgres } = require('../../config/db.config')
+const { development } = require('../../config/db.config')
 
-const { dialect, host, port, db_name, username, password } = postgres
-const sequelize = new Sequelize(db_name, username, password, {
+const { dialect, host, port, database, username, password } = development
+const sequelize = new Sequelize(database, username, password, {
     host,
     dialect,
     port,
