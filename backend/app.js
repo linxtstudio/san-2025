@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 const generalRouter = require('./routes/general.route.');
 const authRouter = require('./routes/auth.route');
@@ -15,6 +16,7 @@ sequelize.authenticate().then(() => console.log('db connected'))
 
 const app = express();
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
