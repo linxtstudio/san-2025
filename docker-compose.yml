@@ -21,6 +21,8 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - JWT_SECRET=san2024jwt
+    volumes:
+      - ./backend/public/uploads:/app/public/uploads
 
   db:
     container_name: postgres-db
