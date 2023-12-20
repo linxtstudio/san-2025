@@ -1,5 +1,5 @@
 const regionRepository = require('../repositories/region.repository')
-const { getPaginatePayload } = require("../utils/pagination.util");
+const { getPaginatePayload } = require("../utils/pagination.util")
 
 const getProvinces = async (req, res) => {
     const paginatePayload = getPaginatePayload(req.query)

@@ -8,6 +8,7 @@ const logger = require('morgan');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+const adminRouter = require('./routes/admin.route')
 const authRouter = require('./routes/auth.route')
 const eventRouter = require('./routes/event.route')
 const eventTypeRouter = require('./routes/event.type.route')
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', generalRouter)
+app.use('/admin', adminRouter)
 app.use('/auth', authRouter)
 app.use('/event', eventRouter)
 app.use('/event/types', eventTypeRouter)

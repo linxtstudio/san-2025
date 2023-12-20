@@ -15,11 +15,8 @@ module.exports = {
       phone_number: {
         type: Sequelize.STRING
       },
-      province_name: {
-        type: Sequelize.STRING
-      },
-      city_name: {
-        type: Sequelize.STRING
+      city_id: {
+        type: Sequelize.INTEGER
       },
       transfer_receipt_image: {
         type: Sequelize.STRING

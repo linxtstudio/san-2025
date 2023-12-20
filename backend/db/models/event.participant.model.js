@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'event_participant_id',
         as: 'event_participant_details'
       })
+
+      EventParticipant.belongsTo(models.RegionCity, {
+        foreignKey: 'city_id',
+        as: 'city'
+      })
     }
   }
   EventParticipant.init({
@@ -24,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     phone_number: DataTypes.STRING,
-    province_name: DataTypes.STRING,
-    city_name: DataTypes.STRING,
+    city_id: DataTypes.INTEGER,
     transfer_receipt_image: DataTypes.STRING,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,

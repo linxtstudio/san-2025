@@ -12,11 +12,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      RegionCity.belongsTo(models.RegionProvince, {
+        foreignKey: 'province_id',
+        as: 'province'
+      })
     }
   }
   RegionCity.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    province_id: DataTypes.INTEGER,
   }, {
     sequelize,
     tableName: 'region_cities',
