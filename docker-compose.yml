@@ -1,8 +1,10 @@
 version: '3'
 services:
-#  frontend:
-#    build: ./frontend
-#    container_name: san-2024-fe
+ frontend:
+    build: ./frontend
+    container_name: san-2024-fe
+    ports:
+      - 7005:3000
 
   backend:
     build: ./backend
