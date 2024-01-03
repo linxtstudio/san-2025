@@ -1,6 +1,6 @@
-version: '3'
+version: "3"
 services:
- frontend:
+  frontend:
     build: ./frontend
     container_name: san-2024-fe
     ports:
