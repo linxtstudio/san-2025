@@ -4,7 +4,9 @@ services:
     build: ./frontend
     container_name: san-2024-fe
     ports:
-      - 7005:3000
+      - 7005:7005
+    networks:
+      - san-2024-network
 
   backend:
     build: ./backend
@@ -24,6 +26,8 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - JWT_SECRET=san2024jwt
+    networks:
+      - san-2024-network
     volumes:
       - ./backend/public/uploads:/app/public/uploads
 
@@ -39,6 +43,10 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - 7003:5432
+
+networks:
+  san-2024-network:
+    driver: bridge
 
 volumes:
   db_data:
