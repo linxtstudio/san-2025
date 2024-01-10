@@ -43,6 +43,8 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - 7003:5432
+    networks:
+      - san-2024-network
 
 networks:
   san-2024-network:
