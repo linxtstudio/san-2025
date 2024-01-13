@@ -1,6 +1,8 @@
 {
+  "editor.formatOnSave": true,
+  "eslint.codeActionsOnSave.mode": "problems",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascriptreact]": {
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"

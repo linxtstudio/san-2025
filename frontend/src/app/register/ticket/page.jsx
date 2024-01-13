@@ -41,8 +41,8 @@ const TicketPage = ({}) => {
               </div>
             </div>
             <div className="flex w-[320px] flex-col items-center rounded-[20px] border border-green-1 p-8">
-              <QRCode value={registerData.id} class />
-              <span className="mt-5 text-xl">
+              <QRCode value={registerData.id} />
+              <span className="mt-5 text-2xl">
                 *Please show this ticket to staff in registry
               </span>
             </div>

@@ -158,7 +158,7 @@ const RegisterPage = ({}) => {
       <div className="mt-[30px] flex flex-col gap-[70px] md:flex-row">
         <div className="flex w-full flex-col gap-6 md:w-1/2">
           <MultipleCheck
-            options={eventList}
+            options={eventList.filter((event) => event.name !== 'Performance')}
             selectedValues={selectedValues}
             onChange={setSelectedValues}
             label="Ingin ikut event apa?"
