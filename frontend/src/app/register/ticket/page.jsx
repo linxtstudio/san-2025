@@ -1,18 +1,25 @@
 'use client';
 import Button from '@/common/components/Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 
 const TicketPage = ({}) => {
   const [registerData, setRegisterData] = useState(
-    localStorage.getItem('register-data')
-      ? JSON.parse(localStorage.getItem('register-data'))
-      : {
-          name: 'Shaddam',
-          email: 'shaddam.ah@gmail.com',
-          phone_number: '081234567890',
-        }
   );
+
+  useEffect(() => {
+    setRegisterData(
+      localStorage.getItem('register-data')
+        ? JSON.parse(localStorage.getItem('register-data'))
+        : {
+            name: 'Shaddam',
+            email: 'shaddam.ah@gmail.com',
+            phone_number: '081234567890',
+          })
+  }, [])
+
+  if (!registerData) return null;
+
   return (
     <>
       <div className="container flex rounded-[20px] border border-orange-1 px-[70px] py-[32px]">
