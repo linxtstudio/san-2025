@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       EventParticipant.hasMany(models.EventParticipantDetail, {
         foreignKey: 'event_participant_id',
-        as: 'event_participant_details'
+        as: 'event_participant_details',
+        onDelete: 'CASCADE',
       })
 
       EventParticipant.belongsTo(models.RegionCity, {
@@ -31,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     phone_number: DataTypes.STRING,
     city_id: DataTypes.INTEGER,
     transfer_receipt_image: DataTypes.STRING,
+    is_verified: DataTypes.BOOLEAN,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {

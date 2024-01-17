@@ -1,0 +1,60 @@
+{
+  "event_types": [
+    {
+      "name": "SAN Main Event",
+      "description": "The big event that we all have been waiting for. See the great line-ups of performances, from different genres, different levels of dancers from all over Indonesia",
+      "fee_type": "minimum_contribution",
+      "fee_nominal": 350000,
+      "external_url": null,
+      "sequence": 1
+    },
+    {
+      "name": "Pool Party",
+      "description": "Beautiful poolside while the DJ play our favorite dance tunes. Bonnie & Clyde competition will be added to bring more fun",
+      "fee_type": "ticket_fee",
+      "fee_nominal": 75000,
+      "external_url": null,
+      "sequence": 2
+    },
+    {
+      "name": "Workshop A",
+      "description": "Salsa (instructor to be announced)",
+      "fee_type": "registration_fee",
+      "fee_nominal": 100000,
+      "external_url": null,
+      "sequence": 3
+    },
+    {
+      "name": "Workshop B",
+      "description": "Bachata (instructor to be announced)",
+      "fee_type": "registration_fee",
+      "fee_nominal": 100000,
+      "external_url": null,
+      "sequence": 4
+    },
+    {
+      "name": "Workshop C",
+      "description": "Kizomba (instructor to be announced)",
+      "fee_type": "registration_fee",
+      "fee_nominal": 100000,
+      "external_url": null,
+      "sequence": 5
+    },
+    {
+      "name": "Workshop D",
+      "description": "Zouk by Virginie",
+      "fee_type": "registration_fee",
+      "fee_nominal": 100000,
+      "external_url": null,
+      "sequence": 6
+    },
+    {
+      "name": "Performance",
+      "description": "Every artist, regardless of genre or skill level, is invited to participate",
+      "fee_type": "by_contact",
+      "fee_nominal": 0,
+      "external_url": "https://wa.me/62811212505",
+      "sequence": 7
+    }
+  ]
+}

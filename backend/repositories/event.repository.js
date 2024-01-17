@@ -63,8 +63,12 @@ const getParticipants = async (filter, { paginate, page, per_page }) => {
             {
                 association: 'event_participant',
                 where: {
-                    ...(filter.city_id && {
-                        city_id: filter.city_id,
+                    ...(filter.city_id && { city_id: filter.city_id }),
+                    ...(filter.is_verified && { is_verified: filter.is_verified === 'true' }),
+                    ...(filter.search && {
+                        name: {
+                            [sequelize.Op.iLike]: `%${filter.search}%`
+                        }
                     }),
                 },
                 include: [
@@ -87,8 +91,52 @@ const getParticipants = async (filter, { paginate, page, per_page }) => {
     })
 }
 
+const getParticipantDetail = async (filter) => {
+    return await EventParticipant.findOne({
+        where: {
+            ...(filter.id && { id: filter.id }),
+            ...(filter.is_verified && { is_verified: filter.is_verified }),
+        },
+        include: [
+            {
+                association: 'event_participant_details',
+                include: [
+                    {
+                        association: 'event_type',
+                    }
+                ]
+            },
+        ],
+    })
+}
+
+const setVerified = async (participantId) => {
+    return await EventParticipant.update({
+        is_verified: true,
+    }, {
+        where: {
+            id: participantId,
+        },
+    })
+}
+
+const setUnVerified = async (participantId) => {
+    return await EventParticipant.update({
+        is_verified: false,
+    }, {
+        where: {
+            id: participantId,
+        },
+    })
+}
+
 module.exports = {
     register,
+
     getParticipantByCity,
     getParticipants,
+    getParticipantDetail,
+
+    setVerified,
+    setUnVerified,
 }

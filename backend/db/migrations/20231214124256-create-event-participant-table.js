@@ -21,6 +21,10 @@ module.exports = {
       transfer_receipt_image: {
         type: Sequelize.STRING
       },
+      is_verified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      external_url: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       is_active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,

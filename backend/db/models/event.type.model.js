@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     fee_type: DataTypes.STRING,
     fee_nominal: DataTypes.INTEGER,
+    external_url: DataTypes.STRING,
     sequence: DataTypes.INTEGER,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
