@@ -49,7 +49,7 @@ const getParticipantByCity = async (payload) => {
 }
 
 const getParticipants = async (filter, { paginate, page, per_page }) => {
-    return EventParticipantDetail.findAll({
+    return EventParticipantDetail.findAndCountAll({
         where: {
             ...(filter.event_type_id && {
                 event_type_id: filter.event_type_id,

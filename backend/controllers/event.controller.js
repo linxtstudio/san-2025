@@ -1,6 +1,7 @@
 const eventRepository = require('../repositories/event.repository')
 const url = require('../config/url.config')
-const { getPaginatePayload } = require("../utils/pagination.util")
+const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
+const { eventListResource } = require("../resources/event.resource");
 
 const register = async (req, res) => {
     const eventParticipant = await eventRepository.register(req.body)
@@ -36,30 +37,18 @@ const getParticipantByCity = async (req, res) => {
 const getParticipants = async (req, res) => {
     const paginatePayload = getPaginatePayload(req.query)
     const participants = await eventRepository.getParticipants(req.query, paginatePayload)
+    let response = paginatePayload.paginate ? getPaginateData(participants, paginatePayload) : participants.rows
+
+    if (paginatePayload.paginate) {
+        response.data = eventListResource(response.data)
+    } else {
+        response = eventListResource(response)
+    }
 
     res.status(200).json({
         status: 200,
         message: 'Success to get participants',
-        data: participants.map((participant) => ({
-            id: participant?.id,
-            event_participant: {
-                id: participant?.event_participant?.id,
-                name: participant?.event_participant?.name,
-                email: participant?.event_participant?.email,
-                phone_number: participant?.event_participant?.phone_number,
-                is_verified: participant?.event_participant?.is_verified,
-                transfer_receipt_image: participant?.event_participant?.transfer_receipt_image,
-                transfer_receipt_url: `${url.public.upload}/${participant?.event_participant?.transfer_receipt_image}`,
-                city: {
-                    id: participant?.event_participant?.city?.id,
-                    name: participant?.event_participant?.city?.name,
-                    province: {
-                        id: participant?.event_participant?.city?.province?.id,
-                        name: participant?.event_participant?.city?.province?.name,
-                    }
-                }
-            }
-        })),
+        data: response,
     })
 }
 

@@ -4,7 +4,7 @@ const Province = require('../db/models').RegionProvince
 const City = require('../db/models').RegionCity
 
 const getProvinces = async (filter, { paginate, page, per_page }) => {
-    return await Province.findAll({
+    return await Province.findAndCountAll({
         where: {
             ...(filter.search && {
                 name: {
@@ -20,7 +20,7 @@ const getProvinces = async (filter, { paginate, page, per_page }) => {
 }
 
 const getCities = async (filter, { paginate, page, per_page }) => {
-    return await City.findAll({
+    return await City.findAndCountAll({
         where: {
             ...(filter.search && {
                 name: {

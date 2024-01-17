@@ -1,5 +1,5 @@
 const eventTypeRepo = require('../repositories/event.type.repository')
-const { getPaginatePayload } = require('../utils/pagination.util')
+const { getPaginatePayload, getPaginateData } = require('../utils/pagination.util')
 
 const getAll = async (req, res) => {
     const paginatePayload = getPaginatePayload(req.query)
@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
     res.status(200).json({
         status: 200,
         message: 'Success to get event types',
-        data: eventTypes,
+        data: paginatePayload.paginate ? getPaginateData(eventTypes, paginatePayload) : eventTypes.rows,
     })
 }
 

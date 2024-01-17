@@ -2,7 +2,7 @@ const crypto = require('crypto')
 const EventType = require('../db/models').EventType
 
 const getAll = async ({ paginate, page, per_page}) => {
-    return await EventType.findAll({
+    return await EventType.findAndCountAll({
         attributes: ['id', 'name', 'description', 'fee_type', 'fee_nominal'],
         where: { is_active: true },
         order: [['sequence', 'ASC']],

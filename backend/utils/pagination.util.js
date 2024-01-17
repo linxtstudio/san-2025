@@ -8,6 +8,14 @@ const getPaginatePayload = (query) => {
     }
 }
 
+const getPaginateData = ({ count, rows }, paginatePayload) => ({
+    total: count,
+    data: rows,
+    total_pages: Math.ceil(count / paginatePayload.per_page),
+    current_page: paginatePayload.page || 1,
+})
+
 module.exports = {
     getPaginatePayload,
+    getPaginateData,
 }
