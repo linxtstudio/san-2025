@@ -55,7 +55,6 @@ const RegisterPage = ({}) => {
   const handleGetEvents = async () => {
     try {
       const response = await getEvents({ paginate: false });
-      console.log(response);
       if (response.status === 200) {
         setEventList(response.data.data.data);
       }

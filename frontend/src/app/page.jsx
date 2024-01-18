@@ -83,7 +83,7 @@ export default function Home() {
     <main className="flex flex-col">
       <Navbar />
       <Link
-        href="https://wa.me/628179792764"
+        href="https://wa.me/62811212505"
         className="fixed bottom-10 right-10 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white shadow-lg"
       >
         <svg
@@ -476,7 +476,7 @@ export default function Home() {
                             : 'Free'}
                       </span>
                       {item.name === 'Performance' ? (
-                        <Link href="https://wa.me/628179792764">
+                        <Link href="https://wa.me/62811212505">
                           <IconWhatsapp />
                         </Link>
                       ) : null}
