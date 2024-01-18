@@ -9,6 +9,9 @@ import { getEvents } from '../services/getEvent';
 import toast from 'react-hot-toast';
 import Select from '@/common/components/Select/Select';
 import Tabs from '@/common/components/Tabs/Tabs';
+import { useUpdateParam } from '@/common/hooks/useParams';
+import { useRouter } from 'next/navigation';
+
 const tabFilter = [
   {
     label: 'Ungrouped',
@@ -25,10 +28,19 @@ const tabFilter = [
 ];
 
 const EventFilter = ({}) => {
-  const [search, setSearch] = useState('');
-  const [eventList, setEventList] = useState([]);
-  const [selectedTab, setSelectedTab] = useState('all');
+  const { currentParams, updateParams } = useUpdateParam();
 
+  const [search, setSearch] = useState(currentParams.get('search') ?? '');
+
+  const [eventList, setEventList] = useState([]);
+
+  const [selectedEvent, setSelectedEvent] = useState(
+    currentParams.get('event_type_id') ?? ''
+  );
+
+  const [selectedTab, setSelectedTab] = useState(
+    currentParams.get('group') ?? ''
+  );
   const handleGetEvents = async () => {
     try {
       const payload = {
@@ -50,9 +62,24 @@ const EventFilter = ({}) => {
         );
       }
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
+
+  useEffect(() => {
+    currentParams.set('search', search);
+    updateParams();
+  }, [search]);
+
+  useEffect(() => {
+    currentParams.set('event_type_id', selectedEvent);
+    updateParams();
+  }, [selectedEvent]);
+
+  useEffect(() => {
+    currentParams.set('group', selectedTab);
+    updateParams();
+  }, [selectedTab]);
 
   useEffect(() => {
     handleGetEvents();
@@ -81,7 +108,14 @@ const EventFilter = ({}) => {
         <label htmlFor="eventType" className="text-xl">
           Pilih Event
         </label>
-        <Select options={eventList} placeholder="Pilih Event" />
+        <Select
+          options={eventList}
+          placeholder="Pilih Event"
+          value={selectedEvent}
+          onChange={(value) => {
+            setSelectedEvent(value);
+          }}
+        />
       </div>
       <div className="flex flex-col items-end justify-end gap-1">
         <Tabs

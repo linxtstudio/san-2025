@@ -9,6 +9,7 @@ import { useLocalStorage } from '@/common/hooks/useLocalStorage';
 
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 
 const Login = ({}) => {
   const [accessToken, setAccessToken] = useLocalStorage('access-token', null);
@@ -27,6 +28,7 @@ const Login = ({}) => {
       const response = await login(form);
       setAccessToken(response.data.data.access_token);
       localStorage.setItem('user', JSON.stringify(response.data.data));
+      toast.success('Login Success');
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -48,8 +50,10 @@ const Login = ({}) => {
               Username
             </label>
             <Input
-              type={'text'}
-              name={'username'}
+              inputProps={{
+                type: 'text',
+                name: 'username',
+              }}
               onInput={(value) => setForm({ ...form, username: value })}
             />
           </div>
@@ -58,8 +62,10 @@ const Login = ({}) => {
               Password
             </label>
             <Input
-              type={'password'}
-              name={'password'}
+              inputProps={{
+                type: 'password',
+                name: 'password',
+              }}
               onInput={(value) => setForm({ ...form, password: value })}
             />
           </div>

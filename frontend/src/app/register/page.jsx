@@ -54,14 +54,13 @@ const RegisterPage = ({}) => {
 
   const handleGetEvents = async () => {
     try {
-      const response = await getEvents();
-
-      if (response.status === 200) {
-        setEventList(response.data.data);
-      }
+      const response = await getEvents({ paginate: false });
       console.log(response);
+      if (response.status === 200) {
+        setEventList(response.data.data.data);
+      }
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
 
@@ -83,7 +82,7 @@ const RegisterPage = ({}) => {
         );
       }
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
 
@@ -103,7 +102,7 @@ const RegisterPage = ({}) => {
         );
       }
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
 
@@ -133,7 +132,7 @@ const RegisterPage = ({}) => {
         redirect('/register/ticket');
       }
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
 
@@ -215,7 +214,7 @@ const RegisterPage = ({}) => {
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-grey-5">Informasi Pembayaran</span>
-                <span className="text-xl">Jane Doe</span>
+                <span className="text-xl">Mirawati</span>
               </div>
               <div className="flex items-center gap-4">
                 <Image
@@ -224,7 +223,7 @@ const RegisterPage = ({}) => {
                   height={18}
                   alt="bca"
                 />
-                <span className="text-[22px] font-semibold">1984673940378</span>
+                <span className="text-[22px] font-semibold">8271372183</span>
               </div>
             </div>
           </div>

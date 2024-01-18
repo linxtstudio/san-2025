@@ -6,8 +6,13 @@ import '@/modules/home/css/style.css';
 
 import imageHero23 from '/public/image/home/image23.png';
 import imageHero24 from '/public/image/home/image24.png';
-import imageHero25 from '/public/image/home/image25.png';
 import imageHero26 from '/public/image/home/image26.png';
+
+import imageNyok1 from '/public/image/home/nyok1.png';
+import imageNyok2 from '/public/image/home/nyok2.png';
+import imageNyok3 from '/public/image/home/nyok3.png';
+import imageNyok4 from '/public/image/home/nyok4.png';
+import imageNyok5 from '/public/image/home/nyok5.png';
 
 import FeaturedCard from '@/modules/home/components/FeaturedCard';
 
@@ -21,7 +26,10 @@ import { getEvents } from '@/modules/event/services/getEvent';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { formatRupiah } from '@/common/helper/formatRupiah';
+import IconWhatsapp from '@/common/icons/IconWhatsapp';
 
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 const featuredData = [
   {
     title: 'Band',
@@ -36,44 +44,34 @@ const featuredData = [
     image: featuredImage3,
   },
 ];
-
-const highlightData = [
-  {
-    title: 'Pre Party',
-    description:
-      'The big event that we all have been waiting for. See the great line-ups of performances, from different genres, different levels of dancers from all over Indonesia.',
-    footer: 'Minimum Contribution of 15k',
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3, // optional, default to 1.
   },
-  {
-    title: 'Pool Party',
-    description:
-      'Neautiful poolside while the DJ play our favorite dance tunes. Bonnie & Clyde competition will be added to bring more fun',
-    footer: 'Ticket Fee 500k',
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+    slidesToSlide: 2, // optional, default to 1.
   },
-  {
-    title: 'Workshop',
-    description:
-      'Neautiful poolside while the DJ play our favorite dance tunes. Bonnie & Clyde competition will be added to bring more fun',
-    footer: 'Ticket Fee 500k',
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
   },
-  {
-    title: 'Performance',
-    description: 'Participate to play a performance in the main event.',
-    footer: 'Contact Us!',
-  },
-];
+};
 export default function Home() {
   const [eventList, setEventList] = useState([]);
   const handleGetEvents = async () => {
     try {
-      const response = await getEvents();
+      const response = await getEvents({ paginate: false });
 
       if (response.status === 200) {
-        setEventList(response.data.data);
+        setEventList(response.data.data.data);
       }
-      console.log(response);
     } catch (error) {
-      toast.error(error);
+      toast.error('error');
     }
   };
 
@@ -156,28 +154,38 @@ export default function Home() {
               <div className="flex w-full flex-col gap-10 lg:w-7/12 ">
                 <h4 className="text-[28px] font-semibold">Pre Party</h4>
                 <p>
-                  Collaborating with the local Club in welcoming all dancers
-                  from all around Indonesia to taste the hospitality of Bali and
-                  experience the hype of dancing with the locals. Making new
-                  friends and reconnected with the families.
+                  Teaming up with the local club, we extend a warm invitation to
+                  dancers nationwide, inviting them to savor the hospitality of
+                  Bali.
+                </p>
+                <p className="mt-6">
+                  Immerse yourself in the exhilaration of dancing alongside
+                  locals, forging new friendships, and rekindling family bonds
+                  in the midst of this electrifying experience.
                 </p>
                 <div className="relative h-[256px] w-full">
                   <Image
                     src={imageHero23}
                     fill={true}
                     alt="people dance"
-                    className="object-cover"
+                    className="rounded-[20px] object-cover"
                   />
                 </div>
               </div>
-              <div className="flex w-full flex-col justify-center text-[22px] lg:w-5/12 lg:w-full">
+              <div className="flex w-full flex-col justify-center text-[22px] lg:w-5/12">
                 <div className="flex items-center justify-between">
                   <span className=" font-semibold">Location</span>
-                  <span>To Be Announced</span>
+                  <a
+                    href="https://maps.app.goo.gl/avC1crmH1C84oWWS9"
+                    className="text-[#0400B2] underline"
+                    target="_blank"
+                  >
+                    RED RUBY
+                  </a>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className=" font-semibold">Time</span>
-                  <span>To Be Announced</span>
+                  <span>7 PM - 11 PM</span>
                 </div>
               </div>
             </div>
@@ -196,24 +204,35 @@ export default function Home() {
                   <span className="text-red-4">*registration fee IDR 500k</span>
                 </div>
                 <p>
-                  There will be so much fun to dance at a beautiful poolside
-                  while the DJ play our favorite dance tunes. Bonnie & Clyde
-                  competition will be added to bring more fun and bring the best
-                  memories for us to remember
+                  Indulge in the joy of dancing by the exquisite poolside,
+                  surrounded by the mesmerizing hues of the sunset.
+                </p>
+                <p className="mt-6">
+                  Let the DJ weave the beats of your favorite dance tunes,
+                  creating an unforgettable ambiance. Elevate the excitement
+                  with a Bonnie & Clyde competition, promising not only added
+                  fun but also crafting cherished memories that will linger in
+                  our hearts.
                 </p>
                 <div className="relative h-[256px] w-full">
                   <Image
                     src={imageHero24}
                     fill={true}
                     alt="people dance"
-                    className="object-cover"
+                    className="rounded-[20px] object-cover"
                   />
                 </div>
               </div>
               <div className="flex w-full flex-col justify-center text-[22px] lg:w-5/12">
                 <div className="flex items-center justify-between">
                   <span className=" font-semibold">Location</span>
-                  <span>To Be Announced</span>
+                  <a
+                    href="https://maps.app.goo.gl/rQQEcExePMCSU3XEA"
+                    className="text-[#0400B2] underline"
+                    target="_blank"
+                  >
+                    LV8
+                  </a>{' '}
                 </div>
                 <div className="flex items-center justify-between">
                   <span className=" font-semibold">Time</span>
@@ -244,41 +263,35 @@ export default function Home() {
               </div>
               <div className="h-[1px] flex-grow-[1] bg-line" />
             </div>
-            <div className="mt-12 flex flex-col gap-[90px] lg:flex-row">
-              <div className="flex w-full flex-col gap-10 lg:w-7/12 ">
+            <div className="mt-12 flex flex-col gap-[90px] ">
+              <div className="flex w-full flex-col gap-10  ">
                 <div className="flex flex-col">
                   <h4 className="text-[28px] font-semibold">
-                    Salsa Arisan <br /> Nyok The Party
+                    Salsa Arisan Nyok The Party
                   </h4>
                 </div>
                 <p>
-                  The big event that we all have been waiting for. See the great
-                  line-ups of performances, from different genres, different
-                  levels of dancers from all over Indonesia. Then as the
-                  tradition continues is the color palette exchange on the
-                  social dance party where we are going to to tell you which
-                  color you have to dance with on the next song.{' '}
+                  Get ready to be mesmerized by an extraordinary array of
+                  performances hailing from every corner of Indonesia. Keeping
+                  with tradition, immerse yourself in the vibrant energy of the
+                  color exchange social dance.
                 </p>
                 <p className="mt-1">
-                  Make sure you know what color to wear to represent where do
-                  you come from so you can join the fun of color exchange and
-                  make some new friends from other cities. After that, the dance
-                  will still continue and we will have another room with Disco
-                  you can enjoy more of your favorite dance.
+                  Ensure you wear the appropriate hue, symbolizing your place of
+                  origin and adding a dynamic splash to this unforgettable
+                  experience.
                 </p>
-                <div className="relative h-[256px] w-full">
-                  <Image
-                    src={imageHero25}
-                    fill={true}
-                    alt="people dance"
-                    className="object-cover"
-                  />
-                </div>
               </div>
-              <div className="flex w-full flex-col justify-center gap-2 text-[22px] lg:w-5/12">
+              <div className="flex w-full flex-col justify-center gap-2 text-[22px]">
                 <div className="flex items-center justify-between">
                   <span className=" font-semibold">Location</span>
-                  <span>To Be Announced</span>
+                  <a
+                    href="https://maps.app.goo.gl/8NyB9jHzHR44e7wDA"
+                    target="_blank"
+                    className="text-[#0400B2] underline"
+                  >
+                    ASTON Denpasar Hotel & Convention
+                  </a>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <span className=" font-semibold">General Rehearsal</span>
@@ -315,6 +328,53 @@ export default function Home() {
                   <span>12 - 2 AM (DJ TBA)</span>
                 </div>
               </div>
+              <Carousel
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                ssr={true}
+                shouldResetAutoplay
+                showDots={false}
+                sliderClass=""
+                slidesToSlide={1}
+                swipeable
+                responsive={responsive}
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                centerMode={false}
+                className=""
+                containerClass="container-with-dots"
+                dotListClass=""
+                draggable
+                focusOnSelect={false}
+                infinite
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+              >
+                <div className="relative mx-3 h-[292px]">
+                  <Image src={imageNyok1} alt="party" fill={true} />
+                </div>
+                <div className="relative mx-3 h-[292px]">
+                  <Image src={imageNyok2} alt="party" fill={true} />
+                </div>
+                <div className="relative mx-3 h-[292px]">
+                  <Image src={imageNyok3} alt="party" fill={true} />
+                </div>
+                <div className="relative mx-3 h-[292px]">
+                  <Image src={imageNyok4} alt="party" fill={true} />
+                </div>
+                <div className="relative mx-3 h-[292px]">
+                  <Image src={imageNyok5} alt="party" fill={true} />
+                </div>
+              </Carousel>
+              ;
             </div>
           </div>
         </div>
@@ -334,15 +394,18 @@ export default function Home() {
                   another dance party to remember. Enjoying sunset and the warm
                   sand of Bali beach will be the ultimate dancing experience as
                   we say see you again next year to all our beloved friends and
-                  family. Barbeque menus from the bar and best music from the DJ
-                  will accompany our last night together.
+                  family.
+                </p>
+                <p className="mt-6">
+                  Barbeque menus from the bar and best music from the DJ will
+                  accompany our last night together.
                 </p>
                 <div className="relative h-[256px] w-full">
                   <Image
                     src={imageHero26}
                     fill={true}
                     alt="people dance"
-                    className="object-cover"
+                    className="rounded-[20px] object-cover"
                   />
                 </div>
               </div>
@@ -386,35 +449,39 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="relative mt-[108px]">
-        <div className="container flex flex-col items-center rounded-[20px] border-[2px] border-green-1 bg-white px-[85px] py-[35px]">
+      <div className="container relative mt-[108px]">
+        <div className=" flex flex-col items-center rounded-[20px] border-[2px] border-green-1 bg-white px-6 py-6  md:px-[85px] md:py-[35px]">
           <h2 className="text-[52px]">Join Us!</h2>
           <p>
             Ayo segera mendaftar sebelum ketinggalan jadwal pendaftaran, karena
             acara tahunan ini tentunya memiliki banyak keseruan dan hal lainnya,
             ayo!
           </p>
-          <div className="my-6  grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="my-6  flex flex-wrap justify-center">
             {eventList.map((item, index) => {
               return (
-                <div
-                  key={index}
-                  className="flex min-h-[213px] flex-col rounded-[20px] border-[2px] border-line p-6"
-                >
-                  <h4 className="text-[22px] font-semibold">{item.name}</h4>
-                  <p className="text-xs">{item.description}</p>
-                  <span className="mt-auto text-xs font-semibold">
-                    {item.fee_nominal
-                      ? item.type === 'donation'
-                        ? '*minimum donate ' + formatRupiah(item.fee_nominal)
-                        : '*join fee ' + formatRupiah(item.fee_nominal)
-                      : 'Free'}
-                  </span>
-                  {item.name === 'Performance' ? (
-                    <Link className="pt-4" href="https://wa.me/628179792764">
-                      <Button className="pt-4">Whatsapp</Button>
-                    </Link>
-                  ) : null}
+                <div key={index} className="w-full p-4  md:w-1/2 lg:w-3/12">
+                  <div className="flex min-h-[213px] flex-col rounded-[20px] border-[2px] border-line p-6">
+                    <h4 className="text-[22px] font-semibold">{item.name}</h4>
+                    <p className="text-xs">{item.description}</p>
+                    <div className="mt-auto flex items-center justify-between">
+                      <span className="text-xs font-semibold">
+                        {item.name === 'Performance'
+                          ? 'Contact us!'
+                          : item.fee_nominal
+                            ? item.type === 'donation'
+                              ? '*minimum donate ' +
+                                formatRupiah(item.fee_nominal)
+                              : '*join fee ' + formatRupiah(item.fee_nominal)
+                            : 'Free'}
+                      </span>
+                      {item.name === 'Performance' ? (
+                        <Link href="https://wa.me/628179792764">
+                          <IconWhatsapp />
+                        </Link>
+                      ) : null}
+                    </div>
+                  </div>
                 </div>
               );
             })}

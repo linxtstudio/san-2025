@@ -1,7 +1,7 @@
 import Button from '@/common/components/Button/Button';
 import IconScan from '@/common/icons/IconScan';
 import EventFilter from '@/modules/event/components/EventFilter';
-import TableParticipant from '@/modules/participant/components/TableParticipant';
+import ListTableParticipant from '@/modules/participant/components/ListTableParticipant';
 
 export default function Dashboard() {
   return (
@@ -14,7 +14,9 @@ export default function Dashboard() {
       </div>
       <div className="gap flex flex-col rounded-[20px] border-2 border-orange-1 px-8 py-4">
         <EventFilter />
-        <TableParticipant />
+        <div className="mt-4">
+          <ListTableParticipant />
+        </div>
       </div>
     </div>
   );

@@ -5,10 +5,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-
-import { Menu, Transition } from '@headlessui/react';
-
-import { Fragment } from 'react';
+import clsx from 'clsx';
 
 const Table = ({
   data,
@@ -19,6 +16,7 @@ const Table = ({
   onSee = null,
   onEdit = null,
   onDelete = null,
+  loading,
 }) => {
   const table = useReactTable({
     data,
@@ -33,7 +31,12 @@ const Table = ({
   const isUsingActions = onSee || onEdit || onDelete;
 
   return (
-    <div className="overflow-x-scroll lg:overflow-x-auto">
+    <div
+      className={clsx(
+        'overflow-x-scroll  lg:overflow-x-auto',
+        loading && 'opacity-20'
+      )}
+    >
       <table className="w-full   bg-white ">
         <thead className=" text-center text-lg font-semibold  lg:text-[22px]">
           {table.getHeaderGroups().map((headerGroup) => (

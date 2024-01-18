@@ -7,15 +7,100 @@ import toast from 'react-hot-toast';
 import { getParticipants } from '../services/getParticipants';
 import IconDownload from '@/common/icons/IconDownload';
 import { setVerification } from '../services/setVerification';
+import { useUpdateParam } from '@/common/hooks/useParams';
 
 const columnHelper = createColumnHelper();
 
-const TableParticipant = ({ data, isLoading, onEditData, onDeleteData }) => {
-  //   const { limit, onPaginationChange, skip, pagination } = usePagination(
-  //     data.limit
-  //   );
+const TableParticipant = ({
+  cityId,
+  verified = null,
+  verifiedTrigger = () => {},
+}) => {
+  const { currentParams } = useUpdateParam();
 
-  const columns = [
+  const downloadImage = async (imageSrc, nameOfDownload = 'payment-proof') => {
+    const response = await fetch(imageSrc);
+
+    const blobImage = await response.blob();
+
+    const href = URL.createObjectURL(blobImage);
+
+    const anchorElement = document.createElement('a');
+    anchorElement.href = href;
+    anchorElement.download = nameOfDownload;
+
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+
+    document.body.removeChild(anchorElement);
+    window.URL.revokeObjectURL(href);
+  };
+
+  const [participants, setParticipants] = useState([]);
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    const timeout = setTimeout(() => {
+      handleGetData();
+    }, 500); // Adjust the timeout duration as needed
+
+    setSearchTimeout(timeout);
+
+    return () => {
+      clearTimeout(searchTimeout);
+    };
+  }, [currentParams.get('search'), currentParams.get('event_type_id')]);
+
+  const handleGetData = async () => {
+    try {
+      setLoading(true);
+      let payload = {
+        params: {
+          paginate: false,
+          search: currentParams.get('search') ?? '',
+          event_type_id: currentParams.get('event_type_id') ?? '',
+        },
+      };
+
+      if (cityId) {
+        payload.params.city_id = cityId;
+      }
+      if (verified !== null) {
+        payload.params.is_verified = verified;
+      }
+      const response = await getParticipants(payload);
+      setParticipants(response.data.data);
+    } catch (error) {
+      setParticipants([]);
+      toast.error('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerification = async (type, id) => {
+    try {
+      const response = await setVerification(type, id);
+      if (response.status === 200) {
+        toast.success(
+          type === 'verified'
+            ? 'Peserta Berhasil terverifikasi'
+            : 'Peserta Berhasil di unverfikasi'
+        );
+        verifiedTrigger();
+        handleGetData();
+      }
+    } catch (error) {
+      toast.error('error');
+    }
+  };
+
+  let columns = [
     columnHelper.accessor('event_participant.name', {
       cell: (info) => info.getValue(),
       header: () => 'Name',
@@ -28,18 +113,26 @@ const TableParticipant = ({ data, isLoading, onEditData, onDeleteData }) => {
       header: () => 'Phone',
       cell: (info) => info.renderValue(),
     }),
-    columnHelper.accessor('event_participant.city.province.name', {
-      header: () => 'Province',
-      cell: (info) => (
-        <span className="capitalize">{info.renderValue().toLowerCase()}</span>
-      ),
-    }),
-    columnHelper.accessor('event_participant.city.name', {
-      header: () => 'City',
-      cell: (info) => (
-        <span className="capitalize">{info.renderValue().toLowerCase()}</span>
-      ),
-    }),
+  ];
+
+  if (!cityId) {
+    columns.push(
+      columnHelper.accessor('event_participant.city.province.name', {
+        header: () => 'Province',
+        cell: (info) => (
+          <span className="capitalize">{info.renderValue().toLowerCase()}</span>
+        ),
+      }),
+      columnHelper.accessor('event_participant.city.name', {
+        header: () => 'City',
+        cell: (info) => (
+          <span className="capitalize">{info.renderValue().toLowerCase()}</span>
+        ),
+      })
+    );
+  }
+
+  columns.push(
     columnHelper.accessor('event_participant.is_verified', {
       header: () => 'Status',
       cell: (info) =>
@@ -91,60 +184,16 @@ const TableParticipant = ({ data, isLoading, onEditData, onDeleteData }) => {
             Verifikasi
           </button>
         ),
-    }),
-  ];
-  const downloadImage = async (imageSrc, nameOfDownload = 'payment-proof') => {
-    const response = await fetch(imageSrc);
-
-    const blobImage = await response.blob();
-
-    const href = URL.createObjectURL(blobImage);
-
-    const anchorElement = document.createElement('a');
-    anchorElement.href = href;
-    anchorElement.download = nameOfDownload;
-
-    document.body.appendChild(anchorElement);
-    anchorElement.click();
-
-    document.body.removeChild(anchorElement);
-    window.URL.revokeObjectURL(href);
-  };
-
-  const [participants, setParticipants] = useState([]);
-
-  const handleGetData = async () => {
-    try {
-      const response = await getParticipants();
-      setParticipants(response.data.data.data);
-    } catch (error) {
-      toast.error(error);
-    }
-  };
-
-  const handleVerification = async (type, id) => {
-    try {
-      console.log(id);
-      const response = await setVerification(type, id);
-      if (response.status === 200) {
-        toast.success(
-          type === 'verified'
-            ? 'Peserta Berhasil terverifikasi'
-            : 'Peserta Berhasil di unverfikasi'
-        );
-        handleGetData();
-      }
-    } catch (error) {
-      toast.error(error);
-    }
-  };
-  useEffect(() => {
-    handleGetData();
-  }, []);
-
-  //   const pageCount = Math.ceil(data.total / limit);
-
-  return <Table isLoading={isLoading} data={participants} columns={columns} />;
+    })
+  );
+  return (
+    <Table
+      isLoading={loading}
+      data={participants}
+      columns={columns}
+      loading={loading}
+    />
+  );
 };
 
 export default TableParticipant;
