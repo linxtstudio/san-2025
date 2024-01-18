@@ -151,7 +151,7 @@ const RegisterPage = ({}) => {
         <span className="text-[28px] font-semibold">Back</span>
       </Link>
       <h1 className="mt-12 text-2xl font-semibold md:text-5xl">
-        Form Pendaftaran SAN Main Event
+        Registration Form
       </h1>
       <div className="mt-[30px] flex flex-col gap-[70px] md:flex-row">
         <div className="flex w-full flex-col gap-6 md:w-1/2">
@@ -159,10 +159,10 @@ const RegisterPage = ({}) => {
             options={eventList.filter((event) => event.name !== 'Performance')}
             selectedValues={selectedValues}
             onChange={setSelectedValues}
-            label="Ingin ikut event apa?"
+            label="Choose the event(s) you'd like to participate in"
           />
           <Input
-            label="Nama "
+            label="Name "
             inputProps={{
               placeholder: 'Jane Nurul Munawar',
               value: form.name,
@@ -179,7 +179,7 @@ const RegisterPage = ({}) => {
             onInput={(value) => setForm({ ...form, email: value })}
           />
           <Input
-            label="Nomor Telepon"
+            label="Phone Number"
             inputProps={{
               placeholder: '+62 810 810 81000',
               type: 'tel',
@@ -190,29 +190,29 @@ const RegisterPage = ({}) => {
         </div>
         <div className="flex w-full flex-col gap-6 md:w-1/2">
           <Select
-            placeholder="Pilih Provinsi"
+            placeholder="Choose Province"
             value={selectedProvince}
-            label={'Lokasi'}
+            label={'Province'}
             options={provinceList}
             onChange={(value) => handleOnProvinceChange(value)}
           />
           <Select
-            placeholder="Pilih Kota"
+            placeholder="Choose City"
             value={form.city_id}
-            label={'Lokasi'}
+            label={'City'}
             options={cityList}
             onChange={(value) => setForm({ ...form, city_id: value })}
           />
           <div className="flex flex-col">
-            <h5 className="text-[22px] font-semibold">Bukti Pembayaran </h5>
-            <div className="flex flex-col gap-2">
+            <h5 className="text-[22px] font-semibold">Payment Proof</h5>
+            <div className="mt-8 flex flex-col gap-2">
               <div className="flex flex-col gap-1">
-                <span className="text-grey-5">Jumlah Yang Harus Dibayar</span>
+                <span className="text-grey-5">Amount to be paid</span>
 
                 <span className="text-xl">{formatRupiah(totalFee)}</span>
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-grey-5">Informasi Pembayaran</span>
+              <div className="mt-2 flex flex-col gap-1">
+                <span className="text-grey-5">Payment Information</span>
                 <span className="text-xl">Mirawati</span>
               </div>
               <div className="flex items-center gap-4">
