@@ -1,0 +1,55 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    container_name: san-2024-fe
+    ports:
+      - 7005:7005
+    networks:
+      - san-2024-network
+
+  backend:
+    build: ./backend
+    container_name: san-2024-be
+    restart: always
+    ports:
+      - 7004:3000
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=production
+      - BASE_URL=http://103.127.99.217:7004
+      - APP_PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=san_2024
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - JWT_SECRET=san2024jwt
+    networks:
+      - san-2024-network
+    volumes:
+      - ./backend/public/uploads:/app/public/uploads
+
+  db:
+    container_name: postgres-db
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 7003:5432
+    networks:
+      - san-2024-network
+
+networks:
+  san-2024-network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
