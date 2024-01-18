@@ -1,7 +1,11 @@
 {
   "root": true,
   "extends": ["next", "next/core-web-vitals", "prettier"],
+  "plugins": ["svg-jsx"],
   "rules": {
-    "tailwindcss/classnames-order": "off"
+    "tailwindcss/classnames-order": "off",
+    "svg-jsx/camel-case-dash": "error",
+    "svg-jsx/camel-case-colon": "error",
+    "svg-jsx/no-style-string": "error"
   }
 }

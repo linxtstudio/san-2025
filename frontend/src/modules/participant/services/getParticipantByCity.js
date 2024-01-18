@@ -1,9 +1,9 @@
 import { apiClientAuth } from '@/common/helper/axios';
 
-export const getEvents = (payload) => {
+export const getParticipantByCity = (payload) => {
   return apiClientAuth({
     method: 'get',
-    url: '/event/types',
+    url: '/admin/event/participants/by-city',
     ...payload,
   });
 };
