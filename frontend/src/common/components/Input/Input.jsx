@@ -1,21 +1,43 @@
-import clsx from "clsx"
+import clsx from 'clsx';
 
-const Input = ({ size = 'default', prefix = false, prefixComponent: PrefixComponent, inputProps, label, onInput}) => {
-    return (
-        <div className="flex flex-col gap-2">
-            {label && <label className="text-base"> { label } </label>}
-            <div className={clsx("border-2 border-grey-3 rounded-[10px] transition-all duration-200 outline-none focus-within:border-green-1 flex gap-2", size === 'small' ? 'py-2 px-3' : 'px-3 py-2')}>
-                {prefix && (
-                    <PrefixComponent />
-                )}
-                <input
-                    className="focus:ring-0 !outline-none text-sm border-none focus:!outline-none h-[24px] w-full p-0 placeholder:text-grey-3"
-                    onInput={(e) => {onInput(e.target.value)}}
-                    {...inputProps}
-                />
-            </div>
-        </div>
-    )
-}
+const Input = ({
+  size = 'default',
+  prefixComponent: PrefixComponent,
+  suffixComponent: SuffixComponent,
+  inputProps,
+  label,
+  onInput = () => {},
+  suffixAction = () => {},
+  className = '',
+}) => {
+  return (
+    <div className="flex flex-col gap-2">
+      {label && <label className="text-base"> {label} </label>}
+      <div
+        className={clsx(
+          'flex gap-2 rounded-[10px] border-2 border-grey-3 outline-none transition-all duration-200 focus-within:border-green-1',
+          size === 'small' ? 'px-3 py-2' : 'px-3 py-2',
+          className
+        )}
+      >
+        {PrefixComponent && <PrefixComponent />}
+        <input
+          className="h-[24px] w-full border-none p-0 text-sm !outline-none placeholder:text-grey-3 focus:!outline-none focus:ring-0"
+          onInput={(e) => {
+            onInput(e.target.value);
+          }}
+          {...inputProps}
+        />
+        <button
+          onClick={(e) => {
+            suffixAction();
+          }}
+        >
+          {SuffixComponent && <SuffixComponent />}
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default Input
+export default Input;

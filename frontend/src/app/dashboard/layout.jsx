@@ -1,5 +1,11 @@
-export default function Layout({ children   }) {
+import NavbarDashboard from '@/common/components/Navbar/NavbarDashboard';
+
+export default function Layout({ children }) {
   return (
-    children
-  )
+    <>
+      <NavbarDashboard />
+
+      <main className="container py-[75px]">{children}</main>
+    </>
+  );
 }

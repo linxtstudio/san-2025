@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-let accessToken = null;
-
 export const apiClientAuth = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
@@ -13,12 +11,8 @@ export const apiClientAuth = axios.create({
 
 apiClientAuth.interceptors.request.use(
   async (request) => {
-    if (accessToken === null) {
-      accessToken = JSON.parse(localStorage.getItem('access-token') || '{}');
-    }
-
-    if (accessToken) {
-      request.headers.Authorization = `Bearer ${accessToken}`;
+    if (localStorage.getItem('access-token')) {
+      request.headers.Authorization = `Bearer ${localStorage.getItem('access-token') ? localStorage.getItem('access-token').replaceAll('"', '') : ''}`;
     } else {
       delete request.headers.Authorization;
     }
