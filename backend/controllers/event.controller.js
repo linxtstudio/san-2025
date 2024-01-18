@@ -53,7 +53,9 @@ const getParticipants = async (req, res) => {
 }
 
 const getParticipantDetail = async (req, res) => {
-    const participantDetail = await eventRepository.getParticipantDetail(req.params.participantId)
+    const participantDetail = await eventRepository.getParticipantDetail({
+        id: req.params.participantId,
+    })
 
     res.status(200).json({
         status: 200,
@@ -75,7 +77,9 @@ const getParticipantDetail = async (req, res) => {
 }
 
 const getParticipantDetailAdmin = async (req, res) => {
-    const participant = await eventRepository.getParticipantDetail(req.params.participantId)
+    const participant = await eventRepository.getParticipantDetail({
+        id: req.params.participantId,
+    })
 
     res.status(200).json({
         status: 200,
@@ -99,6 +103,26 @@ const getParticipantDetailAdmin = async (req, res) => {
 }
 
 const setVerified = async (req, res) => {
+    const participant = await eventRepository.getParticipantDetail({
+        id: req.params.participantId,
+    })
+
+    if (!participant) {
+        return res.status(422).json({
+            status: 422,
+            message: 'Participant does not exist',
+            data: null,
+        })
+    }
+
+    if (participant.is_verified) {
+        return res.status(422).json({
+            status: 422,
+            message: 'Participant already verified',
+            data: null,
+        })
+    }
+
     await eventRepository.setVerified(req.params.participantId)
 
     res.status(200).json({
