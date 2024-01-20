@@ -120,6 +120,9 @@ export default function Home() {
               <Button href="/about" type="outline">
                 About SAN
               </Button>
+              <Link href="/hotel">
+                <Button type="outline">Hotel Detail</Button>
+              </Link>
               <Link href="/register">
                 <Button>Register</Button>
               </Link>
