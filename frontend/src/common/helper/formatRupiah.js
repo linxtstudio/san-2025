@@ -1,3 +1,3 @@
-export const formatRupiah = (price) =>  {
-    return `Rp.${price.toLocaleString('id')}`
-}
+export const formatRupiah = (price) => {
+  return `IDR ${price.toLocaleString('id')}`;
+};
