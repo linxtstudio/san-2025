@@ -1,15 +1,21 @@
-const Navbar = ({}) => {
-  return <section className=" bg-green-1 px-6 py-2 ">
-  <div className="container flex justify-between items-center">
-    <h1 className="text-4xl font-semibold">SAN 2024</h1>
-    <nav className="flex i">
-      <ul className="flex gap-7 items-center">
-        <li>Home</li>
-        <li>About</li>
-      </ul>
-    </nav>
-  </div>
-</section>
-}
+import Link from 'next/link';
 
-export default Navbar
+const Navbar = ({}) => {
+  return (
+    <section className=" bg-green-1 px-6 py-2 ">
+      <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
+        <h1 className="text-4xl font-semibold">SAN 2024</h1>
+        <nav className="i flex">
+          <ul className="flex items-center gap-7">
+            <li>Home</li>
+            <Link href={'/hotel'}>Hotel</Link>
+
+            <li>About</li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  );
+};
+
+export default Navbar;
