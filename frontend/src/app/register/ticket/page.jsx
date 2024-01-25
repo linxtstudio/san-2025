@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 
 const TicketPage = ({}) => {
-  const [registerData, setRegisterData] = useState(
-  );
+  const [registerData, setRegisterData] = useState();
 
   useEffect(() => {
     setRegisterData(
@@ -15,8 +14,9 @@ const TicketPage = ({}) => {
             name: 'Shaddam',
             email: 'shaddam.ah@gmail.com',
             phone_number: '081234567890',
-          })
-  }, [])
+          }
+    );
+  }, []);
 
   if (!registerData) return null;
 
@@ -29,7 +29,7 @@ const TicketPage = ({}) => {
               <h1 className="text-[48px] font-semibold">
                 SAN Main Event E-Ticket
               </h1>
-              <span className="text-[28px] font-semibold">
+              <span className="text-title-1 font-semibold">
                 Pool Party, Workshop
               </span>
               <div className="mt-6  flex flex-col">

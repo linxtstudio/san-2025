@@ -1,7 +1,10 @@
 version: "3"
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: "./frontend"
+      args:
+        BUILD_ENV: production
     container_name: san-2024-fe
     ports:
       - 7005:7005

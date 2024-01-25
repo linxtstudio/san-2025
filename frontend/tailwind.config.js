@@ -16,6 +16,11 @@ module.exports = {
 
     },
     extend: {
+      fontSize: {
+        'display': ['48px', '72px'],
+        'title-1': ['28px', 'normal'],
+        'title-2': ['22px', 'normal']
+      },
       screens: {
         '2xl': '1440px',
       },
