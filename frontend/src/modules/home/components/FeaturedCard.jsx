@@ -9,7 +9,7 @@ const FeaturedCard = ({ className = '', title, image }) => {
     >
       <div className="group relative z-20 overflow-hidden rounded-2xl bg-line">
         <span
-          className="translate-middle text-display absolute z-50 text-center font-semibold"
+          className="translate-middle absolute z-50 text-center text-display font-semibold"
           style={{
             top: '50%',
             left: '50%',

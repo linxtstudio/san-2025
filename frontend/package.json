@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:debug": "set TIMING=1 && eslint --ext .jsx,.ts,.tsx src --cache --cache-strategy metadata",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

@@ -44,7 +44,7 @@ const Login = ({}) => {
     <main className=" flex min-h-[100vh] w-full items-center justify-between">
       <div className="container max-w-[500px] flex-grow-[1]">
         <form className="mt-14 flex min-w-[360px] flex-col gap-6">
-          <h1 className="text-display text-center font-bold">Admin Login</h1>
+          <h1 className="text-center text-display font-bold">Admin Login</h1>
           <div>
             <label htmlFor="username" className="text-xl font-semibold">
               Username

@@ -83,14 +83,14 @@ const Page = ({}) => {
         <div className="container">
           <Link
             href="/"
-            className="text-title-1 flex items-center font-semibold"
+            className="flex items-center text-title-1 font-semibold"
           >
             <IconBack /> Back
           </Link>
           <h1 className="mt-[60px] text-3xl font-semibold md:mt-[90px] md:text-display">
             ASTON Denpasar Hotel & Convention
           </h1>
-          <div className=" text-title-1 mt-[30px] font-semibold">Location</div>
+          <div className=" mt-[30px] text-title-1 font-semibold">Location</div>
 
           <div className=" mt-[30px] grid grid-cols-1 gap-[35px] md:grid-cols-2">
             <div className="flex ">
@@ -115,7 +115,7 @@ const Page = ({}) => {
       </section>
       <section>
         <div className="container">
-          <div className=" text-title-1 mt-[30px] font-semibold">
+          <div className=" mt-[30px] text-title-1 font-semibold">
             Hotel Room
           </div>
           <div className="mt-[30px] grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

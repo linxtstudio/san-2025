@@ -2,9 +2,7 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: [
-      "st3.depositphotos.com",
-    ],
+    domains: ['st3.depositphotos.com'],
   },
   eslint: {
     dirs: ['src'],

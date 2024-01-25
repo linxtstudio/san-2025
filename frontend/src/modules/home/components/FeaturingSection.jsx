@@ -154,27 +154,29 @@ export function FeaturingSection() {
             ) : null}
           </div>
           <button
-            className="mt-2 mb-2 w-fit text-[18px] text-green-3"
+            className="mb-2 mt-2 w-fit text-[18px] text-green-3"
             onClick={() => setIsShowMore(true)}
           >
             Show more
           </button>
           {/* Instructors */}
-            <div className="flex w-full flex-col gap-6">
-              <p className="text-title-2 font-semibold">Instructors  (To be Announced)</p>
-              <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
-              />
-              <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
-              />
-              <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
-              />
-            </div>
+          <div className="flex w-full flex-col gap-6">
+            <p className="text-title-2 font-semibold">
+              Instructors (To be Announced)
+            </p>
+            <Card
+              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+              name="TBA"
+            />
+            <Card
+              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+              name="TBA"
+            />
+            <Card
+              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+              name="TBA"
+            />
+          </div>
         </div>
       </div>
     </div>
