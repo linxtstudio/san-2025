@@ -32,7 +32,7 @@ const Login = ({}) => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      toast.error(error.response.data.message || 'Something went wrong');
     }
   };
 
@@ -43,7 +43,10 @@ const Login = ({}) => {
   return (
     <main className=" flex min-h-[100vh] w-full items-center justify-between">
       <div className="container max-w-[500px] flex-grow-[1]">
-        <form className="mt-14 flex min-w-[360px] flex-col gap-6">
+        <form
+          onSubmit={handleLogin}
+          className="mt-14 flex min-w-[360px] flex-col gap-6"
+        >
           <h1 className="text-center text-display font-bold">Admin Login</h1>
           <div>
             <label htmlFor="username" className="text-xl font-semibold">
@@ -70,7 +73,7 @@ const Login = ({}) => {
             />
           </div>
           <div className="flex w-full flex-col">
-            <Button type={'fill'} onclick={handleLogin} isLoading={isLoading}>
+            <Button type={'fill'} isLoading={isLoading}>
               LOGIN
             </Button>
           </div>

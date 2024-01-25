@@ -293,7 +293,9 @@ export default function Home() {
               <ItemList items={MAIN_EVENT_SCHEDULE} />
               <div className="flex w-full flex-col gap-8" id="prices">
                 <div className="flex flex-col">
-                  <h4 className="text-title-1 font-semibold">Ticket Prices</h4>
+                  <h4 className="text-title-1 font-semibold">
+                    Minimum Contribution
+                  </h4>
                 </div>
                 <ItemList items={PRICE_LIST} />
               </div>

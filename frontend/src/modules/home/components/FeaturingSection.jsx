@@ -91,9 +91,9 @@ export function FeaturingSection() {
             {isShowMore ? (
               <>
                 <Card
-                  image="/image/featuring/rieza.png"
-                  name="Rieza Vaganza"
-                  title="Project Director"
+                  image="/image/featuring/mirawati.png"
+                  name="Mirawati"
+                  title="Treasury"
                 />
                 <Card
                   image="/image/featuring/made.png"
@@ -106,39 +106,9 @@ export function FeaturingSection() {
                   title="Funding Manager"
                 />
                 <Card
-                  image="/image/featuring/gungis.png"
-                  name="Gung Is"
-                  title="Stage Manager"
-                />
-                <Card
-                  image="/image/featuring/mirawati.png"
-                  name="Mirawati"
-                  title="Treasury"
-                />
-                <Card
-                  image="/image/featuring/jamal.png"
-                  name="Jamal"
-                  title="Artistic Member"
-                />
-                <Card
-                  image="/image/featuring/adis.png"
-                  name="Adis Krisna"
-                  title="Secretarial Manager"
-                />
-                <Card
-                  image="/image/featuring/jimmy.png"
-                  name="Jimmy"
-                  title="Social Media Member"
-                />
-                <Card
-                  image="/image/featuring/dhawani.png"
-                  name="Dhawani"
-                  title="Workshop Manager"
-                />
-                <Card
-                  image="/image/featuring/diana.png"
-                  name="Diana Jansen"
-                  title="Secretarial Member"
+                  image="/image/featuring/reinard.png"
+                  name="Reinard Arga"
+                  title="Social Media Manager"
                 />
                 <Card
                   image="/image/featuring/billy.png"
@@ -146,9 +116,44 @@ export function FeaturingSection() {
                   title="Talent Manager"
                 />
                 <Card
+                  image="/image/featuring/rieza.png"
+                  name="Rieza Vaganza"
+                  title="Project Director"
+                />
+                <Card
+                  image="/image/featuring/adis.png"
+                  name="Adis Krisna"
+                  title="Secretarial Manager"
+                />
+                <Card
+                  image="/image/featuring/dhawani.png"
+                  name="Dhwani"
+                  title="Workshop Manager"
+                />
+                <Card
+                  image="/image/featuring/gungis.png"
+                  name="Gung Is"
+                  title="Stage Manager"
+                />
+                <Card
+                  image="/image/featuring/jamal.png"
+                  name="Jamal"
+                  title="Artistic Member"
+                />
+                <Card
+                  image="/image/featuring/jimmy.png"
+                  name="Jimmy"
+                  title="Social Media Member"
+                />
+                <Card
                   image="/image/featuring/athika.png"
                   name="Athika"
                   title="Project Director"
+                />
+                <Card
+                  image="/image/featuring/diana.png"
+                  name="Diana Jansen"
+                  title="Secretarial Member"
                 />
               </>
             ) : null}
@@ -164,18 +169,20 @@ export function FeaturingSection() {
             <p className="text-title-2 font-semibold">
               Instructors (To be Announced)
             </p>
-            <Card
-              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-              name="TBA"
-            />
-            <Card
-              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-              name="TBA"
-            />
-            <Card
-              image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-              name="TBA"
-            />
+            <div className="flex w-full flex-wrap gap-6">
+              <Card
+                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+                name="TBA"
+              />
+              <Card
+                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+                name="TBA"
+              />
+              <Card
+                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
+                name="TBA"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ import toast from 'react-hot-toast';
 import { formatRupiah } from '@/common/helper/formatRupiah';
 import IconBack from '@/common/icons/IconBack';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage = ({}) => {
   const [eventList, setEventList] = useState([]);
@@ -24,8 +24,10 @@ const RegisterPage = ({}) => {
   const [cityList, setCityList] = useState([]);
 
   const [selectedValues, setSelectedValues] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedProvince, setSelectedProvince] = useState('');
+  const router = useRouter();
 
   const [selectedFile, setSelectedFile] = useState({});
   const [form, setForm] = useState({
@@ -125,14 +127,14 @@ const RegisterPage = ({}) => {
       const response = await register(payload);
       if (response.status === 200) {
         toast.success(
-          'Pendaftaran Berhasil. Terima kasih atas partisipasinya, kami tunggu di acara!'
+          'Registration Successful. Thank you for your participation'
         );
         localStorage.setItem(
           'register-data',
           JSON.stringify(response.data.data)
         );
         resetState();
-        redirect('/register/ticket');
+        router.push('/register/ticket');
       }
     } catch (error) {
       toast.error('error');
@@ -147,11 +149,22 @@ const RegisterPage = ({}) => {
   }, 0);
 
   useEffect(() => {
-    handleGetEvents();
-    handleGetProvinces();
+    if (isLoading) {
+      const data = localStorage.getItem('register-data');
+      if (data) {
+        router.replace('/register/ticket');
+        return;
+      }
+      handleGetEvents();
+      handleGetProvinces();
+      setIsLoading(false);
+    }
   }, []);
+
+  if (isLoading) return <></>;
+
   return (
-    <div className="container z-20 py-44 md:py-0">
+    <div className="container z-20 py-8">
       <Link href="/" className="flex items-center">
         <IconBack />
         <span className="text-title-1 font-semibold">Back</span>
@@ -250,9 +263,8 @@ const RegisterPage = ({}) => {
               handleRegister();
             }}
           >
-            Daftar
+            Register
           </Button>
-          <div></div>
         </div>
       </div>
     </div>

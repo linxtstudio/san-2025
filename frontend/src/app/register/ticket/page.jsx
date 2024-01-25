@@ -1,5 +1,6 @@
 'use client';
 import Button from '@/common/components/Button/Button';
+import { ItemList } from '@/common/components/ItemList';
 import { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 
@@ -22,40 +23,44 @@ const TicketPage = ({}) => {
 
   return (
     <>
-      <div className="container flex rounded-[20px] border border-orange-1 px-[70px] py-[32px]">
+      <div className="container z-[10] flex flex-col rounded-[20px] border border-orange-1 p-12 print:border-0">
         <div className="flex w-full flex-col">
-          <div className="flex w-full justify-between">
-            <div className="flex w-full flex-col lg:w-8/12 ">
-              <h1 className="text-[48px] font-semibold">
-                SAN Main Event E-Ticket
+          <div className="flex w-full flex-col justify-between gap-8 md:flex-row">
+            <div className="flex w-full flex-col gap-3">
+              <h1 className="text-3xl font-semibold md:text-display">
+                SAN Main Event E&#8208;Ticket
               </h1>
-              <span className="text-title-1 font-semibold">
+              <span className="text-title-2 font-semibold md:text-title-1">
                 Pool Party, Workshop
               </span>
-              <div className="mt-6  flex flex-col">
-                <div className="flex items-center gap-[20px] text-[22px] font-semibold">
-                  <span className="min-w-[190px]">Name</span>
-                  <span>{registerData.name}</span>
-                </div>
-                <div className="flex items-center gap-[20px] text-[22px] font-semibold">
-                  <span className="min-w-[190px]">Email</span>
-                  <span>{registerData.email}</span>
-                </div>
-                <div className="flex items-center gap-[20px] text-[22px] font-semibold">
-                  <span className="min-w-[190px]">Phone Number</span>
-                  <span>{registerData.phone_number} </span>
-                </div>
+              <div className="flex w-full max-w-[560px]">
+                <ItemList
+                  items={[
+                    {
+                      title: 'Name',
+                      description: registerData.name,
+                    },
+                    {
+                      title: 'Email',
+                      description: registerData.email,
+                    },
+                    {
+                      title: 'Phone Number',
+                      description: registerData.phone_number,
+                    },
+                  ]}
+                />
               </div>
             </div>
-            <div className="flex w-[320px] flex-col items-center rounded-[20px] border border-green-1 p-8">
-              <QRCode value={registerData.id} />
-              <span className="mt-5 text-2xl">
+            <div className="flex max-w-[320px] flex-col items-center rounded-[20px] border border-green-1 p-8">
+              <QRCode value={registerData.id} className="h-full w-full" />
+              <span className="mt-5 text-title-2">
                 *Please show this ticket to staff in registry
               </span>
             </div>
           </div>
-          <div className="mt-8 self-end">
-            <Button>Download</Button>
+          <div className="mt-8 md:self-end">
+            <Button onClick={() => window.print()}>Download</Button>
           </div>
         </div>
       </div>

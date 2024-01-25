@@ -15,7 +15,7 @@ const Input = ({
       {label && <label className="text-base"> {label} </label>}
       <div
         className={clsx(
-          'flex gap-2 rounded-[10px] border-2 border-grey-3 outline-none transition-all duration-200 focus-within:border-green-1',
+          'flex gap-2 rounded-[10px] border-2 border-grey-3 bg-white outline-none transition-all duration-200 focus-within:border-green-1',
           size === 'small' ? 'px-3 py-2' : 'px-3 py-2',
           className
         )}
@@ -29,6 +29,7 @@ const Input = ({
           {...inputProps}
         />
         <button
+          tabIndex={SuffixComponent ? 0 : -1}
           onClick={(e) => {
             suffixAction();
           }}

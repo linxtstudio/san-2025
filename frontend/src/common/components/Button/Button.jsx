@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-const Button = ({ children, onclick, type = 'fill' }) => {
+const Button = ({ children, onclick, type = 'fill', ...props }) => {
   return (
     <button
       onClick={onclick}
@@ -10,6 +10,7 @@ const Button = ({ children, onclick, type = 'fill' }) => {
           ? 'border-green-6 bg-transparent text-white'
           : 'border-green-7 bg-green-1 font-semibold text-green-7'
       )}
+      {...props}
     >
       {children}
     </button>
