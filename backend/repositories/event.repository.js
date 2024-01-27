@@ -16,8 +16,18 @@ const register = async (payload) => {
             id: crypto.randomUUID(),
             event_type_id,
         })),
+        ...(payload?.event_participant_hotel_facility && {
+            event_participant_hotel_facility: {
+                id: crypto.randomUUID(),
+                hotel_facility_id: payload?.event_participant_hotel_facility?.hotel_facility_id,
+                stay_duration: payload?.event_participant_hotel_facility?.stay_duration,
+            }
+        })
     }, {
-        include: ['event_participant_details'],
+        include: [
+            'event_participant_details',
+            'event_participant_hotel_facility',
+        ],
     })
 }
 
@@ -106,6 +116,14 @@ const getParticipantDetail = async (filter) => {
                     }
                 ]
             },
+            {
+                association: 'event_participant_hotel_facility',
+                include: [
+                    {
+                        association: 'hotel_facility',
+                    }
+                ]
+            }
         ],
     })
 }

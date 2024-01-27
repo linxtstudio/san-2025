@@ -1,0 +1,34 @@
+{
+  "hotel_facilities": [
+    {
+      "name": "Superior Room",
+      "code": "superior-room",
+      "sequence": 1
+    },
+    {
+      "name": "Deluxe Room",
+      "code": "deluxe-room",
+      "sequence": 2
+    },
+    {
+      "name": "Deluxe Premier Room",
+      "code": "deluxe-premier-room",
+      "sequence": 3
+    },
+    {
+      "name": "Family Room",
+      "code": "family-room",
+      "sequence": 4
+    },
+    {
+      "name": "Suite Room",
+      "code": "suite-room",
+      "sequence": 5
+    },
+    {
+      "name": "ASTON Suite Room",
+      "code": "aston-suite-room",
+      "sequence": 6
+    }
+  ]
+}

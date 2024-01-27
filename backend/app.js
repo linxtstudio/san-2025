@@ -13,6 +13,7 @@ const authRouter = require('./routes/auth.route')
 const eventRouter = require('./routes/event.route')
 const eventTypeRouter = require('./routes/event.type.route')
 const generalRouter = require('./routes/general.route')
+const hotelFacilityRouter = require('./routes/hotel.facility.route')
 const regionRouter = require('./routes/region.route')
 
 const sequelize = require('./utils/db/sequelize.util')
@@ -35,6 +36,7 @@ app.use('/admin', adminRouter)
 app.use('/auth', authRouter)
 app.use('/event', eventRouter)
 app.use('/event/types', eventTypeRouter)
+app.use('/hotel-facilities', hotelFacilityRouter)
 app.use('/region', regionRouter)
 
 // catch 404 and forward to error handler

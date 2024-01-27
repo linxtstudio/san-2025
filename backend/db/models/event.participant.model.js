@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
       })
 
+      EventParticipant.hasOne(models.EventParticipantHotelFacility, {
+        foreignKey: 'event_participant_id',
+        as: 'event_participant_hotel_facility',
+        onDelete: 'CASCADE',
+      })
+
       EventParticipant.belongsTo(models.RegionCity, {
         foreignKey: 'city_id',
         as: 'city'
