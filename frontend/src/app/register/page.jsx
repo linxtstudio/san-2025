@@ -16,7 +16,7 @@ import toast from 'react-hot-toast';
 import { formatRupiah } from '@/common/helper/formatRupiah';
 import IconBack from '@/common/icons/IconBack';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const RegisterPage = ({}) => {
   const [eventList, setEventList] = useState([]);
@@ -24,8 +24,10 @@ const RegisterPage = ({}) => {
   const [cityList, setCityList] = useState([]);
 
   const [selectedValues, setSelectedValues] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedProvince, setSelectedProvince] = useState('');
+  const router = useRouter();
 
   const [selectedFile, setSelectedFile] = useState({});
   const [form, setForm] = useState({
@@ -35,6 +37,7 @@ const RegisterPage = ({}) => {
     city_id: '',
     transfer_receipt_image: '',
     event_type_ids: [],
+    contribution: 0,
   });
 
   const resetState = () => {
@@ -112,8 +115,11 @@ const RegisterPage = ({}) => {
 
       const uploadResponse = await uploadFile(formData);
 
+      const formPaylod = form;
+      delete formPaylod.contribution;
+
       const payload = {
-        ...form,
+        ...formPaylod,
         event_type_ids: selectedValues.map((value) => value.id),
         transfer_receipt_image: uploadResponse.data.data.filename,
       };
@@ -121,48 +127,65 @@ const RegisterPage = ({}) => {
       const response = await register(payload);
       if (response.status === 200) {
         toast.success(
-          'Pendaftaran Berhasil. Terima kasih atas partisipasinya, kami tunggu di acara!'
+          'Registration Successful. Thank you for your participation'
         );
         localStorage.setItem(
           'register-data',
           JSON.stringify(response.data.data)
         );
         resetState();
-        redirect('/register/ticket');
+        router.push('/register/ticket');
       }
     } catch (error) {
       toast.error('error');
     }
   };
 
-  const totalFee = selectedValues.reduce(
-    (sum, value) => sum + value.fee_nominal,
-    0
-  );
+  const totalFee = selectedValues.reduce((sum, value) => {
+    if (value.fee_type === 'minimum_contribution') {
+      return sum + Math.max(value.fee_nominal, form.contribution);
+    }
+    return sum + value.fee_nominal;
+  }, 0);
 
   useEffect(() => {
-    handleGetEvents();
-    handleGetProvinces();
+    if (isLoading) {
+      const data = localStorage.getItem('register-data');
+      if (data) {
+        router.replace('/register/ticket');
+        return;
+      }
+      handleGetEvents();
+      handleGetProvinces();
+      setIsLoading(false);
+    }
   }, []);
+
+  if (isLoading) return <></>;
+
   return (
-    <div className="container z-20 py-44 md:py-0">
+    <div className="container z-20 py-8">
       <Link href="/" className="flex items-center">
         <IconBack />
-        <span className="text-[28px] font-semibold">Back</span>
+        <span className="text-title-1 font-semibold">Back</span>
       </Link>
-      <h1 className="mt-12 text-2xl font-semibold md:text-5xl">
-        Form Pendaftaran SAN Main Event
+      <h1 className="mt-12 text-2xl font-semibold md:text-display">
+        Registration Form
       </h1>
       <div className="mt-[30px] flex flex-col gap-[70px] md:flex-row">
         <div className="flex w-full flex-col gap-6 md:w-1/2">
           <MultipleCheck
-            options={eventList.filter((event) => event.name !== 'Performance')}
+            options={eventList.filter(
+              (event) => event.fee_type !== 'by_contact'
+            )}
             selectedValues={selectedValues}
             onChange={setSelectedValues}
-            label="Ingin ikut event apa?"
+            form={form}
+            setForm={setForm}
+            label="Choose the event(s) you'd like to participate in"
           />
           <Input
-            label="Nama "
+            label="Name "
             inputProps={{
               placeholder: 'Jane Nurul Munawar',
               value: form.name,
@@ -179,7 +202,7 @@ const RegisterPage = ({}) => {
             onInput={(value) => setForm({ ...form, email: value })}
           />
           <Input
-            label="Nomor Telepon"
+            label="Phone Number"
             inputProps={{
               placeholder: '+62 810 810 81000',
               type: 'tel',
@@ -190,29 +213,29 @@ const RegisterPage = ({}) => {
         </div>
         <div className="flex w-full flex-col gap-6 md:w-1/2">
           <Select
-            placeholder="Pilih Provinsi"
+            placeholder="Choose Province"
             value={selectedProvince}
-            label={'Lokasi'}
+            label={'Province'}
             options={provinceList}
             onChange={(value) => handleOnProvinceChange(value)}
           />
           <Select
-            placeholder="Pilih Kota"
+            placeholder="Choose City"
             value={form.city_id}
-            label={'Lokasi'}
+            label={'City'}
             options={cityList}
             onChange={(value) => setForm({ ...form, city_id: value })}
           />
           <div className="flex flex-col">
-            <h5 className="text-[22px] font-semibold">Bukti Pembayaran </h5>
-            <div className="flex flex-col gap-2">
+            <h5 className="text-[22px] font-semibold">Payment Proof</h5>
+            <div className="mt-8 flex flex-col gap-2">
               <div className="flex flex-col gap-1">
-                <span className="text-grey-5">Jumlah Yang Harus Dibayar</span>
+                <span className="text-grey-5">Amount to be paid</span>
 
                 <span className="text-xl">{formatRupiah(totalFee)}</span>
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-grey-5">Informasi Pembayaran</span>
+              <div className="mt-2 flex flex-col gap-1">
+                <span className="text-grey-5">Payment Information</span>
                 <span className="text-xl">Mirawati</span>
               </div>
               <div className="flex items-center gap-4">
@@ -226,6 +249,9 @@ const RegisterPage = ({}) => {
               </div>
             </div>
           </div>
+          <span className="text-neutral-600">
+            *please put your Name-SAN on the transfer news
+          </span>
           <UploadFile
             value={selectedFile}
             onChange={(e) => {
@@ -237,9 +263,8 @@ const RegisterPage = ({}) => {
               handleRegister();
             }}
           >
-            Daftar
+            Register
           </Button>
-          <div></div>
         </div>
       </div>
     </div>
