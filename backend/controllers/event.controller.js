@@ -6,6 +6,7 @@ const url = require('../config/url.config')
 const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
 const { eventListResource } = require("../resources/event.resource");
 const { setFormat, addDays } = require("../utils/datetime.util");
+const { getSanStartDateConfig } = require("../utils/config.util")
 
 const register = async (req, res) => {
     const eventParticipant = await eventRepository.register(req.body)
@@ -63,7 +64,7 @@ const getParticipants = async (req, res) => {
 }
 
 const getParticipantDetail = async (req, res) => {
-    const startDateConfig = await configRepository.getByCode('san-start-date')
+    const startDateConfig = await getSanStartDateConfig()
     const participantDetail = await eventRepository.getParticipantDetail({
         id: req.params.participantId,
     })
@@ -86,10 +87,10 @@ const getParticipantDetail = async (req, res) => {
             event_participant_hotel_facility: participantDetail.event_participant_hotel_facility ? {
                 id: participantDetail.event_participant_hotel_facility.id,
                 stay_duration: participantDetail.event_participant_hotel_facility.stay_duration,
-                check_in_date: setFormat(new Date(startDateConfig?.value || '2024-01-01'), 'd MMMM yyyy'),
+                check_in_date: setFormat(new Date(startDateConfig), 'd MMMM yyyy'),
                 check_out_date: setFormat(
                     addDays(
-                        new Date(startDateConfig?.value || '2024-01-01'), participantDetail.event_participant_hotel_facility.stay_duration
+                        new Date(startDateConfig), participantDetail.event_participant_hotel_facility.stay_duration
                     ), 'd MMMM yyyy'
                 ),
                 hotel_facility: {

@@ -22,8 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     code: DataTypes.STRING,
     room_availability: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
+    max_pax: DataTypes.INTEGER,
     sequence: DataTypes.INTEGER,
     is_active: DataTypes.BOOLEAN,
+    image: DataTypes.STRING,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {
