@@ -59,45 +59,39 @@ const getParticipantByCity = async (payload) => {
 }
 
 const getParticipants = async (filter, { paginate, page, per_page }) => {
-    return EventParticipantDetail.findAndCountAll({
+    return EventParticipant.findAndCountAll({
         where: {
-            ...(filter.event_type_id && {
-                event_type_id: filter.event_type_id,
+            ...(filter.city_id && { city_id: filter.city_id }),
+            ...(filter.is_verified && { is_verified: filter.is_verified === 'true' }),
+            ...(filter.search && {
+                name: {
+                    [sequelize.Op.iLike]: `%${filter.search}%`
+                }
             }),
         },
         ...(paginate && {
             limit: per_page,
             offset: (page - 1) * per_page,
         }),
+        order: [['created_at', 'ASC']],
         include: [
             {
-                association: 'event_participant',
-                where: {
-                    ...(filter.city_id && { city_id: filter.city_id }),
-                    ...(filter.is_verified && { is_verified: filter.is_verified === 'true' }),
-                    ...(filter.search && {
-                        name: {
-                            [sequelize.Op.iLike]: `%${filter.search}%`
-                        }
-                    }),
-                },
+                association: 'city',
                 include: [
                     {
-                        association: 'city',
-                        include: [
-                            {
-                                association: 'province',
-                            }
-                        ]
+                        association: 'province',
                     }
                 ]
             },
             {
-                association: 'event_type',
-            },
+                association: 'event_participant_details',
+                where: {
+                    ...(filter.event_type_id && {
+                        event_type_id: filter.event_type_id,
+                    }),
+                },
+            }
         ],
-        raw: true,
-        nest: true,
     })
 }
 

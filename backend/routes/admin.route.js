@@ -12,6 +12,7 @@ router.put('/event/participants/:participantId/verified', verifyToken, eventCont
 router.put('/event/participants/:participantId/unverified', verifyToken, eventController.setUnverified)
 
 router.get('/hotel-facilities', hotelFacilityController.getAll)
+router.get('/hotel-facilities/event-participants', hotelFacilityController.getHotelEventParticipants)
 router.put('/hotel-facilities/update-all', hotelFacilityController.updateAll)
 
 module.exports = router
