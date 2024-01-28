@@ -64,7 +64,8 @@ const Page = ({}) => {
   return (
     <div className="flex flex-col py-32">
       <Link
-        href="https://wa.me/62811212505"
+        href="https://wa.me/62811212505?text=Hello, I want to make a room reservation at ASTON for Salsa Arisan Nyok"
+        target="_blank"
         className="fixed bottom-10 right-10 z-[100] flex items-center justify-center gap-[6px] rounded-full bg-white px-6 py-3 shadow-lg"
       >
         <svg
@@ -82,14 +83,14 @@ const Page = ({}) => {
         <div className="container">
           <Link
             href="/"
-            className="flex items-center text-[28px] font-semibold"
+            className="flex items-center text-title-1 font-semibold"
           >
             <IconBack /> Back
           </Link>
-          <h1 className="mt-[60px] text-3xl font-semibold md:mt-[90px] md:text-5xl">
+          <h1 className="mt-[60px] text-3xl font-semibold md:mt-[90px] md:text-display">
             ASTON Denpasar Hotel & Convention
           </h1>
-          <div className=" mt-[30px] text-[28px] font-semibold">Location</div>
+          <div className=" mt-[30px] text-title-1 font-semibold">Location</div>
 
           <div className=" mt-[30px] grid grid-cols-1 gap-[35px] md:grid-cols-2">
             <div className="flex ">
@@ -114,7 +115,9 @@ const Page = ({}) => {
       </section>
       <section>
         <div className="container">
-          <div className=" mt-[30px] text-[28px] font-semibold">Hotel Room</div>
+          <div className=" mt-[30px] text-title-1 font-semibold">
+            Hotel Room
+          </div>
           <div className="mt-[30px] grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {hotelData.map((item, index) => (
               <div className="flex flex-col" key={index}>

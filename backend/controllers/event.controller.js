@@ -1,10 +1,21 @@
+const configRepository = require('../repositories/config.repository')
 const eventRepository = require('../repositories/event.repository')
+const hotelFacilityRepository = require('../repositories/hotel.facility.repository')
 const url = require('../config/url.config')
+
 const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
 const { eventListResource } = require("../resources/event.resource");
+const { setFormat, addDays } = require("../utils/datetime.util");
+const { getSanStartDateConfig } = require("../utils/config.util")
 
 const register = async (req, res) => {
     const eventParticipant = await eventRepository.register(req.body)
+
+    if (req.body?.event_participant_hotel_facility?.hotel_facility_id) {
+        await hotelFacilityRepository.decrementRoomAvailabilityById(
+            req.body.event_participant_hotel_facility.hotel_facility_id
+        )
+    }
 
     res.status(200).json({
         status: 200,
@@ -53,6 +64,7 @@ const getParticipants = async (req, res) => {
 }
 
 const getParticipantDetail = async (req, res) => {
+    const startDateConfig = await getSanStartDateConfig()
     const participantDetail = await eventRepository.getParticipantDetail({
         id: req.params.participantId,
     })
@@ -72,6 +84,20 @@ const getParticipantDetail = async (req, res) => {
                     name: eventParticipantDetail.event_type.name,
                 }
             })),
+            event_participant_hotel_facility: participantDetail.event_participant_hotel_facility ? {
+                id: participantDetail.event_participant_hotel_facility.id,
+                stay_duration: participantDetail.event_participant_hotel_facility.stay_duration,
+                check_in_date: setFormat(new Date(startDateConfig), 'd MMMM yyyy'),
+                check_out_date: setFormat(
+                    addDays(
+                        new Date(startDateConfig), participantDetail.event_participant_hotel_facility.stay_duration
+                    ), 'd MMMM yyyy'
+                ),
+                hotel_facility: {
+                    id: participantDetail.event_participant_hotel_facility.hotel_facility.id,
+                    name: participantDetail.event_participant_hotel_facility.hotel_facility.name,
+                },
+            } : null,
         },
     })
 }

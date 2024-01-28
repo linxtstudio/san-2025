@@ -8,13 +8,16 @@
     "start": "next start",
     "lint": "next lint",
     "lint:debug": "set TIMING=1 && eslint --ext .jsx,.ts,.tsx src --cache --cache-strategy metadata",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@tanstack/react-table": "^8.10.7",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
+    "embla-carousel-autoplay": "8.0.0-rc20",
+    "embla-carousel-react": "8.0.0-rc20",
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",

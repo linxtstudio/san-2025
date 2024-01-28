@@ -18,7 +18,8 @@ const storage = multer.diskStorage({
         cb(null, 'public/uploads/')
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '_transfer-receipt_' + generateRandomString() + path.extname(file.originalname))
+        const module = req.query.module || 'transfer-receipt'
+        cb(null, Date.now() + `_${module}_` + generateRandomString() + path.extname(file.originalname))
     },
 })
 

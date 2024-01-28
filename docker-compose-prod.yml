@@ -1,7 +1,10 @@
 version: "3"
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: "./frontend"
+      args:
+        BUILD_ENV: production
     container_name: san-2024-fe
     ports:
       - 7005:7005
@@ -18,7 +21,7 @@ services:
       - db
     environment:
       - NODE_ENV=production
-      - BASE_URL=http://103.127.99.217:7004
+      - BASE_URL=https://api.socialdance.id
       - APP_PORT=3000
       - DB_HOST=db
       - DB_PORT=5432

@@ -1,14 +1,20 @@
+import Image from 'next/image';
+
 export default function Layout({ children }) {
   return (
     <div className="relative flex min-h-[100vh] items-center">
-      <img
+      <Image
         src="/image/background/bg-register.png"
-        className="absolute bottom-0 z-10"
+        width={280}
+        height={280}
+        className="absolute bottom-0 opacity-20 print:hidden"
         alt=""
       />
-      <img
+      <Image
         src="/image/background/bg-register.png"
-        className="absolute right-0 top-0 z-10 rotate-180"
+        width={280}
+        height={280}
+        className="absolute right-0 top-0 rotate-180 opacity-20 print:hidden"
         alt=""
       />
       {children}

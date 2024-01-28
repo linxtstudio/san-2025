@@ -1,6 +1,6 @@
 .home-hero {
-    background-image: url('/image/home/hero-bg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 95vh;
+  background-image: url('/image/home/hero-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 95vh;
 }
