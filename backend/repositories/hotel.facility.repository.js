@@ -5,14 +5,9 @@ const EventParticipantHotelFacility = require('../db/models').EventParticipantHo
 
 const getAll = async (filter, { paginate, page, per_page }) => {
     return await HotelFacility.findAndCountAll({
-        attributes: [
-            'id',
-            'name',
-            'room_availability',
-            'price',
-            'created_at',
-            'updated_at'
-        ],
+        where: {
+            is_active: true,
+        },
         order: [['sequence', 'ASC']],
         ...(paginate && {
             limit: per_page,

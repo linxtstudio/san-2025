@@ -1,15 +1,22 @@
 const hotelFacilityRepository = require('../repositories/hotel.facility.repository')
 const { getPaginatePayload, getPaginateData } = require('../utils/pagination.util')
-const { hotelEventParticipantResource } = require('../resources/hotel.facility.resource')
+const { hotelFacilityResource, hotelEventParticipantResource } = require('../resources/hotel.facility.resource')
 
 const getAll = async (req, res) => {
     const paginatePayload = getPaginatePayload(req.query)
     const hotelFacilities = await hotelFacilityRepository.getAll(req.query, paginatePayload)
+    let response = paginatePayload.paginate ? getPaginateData(hotelFacilities, paginatePayload) : hotelFacilities.rows
+
+    if (paginatePayload.paginate) {
+        response.data = await hotelFacilityResource(response.data)
+    } else {
+        response = await hotelFacilityResource(response)
+    }
 
     res.status(200).json({
         status: 200,
         message: 'Success to get hotel facilities',
-        data: paginatePayload.paginate ? getPaginateData(hotelFacilities, paginatePayload) : hotelFacilities.rows,
+        data: response,
     })
 }
 

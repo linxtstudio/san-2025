@@ -2,6 +2,18 @@ const url = require('../config/url.config')
 const { getSanStartDateConfig } = require("../utils/config.util")
 const { setFormat, addDays } = require("../utils/datetime.util")
 
+const hotelFacilityResource = async (datas) => {
+    return datas.map((data) => ({
+        id: data?.id,
+        name: data?.name,
+        room_availability: data?.room_availability,
+        price: data?.price,
+        max_pax: data?.max_pax,
+        image: data?.image,
+        image_url: `${url.public.upload}/${data?.image}`,
+    }))
+}
+
 const hotelEventParticipantResource = async (datas) => {
     const startDateConfig = await getSanStartDateConfig()
     return datas.map((data) => ({
@@ -29,5 +41,6 @@ const hotelEventParticipantResource = async (datas) => {
 }
 
 module.exports = {
+    hotelFacilityResource,
     hotelEventParticipantResource,
 }

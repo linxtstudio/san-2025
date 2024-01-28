@@ -22,6 +22,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      max_pax: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
       sequence: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
@@ -29,6 +33,10 @@ module.exports = {
       is_active: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
+      },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       created_at: {
         allowNull: false,
