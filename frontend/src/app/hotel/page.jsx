@@ -1,3 +1,5 @@
+'use client';
+
 import IconBack from '@/common/icons/IconBack';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,57 +12,26 @@ import hotel6Image from '/public/image/hotel/6.png';
 
 import { formatRupiah } from '@/common/helper/formatRupiah';
 import { clsx } from 'clsx';
-const hotelData = [
-  {
-    name: 'Superior',
-    price: 678500,
-    roomAvailable: 20,
-    maxPax: 2,
-    available: true,
-    image: hotel1Image,
-  },
-  {
-    name: 'Deluxe',
-    price: 862500,
-    roomAvailable: 34,
-    maxPax: 2,
-    available: true,
-    image: hotel2Image,
-  },
-  {
-    name: 'Deluxe Premiere',
-    price: 1265000,
-    roomAvailable: 0,
-    maxPax: 2,
-    available: true,
-    image: hotel3Image,
-  },
-  {
-    name: 'Family',
-    price: 1207500,
-    roomAvailable: 17,
-    maxPax: 4,
-    available: true,
-    image: hotel4Image,
-  },
-  {
-    name: 'Suite',
-    price: 2875000,
-    roomAvailable: 10,
-    maxPax: 2,
-    available: true,
-    image: hotel5Image,
-  },
-  {
-    name: 'ASTON Suite',
-    price: 5175000,
-    roomAvailable: 22,
-    maxPax: 2,
-    available: true,
-    image: hotel6Image,
-  },
-];
+import { getHotels } from '@/modules/hotel/services/getHotels';
+import { useEffect, useState } from 'react';
+
 const Page = ({}) => {
+  const [hotels, setHotels] = useState([]);
+  const handleGetData = async () => {
+    try {
+      const response = await getHotels();
+
+      if (response.status === 200) {
+        setHotels(response.data.data.data);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
   return (
     <div className="flex flex-col py-32">
       <Link
@@ -119,16 +90,21 @@ const Page = ({}) => {
             Hotel Room
           </div>
           <div className="mt-[30px] grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {hotelData.map((item, index) => (
+            {hotels.map((item, index) => (
               <div className="flex flex-col" key={index}>
                 <span className="text-[22px] font-semibold">{item.name}</span>
                 <div className="relative min-h-[223px] w-full">
-                  <Image
-                    src={item.image}
+                  <img
+                    src={item.image_url}
+                    alt={item.name}
+                    className="mt-5 rounded-[20px] object-cover"
+                  />
+                  {/* <Image
+                    src={item.image_url}
                     alt="hotel"
                     fill={true}
                     className="mt-5 rounded-[20px] object-cover"
-                  />
+                  /> */}
                 </div>
                 <div className="mt-9 text-[22px] font-semibold">
                   {formatRupiah(item.price)} per night
@@ -136,17 +112,17 @@ const Page = ({}) => {
                 <ul
                   className={clsx(
                     'list-disc pl-5 ',
-                    item.roomAvailable === 0
+                    item.room_availability === 0
                       ? 'text-[#FF6A6A]'
                       : 'text-[#636363]'
                   )}
                 >
-                  {item.roomAvailable === 0 ? (
+                  {item.room_availability === 0 ? (
                     <li>Room Not Available</li>
                   ) : (
-                    <li>Room Available : {item.roomAvailable} Room</li>
+                    <li>Room Available : {item.room_availability} Room</li>
                   )}
-                  <li>Max. {item.maxPax} pax</li>
+                  <li>Max. {item.max_pax} pax</li>
                 </ul>
               </div>
             ))}
