@@ -329,10 +329,6 @@ export default function Home() {
                   we say see you again next year to all our beloved friends and
                   family.
                 </p>
-                <p>
-                  Barbeque menus from the bar and best music from the DJ will
-                  accompany our last night together.
-                </p>
                 <div className="relative h-[320px] w-full">
                   <Image
                     src="/image/home/afterparty.png"

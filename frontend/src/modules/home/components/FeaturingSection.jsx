@@ -53,6 +53,11 @@ export function FeaturingSection() {
               title="from Surabaya"
             />
             <Card
+              image="/image/featuring/dj-pancho.png"
+              name="DJ Pancho Ugalde"
+              title="from Jakarta"
+            />
+            <Card
               image="/image/featuring/billy.png"
               name="Billy"
               title="from Bali"
@@ -171,16 +176,24 @@ export function FeaturingSection() {
             </p>
             <div className="flex w-full flex-wrap gap-6">
               <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
+                image="/image/featuring/tonno.png"
+                name="Tonno Effendi"
+                title="Salsa Instructor from Jogjakarta"
               />
               <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
+                image="/image/featuring/berry-eta.png"
+                name="Berry & Eta"
+                title="Bachata Instructor from Jakarta"
               />
               <Card
-                image="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133351928-stock-illustration-default-placeholder-man-and-woman.jpg"
-                name="TBA"
+                image="/image/featuring/nancy-nathan.png"
+                name="Nancy & Nathan"
+                title="Dancevo Instructor from Jakarta"
+              />
+              <Card
+                image="/image/featuring/virginie.png"
+                name="Virginie"
+                title="Zouk Instructor from Jakarta"
               />
             </div>
           </div>
