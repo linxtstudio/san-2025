@@ -8,6 +8,7 @@ import { getParticipants } from '../services/getParticipants';
 import IconDownload from '@/common/icons/IconDownload';
 import { setVerification } from '../services/setVerification';
 import { useUpdateParam } from '@/common/hooks/useParams';
+import { getParticipantHotels } from '../services/getParticipantHotel';
 
 const columnHelper = createColumnHelper();
 
@@ -15,6 +16,7 @@ const TableParticipant = ({
   cityId,
   verified = null,
   verifiedTrigger = () => {},
+  type = '',
 }) => {
   const { currentParams } = useUpdateParam();
 
@@ -73,7 +75,13 @@ const TableParticipant = ({
       if (verified !== null) {
         payload.params.is_verified = verified;
       }
-      const response = await getParticipants(payload);
+      let response = {};
+      if (type === 'hotel') {
+        response = await getParticipantHotels(payload);
+      } else {
+        response = await getParticipants(payload);
+      }
+
       setParticipants(response.data.data);
     } catch (error) {
       setParticipants([]);
@@ -105,43 +113,74 @@ const TableParticipant = ({
       cell: (info) => info.getValue(),
       header: () => 'Name',
     }),
-    columnHelper.accessor('event_participant.email', {
-      header: () => 'Email',
-      cell: (info) => info.renderValue(),
-    }),
-    columnHelper.accessor('event_participant.phone_number', {
-      header: () => 'Phone',
-      cell: (info) => info.renderValue(),
-    }),
   ];
 
-  if (!cityId) {
+  if (type === 'hotel') {
     columns.push(
-      columnHelper.accessor('event_participant.city.province.name', {
-        header: () => 'Province',
-        cell: (info) => (
-          <span className="capitalize">{info.renderValue().toLowerCase()}</span>
-        ),
+      columnHelper.accessor('hotel_facility.name', {
+        header: () => 'Room Type',
+        cell: (info) => info.renderValue(),
       }),
-      columnHelper.accessor('event_participant.city.name', {
-        header: () => 'City',
-        cell: (info) => (
-          <span className="capitalize">{info.renderValue().toLowerCase()}</span>
-        ),
+      columnHelper.accessor('stay_duration', {
+        header: () => 'Duration',
+        cell: (info) => info.renderValue() + ' Days',
+      }),
+      columnHelper.accessor('check_in_date', {
+        header: () => 'Check-in',
+        cell: (info) => info.renderValue(),
+      }),
+      columnHelper.accessor('check_out_date', {
+        header: () => 'Check-out',
+        cell: (info) => info.renderValue(),
+      })
+    );
+  } else {
+    columns.push(
+      columnHelper.accessor('event_participant.email', {
+        header: () => 'Email',
+        cell: (info) => info.renderValue(),
+      }),
+      columnHelper.accessor('event_participant.phone_number', {
+        header: () => 'Phone',
+        cell: (info) => info.renderValue(),
+      })
+    );
+
+    if (!cityId) {
+      columns.push(
+        columnHelper.accessor('event_participant.city.province.name', {
+          header: () => 'Province',
+          cell: (info) => (
+            <span className="capitalize">
+              {info.renderValue().toLowerCase()}
+            </span>
+          ),
+        }),
+        columnHelper.accessor('event_participant.city.name', {
+          header: () => 'City',
+          cell: (info) => (
+            <span className="capitalize">
+              {info.renderValue().toLowerCase()}
+            </span>
+          ),
+        })
+      );
+    }
+
+    columns.push(
+      columnHelper.accessor('event_participant.is_verified', {
+        header: () => 'Status',
+        cell: (info) =>
+          info.renderValue() ? (
+            <span className="text-[#007A4D]">Verified</span>
+          ) : (
+            <span className="text-grey-4">Unverified</span>
+          ),
       })
     );
   }
 
   columns.push(
-    columnHelper.accessor('event_participant.is_verified', {
-      header: () => 'Status',
-      cell: (info) =>
-        info.renderValue() ? (
-          <span className="text-[#007A4D]">Verified</span>
-        ) : (
-          <span className="text-grey-4">Unverified</span>
-        ),
-    }),
     columnHelper.accessor('event_participant.transfer_receipt_url', {
       header: () => 'Payment Proof',
       cell: (info) => (
@@ -154,38 +193,42 @@ const TableParticipant = ({
           Download <IconDownload />
         </button>
       ),
-    }),
-
-    columnHelper.accessor('verification_action', {
-      header: () => '',
-      cell: (info) =>
-        !info.row.original.event_participant.is_verified ? (
-          <button
-            className="rounded-full border border-[#007A4D] bg-[#05F29A] px-[10px]"
-            onClick={() => {
-              handleVerification(
-                'verified',
-                info.row.original.event_participant.id
-              );
-            }}
-          >
-            Verifikasi
-          </button>
-        ) : (
-          <button
-            className="rounded-full border border-grey-3 bg-grey-1 px-[10px] text-grey-2 opacity-25"
-            onClick={() => {
-              handleVerification(
-                'unverified',
-                info.row.original.event_participant.id
-              );
-            }}
-          >
-            Verifikasi
-          </button>
-        ),
     })
   );
+
+  if (type !== 'hotel') {
+    columns.push(
+      columnHelper.accessor('verification_action', {
+        header: () => '',
+        cell: (info) =>
+          !info.row.original.event_participant.is_verified ? (
+            <button
+              className="rounded-full border border-[#007A4D] bg-[#05F29A] px-[10px]"
+              onClick={() => {
+                handleVerification(
+                  'verified',
+                  info.row.original.event_participant.id
+                );
+              }}
+            >
+              Verifikasi
+            </button>
+          ) : (
+            <button
+              className="rounded-full border border-grey-3 bg-grey-1 px-[10px] text-grey-2 opacity-25"
+              onClick={() => {
+                handleVerification(
+                  'unverified',
+                  info.row.original.event_participant.id
+                );
+              }}
+            >
+              Verifikasi
+            </button>
+          ),
+      })
+    );
+  }
   return (
     <Table
       isLoading={loading}

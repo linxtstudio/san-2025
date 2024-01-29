@@ -27,7 +27,11 @@ const tabFilter = [
   },
 ];
 
-const EventFilter = ({}) => {
+const EventFilter = ({
+  useSearch = true,
+  useEvent = true,
+  useGroup = true,
+}) => {
   const { currentParams, updateParams } = useUpdateParam();
 
   const [search, setSearch] = useState(currentParams.get('search') ?? '');
@@ -86,46 +90,52 @@ const EventFilter = ({}) => {
   }, []);
   return (
     <div className="flex flex-col gap-3 md:flex-row">
-      <div className="flex flex-col gap-1">
-        <label htmlFor="search" className="text-xl">
-          Search
-        </label>
-        <Input
-          onInput={(value) => setSearch(value)}
-          suffix
-          inputProps={{
-            placeholder: 'Search',
-            value: search,
-            name: 'search',
-          }}
-          suffixComponent={search ? IconX : IconSearch}
-          suffixAction={() => {
-            search && setSearch('');
-          }}
-        />
-      </div>
-      <div className="flex flex-grow-[1] flex-col gap-1">
-        <label htmlFor="eventType" className="text-xl">
-          Pilih Event
-        </label>
-        <Select
-          options={eventList}
-          placeholder="Pilih Event"
-          value={selectedEvent}
-          onChange={(value) => {
-            setSelectedEvent(value);
-          }}
-        />
-      </div>
-      <div className="flex flex-col items-end justify-end gap-1">
-        <Tabs
-          options={tabFilter}
-          selectedValue={selectedTab}
-          onChange={(value) => {
-            setSelectedTab(value);
-          }}
-        />
-      </div>
+      {useSearch && (
+        <div className="flex flex-grow-[1] flex-col gap-1">
+          <label htmlFor="search" className="text-xl">
+            Search
+          </label>
+          <Input
+            onInput={(value) => setSearch(value)}
+            suffix
+            inputProps={{
+              placeholder: 'Search',
+              value: search,
+              name: 'search',
+            }}
+            suffixComponent={search ? IconX : IconSearch}
+            suffixAction={() => {
+              search && setSearch('');
+            }}
+          />
+        </div>
+      )}
+      {useEvent && (
+        <div className="flex flex-grow-[1] flex-col gap-1">
+          <label htmlFor="eventType" className="text-xl">
+            Pilih Event
+          </label>
+          <Select
+            options={eventList}
+            placeholder="Pilih Event"
+            value={selectedEvent}
+            onChange={(value) => {
+              setSelectedEvent(value);
+            }}
+          />
+        </div>
+      )}
+      {useGroup && (
+        <div className="flex flex-col items-end justify-end gap-1">
+          <Tabs
+            options={tabFilter}
+            selectedValue={selectedTab}
+            onChange={(value) => {
+              setSelectedTab(value);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

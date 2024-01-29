@@ -17,13 +17,18 @@ import { formatRupiah } from '@/common/helper/formatRupiah';
 import IconBack from '@/common/icons/IconBack';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { getHotels } from '@/modules/hotel/services/getHotels';
+import Radio from '@/common/components/Radio/Radio';
 
 const RegisterPage = ({}) => {
   const [eventList, setEventList] = useState([]);
   const [provinceList, setProvinceList] = useState([]);
   const [cityList, setCityList] = useState([]);
+  const [hotelList, setHotelList] = useState([]);
 
   const [selectedValues, setSelectedValues] = useState([]);
+
+  const [hotelSelectedValue, setHotelSelectedValue] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedProvince, setSelectedProvince] = useState('');
@@ -37,6 +42,10 @@ const RegisterPage = ({}) => {
     city_id: '',
     transfer_receipt_image: '',
     event_type_ids: [],
+    event_participant_hotel_facility: {
+      hotel_facility_id: '',
+      stay_duration: null,
+    },
     contribution: 0,
   });
 
@@ -52,6 +61,10 @@ const RegisterPage = ({}) => {
       city_id: '',
       transfer_receipt_image: '',
       event_type_ids: [],
+      event_participant_hotel_facility: {
+        hotel_facility_id: '',
+        stay_duration: null,
+      },
     });
   };
 
@@ -81,6 +94,28 @@ const RegisterPage = ({}) => {
             label: province.name,
             value: province.id,
           }))
+        );
+      }
+    } catch (error) {
+      toast.error('error');
+    }
+  };
+
+  const handleGetHotels = async (id) => {
+    try {
+      const response = await getHotels();
+
+      if (response.status === 200) {
+        // setHotelList(response.data.data.data);
+        setHotelList(
+          response.data.data.data.map((hotel) => {
+            return {
+              ...hotel,
+              price: Math.floor(Math.random() * (800000 - 200000 + 1)) + 200000,
+              room_availability: Math.floor(Math.random() * 25),
+              max_pax: Math.floor(Math.random() * 4),
+            };
+          })
         );
       }
     } catch (error) {
@@ -122,6 +157,10 @@ const RegisterPage = ({}) => {
         ...formPaylod,
         event_type_ids: selectedValues.map((value) => value.id),
         transfer_receipt_image: uploadResponse.data.data.filename,
+        event_participant_hotel_facility: {
+          ...form.event_participant_hotel_facility,
+          hotel_facility_id: hotelSelectedValue.id,
+        },
       };
 
       const response = await register(payload);
@@ -142,11 +181,32 @@ const RegisterPage = ({}) => {
   };
 
   const totalFee = selectedValues.reduce((sum, value) => {
+    let total = sum + value.fee_nominal;
     if (value.fee_type === 'minimum_contribution') {
       return sum + Math.max(value.fee_nominal, form.contribution);
     }
-    return sum + value.fee_nominal;
+    return total;
   }, 0);
+  const getTotalFee = () => {
+    let total = 0;
+    selectedValues.forEach((value) => {
+      if (value.fee_type === 'minimum_contribution') {
+        total += Math.max(value.fee_nominal, form.contribution);
+      } else {
+        total += value.fee_nominal;
+      }
+    });
+
+    if (
+      Object.keys(hotelSelectedValue).length &&
+      form.event_participant_hotel_facility.stay_duration
+    ) {
+      total +=
+        hotelSelectedValue.price *
+        form.event_participant_hotel_facility.stay_duration;
+    }
+    return total;
+  };
 
   useEffect(() => {
     if (isLoading) {
@@ -157,9 +217,27 @@ const RegisterPage = ({}) => {
       }
       handleGetEvents();
       handleGetProvinces();
+      handleGetHotels();
       setIsLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    const mainEventSelected = selectedValues.some(
+      (value) => value.name.toLowerCase() === 'san main event'
+    );
+
+    if (!mainEventSelected) {
+      setHotelSelectedValue({});
+      setForm({
+        ...form,
+        event_participant_hotel_facility: {
+          hotel_facility_id: '',
+          stay_duration: null,
+        },
+      });
+    }
+  }, [selectedValues]);
 
   if (isLoading) return <></>;
 
@@ -184,6 +262,40 @@ const RegisterPage = ({}) => {
             setForm={setForm}
             label="Choose the event(s) you'd like to participate in"
           />
+          {selectedValues.some(
+            (value) => value.name.toLowerCase() === 'san main event'
+          ) ? (
+            <>
+              <Radio
+                options={hotelList}
+                selectedValues={hotelSelectedValue}
+                onChange={setHotelSelectedValue}
+                form={form}
+                name="hotelRadio"
+                setForm={setForm}
+                label="Choose the event(s) you'd like to participate in"
+              />
+              <Input
+                label="Please write stay duration (Max. 4 Days)"
+                inputProps={{
+                  placeholder: '1-4 Days',
+                  type: 'text',
+                  value: form.event_participant_hotel_facility.stay_duration,
+                }}
+                onInput={(value) =>
+                  setForm({
+                    ...form,
+                    event_participant_hotel_facility: {
+                      ...form.event_participant_hotel_facility,
+                      stay_duration: value,
+                    },
+                  })
+                }
+              />
+            </>
+          ) : null}
+        </div>
+        <div className="flex w-full flex-col gap-6 md:w-1/2">
           <Input
             label="Name "
             inputProps={{
@@ -210,8 +322,6 @@ const RegisterPage = ({}) => {
             }}
             onInput={(value) => setForm({ ...form, phone_number: value })}
           />
-        </div>
-        <div className="flex w-full flex-col gap-6 md:w-1/2">
           <Select
             placeholder="Choose Province"
             value={selectedProvince}
@@ -232,7 +342,7 @@ const RegisterPage = ({}) => {
               <div className="flex flex-col gap-1">
                 <span className="text-grey-5">Amount to be paid</span>
 
-                <span className="text-xl">{formatRupiah(totalFee)}</span>
+                <span className="text-xl">{formatRupiah(getTotalFee())}</span>
               </div>
               <div className="mt-2 flex flex-col gap-1">
                 <span className="text-grey-5">Payment Information</span>
