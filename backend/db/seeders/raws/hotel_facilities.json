@@ -3,36 +3,42 @@
     {
       "name": "Superior Room",
       "code": "superior-room",
+      "room_availability": 30,
       "max_pax": 2,
       "sequence": 1
     },
     {
       "name": "Deluxe Room",
       "code": "deluxe-room",
+      "room_availability": 133,
       "max_pax": 2,
       "sequence": 2
     },
     {
       "name": "Deluxe Premier Room",
       "code": "deluxe-premier-room",
+      "room_availability": 4,
       "max_pax": 2,
       "sequence": 3
     },
     {
       "name": "Family Room",
       "code": "family-room",
+      "room_availability": 90,
       "max_pax": 4,
       "sequence": 4
     },
     {
       "name": "Suite Room",
       "code": "suite-room",
+      "room_availability": 2,
       "max_pax": 2,
       "sequence": 5
     },
     {
       "name": "ASTON Suite Room",
       "code": "aston-suite-room",
+      "room_availability": 2,
       "max_pax": 2,
       "sequence": 6
     }
