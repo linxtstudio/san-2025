@@ -7,11 +7,13 @@ import { getHotels } from '@/modules/hotel/services/getHotels';
 import { updateAllHotel } from '@/modules/hotel/services/updateAllHotels';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export default function Dashboard() {
   const [form, setForm] = useState([]);
+  const router = useRouter();
 
   const handleGetHotel = async () => {
     try {
@@ -22,6 +24,7 @@ export default function Dashboard() {
           response.data.data.data.map((hotel) => {
             return {
               name: hotel.name,
+              code: hotel.code,
               room_availability: hotel.room_availability,
               price: hotel.price,
             };
@@ -35,12 +38,23 @@ export default function Dashboard() {
 
   const handleSubmit = async () => {
     try {
+      const payloadData = {}
+      form.forEach(room => {
+        const key = room.code
+        payloadData[key] = {
+            room_availability: Number(room.room_availability),
+            price: Number(room.price)
+        };
+      });
+    
+
+
       const payload = {
-        data: form,
+        data: payloadData,
       };
       const response = await updateAllHotel(payload);
-
-      console.log(response);
+      toast.success("Hotel setting successfully updated");
+      // router.push('/dashboard/hotel');
     } catch (error) {
       toast.error(error.message);
     }
@@ -61,7 +75,7 @@ export default function Dashboard() {
           return (
             <div className="flex flex-col gap-3" key={index}>
               <h3 className="text-[28px] font-bold">{hotel.name}</h3>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-8">
                 <Input
                   label="Room Availability"
                   inputProps={{

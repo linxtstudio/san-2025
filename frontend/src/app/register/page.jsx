@@ -1,24 +1,24 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+import Button from '@/common/components/Button/Button';
 import Input from '@/common/components/Input/Input';
 import MultipleCheck from '@/common/components/MultipleCheck/MultipleCheck';
+import Radio from '@/common/components/Radio/Radio';
 import Select from '@/common/components/Select/Select';
-import Image from 'next/image';
 import UploadFile from '@/common/components/UploadFile/UploadFile';
-import { getEvents } from '@/modules/event/services/getEvent';
-import { getProvinces } from '@/modules/region/services/getProvinces';
-import { getCities } from '@/modules/region/services/getCities';
-import Button from '@/common/components/Button/Button';
-import { uploadFile } from '@/common/services/uploadFile';
-import { register } from '@/modules/event/services/register';
-import toast from 'react-hot-toast';
 import { formatRupiah } from '@/common/helper/formatRupiah';
 import IconBack from '@/common/icons/IconBack';
+import { uploadFile } from '@/common/services/uploadFile';
+import { getEvents } from '@/modules/event/services/getEvent';
+import { register } from '@/modules/event/services/register';
+import { getHotels } from '@/modules/hotel/services/getHotels';
+import { getCities } from '@/modules/region/services/getCities';
+import { getProvinces } from '@/modules/region/services/getProvinces';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { getHotels } from '@/modules/hotel/services/getHotels';
-import Radio from '@/common/components/Radio/Radio';
+import toast from 'react-hot-toast';
 
 const RegisterPage = ({}) => {
   const [eventList, setEventList] = useState([]);
@@ -45,6 +45,7 @@ const RegisterPage = ({}) => {
     event_participant_hotel_facility: {
       hotel_facility_id: '',
       stay_duration: null,
+      booking_note: '',
     },
     contribution: 0,
   });
@@ -273,7 +274,7 @@ const RegisterPage = ({}) => {
                 form={form}
                 name="hotelRadio"
                 setForm={setForm}
-                label="Choose the event(s) you'd like to participate in"
+                label="Choose the rooms you'd like to stay in ASTON Denpasar Hotel & Convention"
               />
               <Input
                 label="Please write stay duration (Max. 4 Days)"
@@ -288,6 +289,23 @@ const RegisterPage = ({}) => {
                     event_participant_hotel_facility: {
                       ...form.event_participant_hotel_facility,
                       stay_duration: value,
+                    },
+                  })
+                }
+              />
+                            <Input
+                label="Please write the date and additional notes"
+                inputProps={{
+                  placeholder: 'Bali, 24 - 26 May 2024',
+                  type: 'text',
+                  value: form.event_participant_hotel_facility.booking_note,
+                }}
+                onInput={(value) =>
+                  setForm({
+                    ...form,
+                    event_participant_hotel_facility: {
+                      ...form.event_participant_hotel_facility,
+                      booking_note: value,
                     },
                   })
                 }

@@ -1,14 +1,19 @@
+import Link from "next/link";
+
 const Navbar = ({}) => {
   return (
     <section className=" bg-green-1 px-6 py-2 ">
       <div className="container flex items-center justify-between">
-        <h1 className="text-4xl font-semibold">SAN 2024</h1>
-        {/* <nav className="flex i">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-3xl font-semibold">Salsa Arisan Nyok</h1>
+          <p className="text-lg">Bali, 24 - 26 May 2024</p>
+        </div>
+        <nav className="flex">
       <ul className="flex gap-7 items-center">
-        <li>Home</li>
-        <li>About</li>
+        <Link href="/">Home</Link>
+        <Link href="/hotel">Hotel</Link>
       </ul>
-    </nav> */}
+    </nav>
       </div>
     </section>
   );

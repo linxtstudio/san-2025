@@ -1,5 +1,18 @@
 {
   "editor.formatOnSave": true,
   "eslint.codeActionsOnSave.mode": "problems",
-  "eslint.workingDirectories": ["frontend"]
+  "eslint.workingDirectories": ["frontend"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  }
 }

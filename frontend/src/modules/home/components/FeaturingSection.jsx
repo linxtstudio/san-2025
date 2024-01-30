@@ -31,11 +31,43 @@ export function FeaturingSection() {
         <h2 className="mb-6 text-display font-semibold">Featuring</h2>
         {/* Band */}
         <div className="flex w-full flex-col gap-6">
+          <div className='flex flex-col gap-1'>
           <p className="text-title-2 font-semibold">Band</p>
-          <Card
-            image="/image/featuring/band.png"
-            name="Buena Tierra Latin Band Bali"
-          />
+          <p>Buena Tierra Latin Band Bali</p>
+          </div>
+          <div className="flex w-full flex-wrap gap-6">
+            <Card
+              image="/image/featuring/indri.png"
+              name="Indri"
+              link=""
+              title="Lead Vocal"
+            />
+            <Card
+              image="/image/featuring/dian.png"
+              name="Dian Marisqha"
+              title="Rhythm Guitar & Singer"
+            />
+            <Card
+              image="/image/featuring/anang.png"
+              name="Anang Orba"
+              title="Bass Guitar & Singer"
+            />
+            <Card
+              image="/image/featuring/nidom.png"
+              name="Nidom Mashuri"
+              title="Percussion & Lead Vocal"
+            />
+            <Card
+              image="/image/featuring/otto.png"
+              name="Otto Nugroho"
+              title="Lead Guitar"
+            />
+            <Card
+              image="/image/featuring/simson.png"
+              name="Simson Nicolas"
+              title="Drummer"
+            />
+          </div>
         </div>
         {/* Djs */}
         <div className="flex w-full flex-col gap-6">
@@ -172,7 +204,7 @@ export function FeaturingSection() {
           {/* Instructors */}
           <div className="flex w-full flex-col gap-6">
             <p className="text-title-2 font-semibold">
-              Instructors (To be Announced)
+              Instructors
             </p>
             <div className="flex w-full flex-wrap gap-6">
               <Card

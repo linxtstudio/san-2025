@@ -1,14 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Table from '@/common/components/Table/Table';
-import { createColumnHelper } from '@tanstack/react-table';
-import toast from 'react-hot-toast';
-import { getParticipants } from '../services/getParticipants';
-import IconDownload from '@/common/icons/IconDownload';
-import { setVerification } from '../services/setVerification';
 import { useUpdateParam } from '@/common/hooks/useParams';
+import IconDownload from '@/common/icons/IconDownload';
+import { createColumnHelper } from '@tanstack/react-table';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { getParticipantHotels } from '../services/getParticipantHotel';
+import { getParticipants } from '../services/getParticipants';
+import { setVerification } from '../services/setVerification';
 
 const columnHelper = createColumnHelper();
 
@@ -125,14 +125,10 @@ const TableParticipant = ({
         header: () => 'Duration',
         cell: (info) => info.renderValue() + ' Days',
       }),
-      columnHelper.accessor('check_in_date', {
-        header: () => 'Check-in',
+      columnHelper.accessor('booking_note', {
+        header: () => 'Note',
         cell: (info) => info.renderValue(),
       }),
-      columnHelper.accessor('check_out_date', {
-        header: () => 'Check-out',
-        cell: (info) => info.renderValue(),
-      })
     );
   } else {
     columns.push(

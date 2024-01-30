@@ -2,13 +2,7 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: ['st3.depositphotos.com'],
-    // remotePatterns: [
-    //   {
-    //     protocol: 'http',
-    //     hostname: process.env.NEXT_PUBLIC_API_URL,
-    //   },
-    // ],
+    domains: ['st3.depositphotos.com', 'socialdance.id', '103.117.56.241'],
   },
   eslint: {
     dirs: ['src'],
