@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      booking_note: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

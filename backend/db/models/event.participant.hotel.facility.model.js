@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     event_participant_id: DataTypes.UUID,
     hotel_facility_id: DataTypes.UUID,
     stay_duration: DataTypes.INTEGER,
+    booking_note: DataTypes.TEXT,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {
