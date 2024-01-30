@@ -125,7 +125,7 @@ export function FeaturingSection() {
             <Card
               image="/image/featuring/dj-pancho.png"
               name="DJ Pancho Ugalde"
-              title="from Jakarta"
+              title="from Surabaya"
             />
             <Card
               image="/image/featuring/billy.png"
@@ -223,7 +223,7 @@ export function FeaturingSection() {
                 <Card
                   image="/image/featuring/athika.png"
                   name="Athika"
-                  title="Project Director"
+                  title="Secretarial Member"
                 />
                 <Card
                   image="/image/featuring/diana.png"
