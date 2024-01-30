@@ -29,6 +29,44 @@ export function FeaturingSection() {
     <div className="relative mt-20">
       <div className="container flex flex-col gap-8">
         <h2 className="mb-6 text-display font-semibold">Featuring</h2>
+        {/* Instructors */}
+        <div className="flex w-full flex-col gap-6">
+          <p className="text-title-2 font-semibold">Workshop Instructors</p>
+          <div className="flex w-full flex-wrap gap-6">
+            <div className="flex flex-col gap-6">
+              <p className="text-lg font-medium">Salsa Workshop</p>
+              <Card
+                image="/image/featuring/tonno.png"
+                name="Tonno Effendi"
+                title="from Jogjakarta"
+              />
+            </div>
+            <div className="flex flex-col gap-6">
+              <p className="text-lg font-medium">Bachata Workshop</p>
+              <Card
+                image="/image/featuring/berry-eta.png"
+                name="Berry & Eta"
+                title="from Jakarta"
+              />
+            </div>
+            <div className="flex flex-col gap-6">
+              <p className="text-lg font-medium">Dancevo Workshop</p>
+              <Card
+                image="/image/featuring/nancy-nathan.png"
+                name="Nancy & Nathan"
+                title="from Jakarta"
+              />
+            </div>
+            <div className="flex flex-col gap-6">
+              <p className="text-lg font-medium">Zouk Workshop</p>
+              <Card
+                image="/image/featuring/virginie.png"
+                name="Virginie"
+                title="from Jakarta"
+              />
+            </div>
+          </div>
+        </div>
         {/* Band */}
         <div className="flex w-full flex-col gap-6">
           <div className="flex flex-col gap-1">
@@ -201,44 +239,6 @@ export function FeaturingSection() {
           >
             Show more
           </button>
-          {/* Instructors */}
-          <div className="flex w-full flex-col gap-6">
-            <p className="text-title-2 font-semibold">Workshop Instructors</p>
-            <div className="flex w-full flex-wrap gap-6">
-              <div className="flex flex-col gap-6">
-                <p className="text-lg font-medium">Salsa Workshop</p>
-                <Card
-                  image="/image/featuring/tonno.png"
-                  name="Tonno Effendi"
-                  title="from Jogjakarta"
-                />
-              </div>
-              <div className="flex flex-col gap-6">
-                <p className="text-lg font-medium">Bachata Workshop</p>
-                <Card
-                  image="/image/featuring/berry-eta.png"
-                  name="Berry & Eta"
-                  title="from Jakarta"
-                />
-              </div>
-              <div className="flex flex-col gap-6">
-                <p className="text-lg font-medium">Dancevo Workshop</p>
-                <Card
-                  image="/image/featuring/nancy-nathan.png"
-                  name="Nancy & Nathan"
-                  title="from Jakarta"
-                />
-              </div>
-              <div className="flex flex-col gap-6">
-                <p className="text-lg font-medium">Zouk Workshop</p>
-                <Card
-                  image="/image/featuring/virginie.png"
-                  name="Virginie"
-                  title="from Jakarta"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
