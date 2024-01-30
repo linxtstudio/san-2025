@@ -31,9 +31,9 @@ export function FeaturingSection() {
         <h2 className="mb-6 text-display font-semibold">Featuring</h2>
         {/* Band */}
         <div className="flex w-full flex-col gap-6">
-          <div className='flex flex-col gap-1'>
-          <p className="text-title-2 font-semibold">Band</p>
-          <p>Buena Tierra Latin Band Bali</p>
+          <div className="flex flex-col gap-1">
+            <p className="text-title-2 font-semibold">Band</p>
+            <p>Buena Tierra Latin Band Bali</p>
           </div>
           <div className="flex w-full flex-wrap gap-6">
             <Card
@@ -203,30 +203,40 @@ export function FeaturingSection() {
           </button>
           {/* Instructors */}
           <div className="flex w-full flex-col gap-6">
-            <p className="text-title-2 font-semibold">
-              Instructors
-            </p>
+            <p className="text-title-2 font-semibold">Workshop Instructors</p>
             <div className="flex w-full flex-wrap gap-6">
-              <Card
-                image="/image/featuring/tonno.png"
-                name="Tonno Effendi"
-                title="Salsa Instructor from Jogjakarta"
-              />
-              <Card
-                image="/image/featuring/berry-eta.png"
-                name="Berry & Eta"
-                title="Bachata Instructor from Jakarta"
-              />
-              <Card
-                image="/image/featuring/nancy-nathan.png"
-                name="Nancy & Nathan"
-                title="Dancevo Instructor from Jakarta"
-              />
-              <Card
-                image="/image/featuring/virginie.png"
-                name="Virginie"
-                title="Zouk Instructor from Jakarta"
-              />
+              <div className="flex flex-col gap-6">
+                <p className="text-lg font-medium">Salsa Workshop</p>
+                <Card
+                  image="/image/featuring/tonno.png"
+                  name="Tonno Effendi"
+                  title="from Jogjakarta"
+                />
+              </div>
+              <div className="flex flex-col gap-6">
+                <p className="text-lg font-medium">Bachata Workshop</p>
+                <Card
+                  image="/image/featuring/berry-eta.png"
+                  name="Berry & Eta"
+                  title="from Jakarta"
+                />
+              </div>
+              <div className="flex flex-col gap-6">
+                <p className="text-lg font-medium">Dancevo Workshop</p>
+                <Card
+                  image="/image/featuring/nancy-nathan.png"
+                  name="Nancy & Nathan"
+                  title="from Jakarta"
+                />
+              </div>
+              <div className="flex flex-col gap-6">
+                <p className="text-lg font-medium">Zouk Workshop</p>
+                <Card
+                  image="/image/featuring/virginie.png"
+                  name="Virginie"
+                  title="from Jakarta"
+                />
+              </div>
             </div>
           </div>
         </div>
