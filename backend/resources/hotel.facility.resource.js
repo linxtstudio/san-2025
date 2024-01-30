@@ -1,6 +1,4 @@
 const url = require('../config/url.config')
-const { getSanStartDateConfig } = require("../utils/config.util")
-const { setFormat, addDays } = require("../utils/datetime.util")
 
 const hotelFacilityResource = async (datas) => {
     return datas.map((data) => ({
@@ -16,18 +14,10 @@ const hotelFacilityResource = async (datas) => {
 }
 
 const hotelEventParticipantResource = async (datas) => {
-    const startDateConfig = await getSanStartDateConfig()
     return datas.map((data) => ({
         id: data?.id,
         stay_duration: data?.stay_duration,
-        check_in_date: setFormat(
-            new Date(startDateConfig), 'd MMMM yyyy'
-        ),
-        check_out_date: setFormat(
-            addDays(
-                new Date(startDateConfig), data?.stay_duration || 1
-            ), 'd MMMM yyyy'
-        ),
+        booking_note: data?.booking_note,
         event_participant: {
             id: data?.event_participant?.id,
             name: data?.event_participant?.name,

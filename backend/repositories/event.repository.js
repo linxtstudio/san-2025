@@ -21,6 +21,7 @@ const register = async (payload) => {
                 id: crypto.randomUUID(),
                 hotel_facility_id: payload?.event_participant_hotel_facility?.hotel_facility_id,
                 stay_duration: payload?.event_participant_hotel_facility?.stay_duration,
+                booking_note: payload?.event_participant_hotel_facility?.booking_note,
             }
         })
     }, {
