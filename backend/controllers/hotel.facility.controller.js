@@ -49,27 +49,27 @@ const updateAll = async (req, res) => {
     } = req.body
 
     if (superiorRoom) {
-        await hotelFacilityRepository.updateByCode('superior-room', superiorRoom)
+        await hotelFacilityRepository.updateByCode('superior_room', superiorRoom)
     }
 
     if (deluxeRoom) {
-        await hotelFacilityRepository.updateByCode('deluxe-room', deluxeRoom)
+        await hotelFacilityRepository.updateByCode('deluxe_room', deluxeRoom)
     }
 
     if (deluxePremierRoom) {
-        await hotelFacilityRepository.updateByCode('deluxe-premier-room', deluxePremierRoom)
+        await hotelFacilityRepository.updateByCode('deluxe_premier_room', deluxePremierRoom)
     }
 
     if (familyRoom) {
-        await hotelFacilityRepository.updateByCode('family-room', familyRoom)
+        await hotelFacilityRepository.updateByCode('family_room', familyRoom)
     }
 
     if (suiteRoom) {
-        await hotelFacilityRepository.updateByCode('suite-room', suiteRoom)
+        await hotelFacilityRepository.updateByCode('suite_room', suiteRoom)
     }
 
     if (astonSuiteRoom) {
-        await hotelFacilityRepository.updateByCode('aston-suite-room', astonSuiteRoom)
+        await hotelFacilityRepository.updateByCode('aston_suite_room', astonSuiteRoom)
     }
 
     res.status(200).json({
