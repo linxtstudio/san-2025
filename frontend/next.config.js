@@ -8,6 +8,10 @@ const nextConfig = {
         hostname: 'socialdance.id',
       },
       {
+        protocol: 'https',
+        hostname: '**.socialdance.id',
+      },
+      {
         hostname: '103.117.56.241',
       },
     ],
