@@ -50,7 +50,7 @@ export function FeaturingSection() {
               />
             </div>
             <div className="flex flex-col gap-6">
-              <p className="text-lg font-medium">Dancevo Workshop</p>
+              <p className="text-lg font-medium">Kizomba Workshop</p>
               <Card
                 image="/image/featuring/nancy-nathan.png"
                 name="Nancy & Nathan"
@@ -113,13 +113,13 @@ export function FeaturingSection() {
           <div className="flex w-full flex-wrap gap-6">
             <Card
               image="/image/featuring/dj-adhyn.png"
-              name="Dj Adhyn"
+              name="DJ Adhyn"
               link=""
               title="from Jakarta"
             />
             <Card
               image="/image/featuring/dj-indrung.png"
-              name="Dj Indrung"
+              name="DJ Indrung"
               title="from Surabaya"
             />
             <Card
@@ -129,17 +129,17 @@ export function FeaturingSection() {
             />
             <Card
               image="/image/featuring/billy.png"
-              name="Billy"
+              name="DJ Billy"
               title="from Bali"
             />
             <Card
               image="/image/featuring/made.png"
-              name="Made Alfa"
+              name="DJ Made Alfa"
               title="from Bali"
             />
             <Card
               image="/image/featuring/adis.png"
-              name="Adis Krisna"
+              name="DJ Adis Krisna"
               title="from Bali"
             />
           </div>
