@@ -2,15 +2,15 @@
 'use client';
 
 import Button from '@/common/components/Button/Button';
-import Image from 'next/image';
-import '@/modules/home/css/style.css';
-import Navbar from '@/common/components/Navbar/Navbar';
 import Footer from '@/common/components/Footer/Footer';
-import Link from 'next/link';
-import { EventList } from '@/modules/home/components/EventList';
-import { EventImageSlider } from '@/modules/home/components/EventImageSlider';
 import { ItemList } from '@/common/components/ItemList';
+import Navbar from '@/common/components/Navbar/Navbar';
+import { EventImageSlider } from '@/modules/home/components/EventImageSlider';
+import { EventList } from '@/modules/home/components/EventList';
 import { FeaturingSection } from '@/modules/home/components/FeaturingSection';
+import '@/modules/home/css/style.css';
+import Image from 'next/image';
+import Link from 'next/link';
 const MAIN_EVENT_SCHEDULE = [
   {
     title: 'Location',
@@ -51,6 +51,14 @@ const MAIN_EVENT_SCHEDULE = [
   {
     title: 'Open Ballroom II',
     description: '12 PM - 2 AM',
+  },
+  {
+    title: 'Workshop: Salsa & Zouk',
+    description: '3 PM - 4 AM',
+  },
+  {
+    title: 'Workshop: Bachata & Kizomba',
+    description: '4 PM - 5 AM',
   },
 ];
 
