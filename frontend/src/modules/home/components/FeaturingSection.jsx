@@ -139,7 +139,7 @@ export function FeaturingSection() {
             />
             <Card
               image="/image/featuring/adis.png"
-              name="DJ Adis Krisna"
+              name="DJ Adish"
               title="from Bali"
             />
           </div>
