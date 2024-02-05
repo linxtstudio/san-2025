@@ -29,8 +29,12 @@ const MAIN_EVENT_SCHEDULE = [
     description: '2 PM',
   },
   {
-    title: 'Workshop',
-    description: '3 PM - 5 PM',
+    title: 'Workshop: Salsa & Zouk',
+    description: '3 PM - 4 AM',
+  },
+  {
+    title: 'Workshop: Bachata & Kizomba',
+    description: '4 PM - 5 AM',
   },
   {
     title: 'Open Ballroom I',
@@ -42,7 +46,7 @@ const MAIN_EVENT_SCHEDULE = [
   },
   {
     title: 'Performance',
-    description: '7.30 PM - 9.30',
+    description: '7.30 PM - 9.30 PM',
   },
   {
     title: 'Colour Exchange Social Dance featuring Band',
@@ -51,14 +55,6 @@ const MAIN_EVENT_SCHEDULE = [
   {
     title: 'Open Ballroom II',
     description: '12 PM - 2 AM',
-  },
-  {
-    title: 'Workshop: Salsa & Zouk',
-    description: '3 PM - 4 AM',
-  },
-  {
-    title: 'Workshop: Bachata & Kizomba',
-    description: '4 PM - 5 AM',
   },
 ];
 
