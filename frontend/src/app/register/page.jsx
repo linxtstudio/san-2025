@@ -155,10 +155,12 @@ const RegisterPage = ({}) => {
         ...formPaylod,
         event_type_ids: selectedValues.map((value) => value.id),
         transfer_receipt_image: uploadResponse.data.data.filename,
-        event_participant_hotel_facility: {
-          ...form.event_participant_hotel_facility,
-          hotel_facility_id: hotelSelectedValue.id,
-        },
+        event_participant_hotel_facility: Object.keys(hotelSelectedValue).length
+          ? {
+              ...form.event_participant_hotel_facility,
+              hotel_facility_id: hotelSelectedValue.id,
+            }
+          : null,
       };
 
       const response = await register(payload);
