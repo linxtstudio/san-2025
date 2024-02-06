@@ -4,8 +4,7 @@ on:
     tags:
       - "production-*"
 jobs:
-  deploy-storefront:
-    if: github.ref == 'refs/heads/main'
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
