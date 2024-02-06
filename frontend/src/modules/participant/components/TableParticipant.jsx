@@ -128,7 +128,7 @@ const TableParticipant = ({
       columnHelper.accessor('booking_note', {
         header: () => 'Note',
         cell: (info) => info.renderValue(),
-      }),
+      })
     );
   } else {
     columns.push(

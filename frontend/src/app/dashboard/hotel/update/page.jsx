@@ -38,22 +38,20 @@ export default function Dashboard() {
 
   const handleSubmit = async () => {
     try {
-      const payloadData = {}
-      form.forEach(room => {
-        const key = room.code
+      const payloadData = {};
+      form.forEach((room) => {
+        const key = room.code;
         payloadData[key] = {
-            room_availability: Number(room.room_availability),
-            price: Number(room.price)
+          room_availability: Number(room.room_availability),
+          price: Number(room.price),
         };
       });
-    
-
 
       const payload = {
         data: payloadData,
       };
       const response = await updateAllHotel(payload);
-      toast.success("Hotel setting successfully updated");
+      toast.success('Hotel setting successfully updated');
       // router.push('/dashboard/hotel');
     } catch (error) {
       toast.error(error.message);
@@ -75,7 +73,7 @@ export default function Dashboard() {
           return (
             <div className="flex flex-col gap-3" key={index}>
               <h3 className="text-[28px] font-bold">{hotel.name}</h3>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid gap-8 md:grid-cols-2">
                 <Input
                   label="Room Availability"
                   inputProps={{

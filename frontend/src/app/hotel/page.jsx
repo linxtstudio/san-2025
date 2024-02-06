@@ -82,10 +82,10 @@ const Page = ({}) => {
       <section>
         <div className="container">
           <div className=" mt-[30px] flex flex-col gap-2">
-            <p className='text-title-1 font-semibold'>Hotel Room</p>
-          <p className='text-[#FF6A6A]'>
+            <p className="text-title-1 font-semibold">Hotel Room</p>
+            <p className="text-[#FF6A6A]">
               *Please kindly check room availability before you booked
-              </p>
+            </p>
           </div>
           <div className="mt-[30px] grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {hotels.map((item, index) => (
