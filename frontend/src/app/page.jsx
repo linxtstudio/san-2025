@@ -29,6 +29,7 @@ const MAIN_EVENT_SCHEDULE = [
     description: '2 PM',
   },
   {
+    id: 'workshop',
     title: 'Workshop: Salsa & Zouk',
     description: '3 PM - 4 PM',
   },
@@ -214,7 +215,9 @@ export default function Home() {
             <div className="mt-12 flex flex-col gap-[90px] lg:flex-row">
               <div className="flex w-full flex-col gap-10 lg:w-7/12">
                 <div className="flex flex-col">
-                  <h4 className="text-title-1 font-semibold">Pool Party</h4>
+                  <h4 className="text-title-1 font-semibold" id="pool-party">
+                    Pool Party
+                  </h4>
                 </div>
                 <p>
                   Indulge in the joy of dancing by the exquisite poolside,

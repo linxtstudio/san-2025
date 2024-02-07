@@ -38,17 +38,27 @@ export function EventList() {
 
     if (item.fee_type === 'ticket_fee') {
       return (
-        <span className="text-xs font-semibold">
-          Ticket Fee {formatRupiah(item.fee_nominal)}
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className="text-xs font-semibold">
+            Ticket Fee {formatRupiah(item.fee_nominal)}
+          </span>
+          <Link href="#pool-party" className="text-xs text-green-3">
+            Click for more info
+          </Link>
+        </div>
       );
     }
 
     if (item.fee_type === 'registration_fee') {
       return (
-        <span className="text-xs font-semibold">
-          Registration Fee {formatRupiah(item.fee_nominal)}
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className="text-xs font-semibold">
+            Registration Fee {formatRupiah(item.fee_nominal)}
+          </span>
+          <Link href="#workshop" className="text-xs text-green-3">
+            Click for more info
+          </Link>
+        </div>
       );
     }
 
