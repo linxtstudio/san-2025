@@ -157,7 +157,7 @@ export function FeaturingSection() {
               link="https://www.instagram.com/adishkrisna"
             />
             <Card
-              image="/image/featuring/tisha.png"
+              image="/image/featuring/tisha.jpg"
               name="DJ Tisha"
               title="from Surabaya"
               link="https://www.instagram.com/septyshaputri"
