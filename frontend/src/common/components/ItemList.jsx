@@ -4,6 +4,7 @@ export function ItemList({ items }) {
       {items.map((i, index) => (
         <div
           key={index}
+          id={i?.id}
           className="flex w-full flex-col items-center justify-between text-title-2 md:flex-row"
         >
           <span className="w-full font-medium">{i.title}</span>

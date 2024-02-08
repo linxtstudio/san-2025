@@ -2,15 +2,15 @@
 'use client';
 
 import Button from '@/common/components/Button/Button';
-import Image from 'next/image';
-import '@/modules/home/css/style.css';
-import Navbar from '@/common/components/Navbar/Navbar';
 import Footer from '@/common/components/Footer/Footer';
-import Link from 'next/link';
-import { EventList } from '@/modules/home/components/EventList';
-import { EventImageSlider } from '@/modules/home/components/EventImageSlider';
 import { ItemList } from '@/common/components/ItemList';
+import Navbar from '@/common/components/Navbar/Navbar';
+import { EventImageSlider } from '@/modules/home/components/EventImageSlider';
+import { EventList } from '@/modules/home/components/EventList';
 import { FeaturingSection } from '@/modules/home/components/FeaturingSection';
+import '@/modules/home/css/style.css';
+import Image from 'next/image';
+import Link from 'next/link';
 const MAIN_EVENT_SCHEDULE = [
   {
     title: 'Location',
@@ -29,8 +29,13 @@ const MAIN_EVENT_SCHEDULE = [
     description: '2 PM',
   },
   {
-    title: 'Workshop',
-    description: '3 PM - 5 PM',
+    id: 'workshop',
+    title: 'Workshop: Salsa & Zouk',
+    description: '3 PM - 4 PM',
+  },
+  {
+    title: 'Workshop: Bachata & Kizomba',
+    description: '4 PM - 5 PM',
   },
   {
     title: 'Open Ballroom I',
@@ -42,7 +47,7 @@ const MAIN_EVENT_SCHEDULE = [
   },
   {
     title: 'Performance',
-    description: '7.30 PM - 9.30',
+    description: '7.30 PM - 9.30 PM',
   },
   {
     title: 'Colour Exchange Social Dance featuring Band',
@@ -210,7 +215,9 @@ export default function Home() {
             <div className="mt-12 flex flex-col gap-[90px] lg:flex-row">
               <div className="flex w-full flex-col gap-10 lg:w-7/12">
                 <div className="flex flex-col">
-                  <h4 className="text-title-1 font-semibold">Pool Party</h4>
+                  <h4 className="text-title-1 font-semibold" id="pool-party">
+                    Pool Party
+                  </h4>
                 </div>
                 <p>
                   Indulge in the joy of dancing by the exquisite poolside,

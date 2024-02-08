@@ -112,9 +112,6 @@ const RegisterPage = ({}) => {
           response.data.data.data.map((hotel) => {
             return {
               ...hotel,
-              price: Math.floor(Math.random() * (800000 - 200000 + 1)) + 200000,
-              room_availability: Math.floor(Math.random() * 25),
-              max_pax: Math.floor(Math.random() * 4),
             };
           })
         );
@@ -158,10 +155,12 @@ const RegisterPage = ({}) => {
         ...formPaylod,
         event_type_ids: selectedValues.map((value) => value.id),
         transfer_receipt_image: uploadResponse.data.data.filename,
-        event_participant_hotel_facility: {
-          ...form.event_participant_hotel_facility,
-          hotel_facility_id: hotelSelectedValue.id,
-        },
+        event_participant_hotel_facility: Object.keys(hotelSelectedValue).length
+          ? {
+              ...form.event_participant_hotel_facility,
+              hotel_facility_id: hotelSelectedValue.id,
+            }
+          : null,
       };
 
       const response = await register(payload);
@@ -293,10 +292,10 @@ const RegisterPage = ({}) => {
                   })
                 }
               />
-                            <Input
+              <Input
                 label="Please write the date and additional notes"
                 inputProps={{
-                  placeholder: 'Bali, 24 - 26 May 2024',
+                  placeholder: '24 - 26 May 2024',
                   type: 'text',
                   value: form.event_participant_hotel_facility.booking_note,
                 }}
