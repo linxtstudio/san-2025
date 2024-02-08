@@ -23,6 +23,30 @@ const eventListResource = (datas) => {
     }))
 }
 
+const eventParticipantDetailResource = (data) => ({
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    phone_number: data.phone_number,
+    event_participant_details: data.event_participant_details.map((eventParticipantDetail) => ({
+        id: eventParticipantDetail.id,
+        event_type: {
+            id: eventParticipantDetail.event_type.id,
+            name: eventParticipantDetail.event_type.name,
+        }
+    })),
+    event_participant_hotel_facility: data.event_participant_hotel_facility ? {
+        id: data.event_participant_hotel_facility?.id,
+        stay_duration: data.event_participant_hotel_facility?.stay_duration,
+        booking_note: data.event_participant_hotel_facility?.booking_note,
+        hotel_facility: {
+            id: data.event_participant_hotel_facility?.hotel_facility?.id,
+            name: data.event_participant_hotel_facility?.hotel_facility?.name,
+        },
+    } : null,
+})
+
 module.exports = {
     eventListResource,
+    eventParticipantDetailResource,
 }

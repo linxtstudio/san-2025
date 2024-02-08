@@ -3,10 +3,13 @@ const hotelFacilityRepository = require('../repositories/hotel.facility.reposito
 const url = require('../config/url.config')
 
 const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
-const { eventListResource } = require("../resources/event.resource")
+const { eventListResource, eventParticipantDetailResource } = require("../resources/event.resource")
 
 const register = async (req, res) => {
     const eventParticipant = await eventRepository.register(req.body)
+    const response = await eventRepository.getParticipantDetail({
+        id: eventParticipant.id,
+    })
 
     if (req.body?.event_participant_hotel_facility?.hotel_facility_id) {
         await hotelFacilityRepository.decrementRoomAvailabilityById(
@@ -17,7 +20,7 @@ const register = async (req, res) => {
     res.status(200).json({
         status: 200,
         message: 'Success to register event',
-        data: eventParticipant,
+        data: eventParticipantDetailResource(response),
     })
 }
 
@@ -68,28 +71,7 @@ const getParticipantDetail = async (req, res) => {
     res.status(200).json({
         status: 200,
         message: 'Success to get participant detail',
-        data: {
-            id: participantDetail.id,
-            name: participantDetail.name,
-            email: participantDetail.email,
-            phone_number: participantDetail.phone_number,
-            event_participant_details: participantDetail.event_participant_details.map((eventParticipantDetail) => ({
-                id: eventParticipantDetail.id,
-                event_type: {
-                    id: eventParticipantDetail.event_type.id,
-                    name: eventParticipantDetail.event_type.name,
-                }
-            })),
-            event_participant_hotel_facility: participantDetail.event_participant_hotel_facility ? {
-                id: participantDetail.event_participant_hotel_facility?.id,
-                stay_duration: participantDetail.event_participant_hotel_facility?.stay_duration,
-                booking_note: participantDetail.event_participant_hotel_facility?.booking_note,
-                hotel_facility: {
-                    id: participantDetail.event_participant_hotel_facility?.hotel_facility?.id,
-                    name: participantDetail.event_participant_hotel_facility?.hotel_facility?.name,
-                },
-            } : null,
-        },
+        data: eventParticipantDetailResource(participantDetail),
     })
 }
 
