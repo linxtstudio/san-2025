@@ -9,6 +9,7 @@ const eventListResource = (datas) => {
             email: data?.email,
             phone_number: data?.phone_number,
             is_verified: data?.is_verified,
+            total_transaction: data?.total_transaction,
             transfer_receipt_image: data?.transfer_receipt_image,
             transfer_receipt_url: `${url.public.upload}/${data?.transfer_receipt_image}`,
             city: {
