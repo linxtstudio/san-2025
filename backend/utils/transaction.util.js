@@ -6,7 +6,8 @@ const calculateTotalTransaction = (data) => {
     })
 
     if (data?.event_participant_hotel_facility?.hotel_facility?.id) {
-        total += data.event_participant_hotel_facility.hotel_facility.price
+        const { hotel_facility: { price }, stay_duration } = data.event_participant_hotel_facility
+        total += price * stay_duration
     }
 
     return total
