@@ -32,6 +32,16 @@ const register = async (payload) => {
     })
 }
 
+const updateTotalTransaction = async (payload) => {
+    return await EventParticipant.update({
+        total_transaction: payload.total_transaction,
+    }, {
+        where: {
+            id: payload.id,
+        },
+    })
+}
+
 const getParticipantByCity = async (payload) => {
     return await EventParticipantDetail.findAll({
         attributes: [
@@ -149,6 +159,7 @@ const sumTotalTransaction = async () => {
 
 module.exports = {
     register,
+    updateTotalTransaction,
 
     getParticipantByCity,
     getParticipants,

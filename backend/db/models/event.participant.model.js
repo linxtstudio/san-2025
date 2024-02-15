@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     city_id: DataTypes.INTEGER,
     transfer_receipt_image: DataTypes.STRING,
     is_verified: DataTypes.BOOLEAN,
+    total_transaction: DataTypes.INTEGER,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {

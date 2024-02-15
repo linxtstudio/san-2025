@@ -4,6 +4,7 @@ const url = require('../config/url.config')
 
 const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
 const { eventListResource, eventParticipantDetailResource } = require("../resources/event.resource")
+const { calculateTotalTransaction } = require("../utils/transaction.util");
 
 const register = async (req, res) => {
     const eventParticipant = await eventRepository.register(req.body)
@@ -16,6 +17,12 @@ const register = async (req, res) => {
             req.body.event_participant_hotel_facility.hotel_facility_id
         )
     }
+
+    const totalTransaction = calculateTotalTransaction(response)
+    await eventRepository.updateTotalTransaction({
+        id: eventParticipant.id,
+        total_transaction: totalTransaction,
+    })
 
     res.status(200).json({
         status: 200,
