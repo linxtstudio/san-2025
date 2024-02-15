@@ -141,6 +141,18 @@ const setUnverified = async (req, res) => {
     })
 }
 
+const sumTotalTransaction = async (req, res) => {
+    const totalTransaction = await eventRepository.sumTotalTransaction()
+
+    res.status(200).json({
+        status: 200,
+        message: 'Success to get total transaction',
+        data: {
+            'total_transaction': totalTransaction,
+        },
+    })
+}
+
 module.exports = {
     register,
 
@@ -151,4 +163,6 @@ module.exports = {
 
     setVerified,
     setUnverified,
+
+    sumTotalTransaction,
 }

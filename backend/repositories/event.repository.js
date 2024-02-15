@@ -143,6 +143,10 @@ const setUnVerified = async (participantId) => {
     })
 }
 
+const sumTotalTransaction = async () => {
+    return await EventParticipant.sum('total_transaction')
+}
+
 module.exports = {
     register,
 
@@ -152,4 +156,6 @@ module.exports = {
 
     setVerified,
     setUnVerified,
+
+    sumTotalTransaction,
 }
