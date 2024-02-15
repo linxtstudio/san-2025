@@ -69,6 +69,25 @@ const getParticipantByCity = async (payload) => {
     })
 }
 
+const getBaseParticipants = async (filter, { paginate, page, per_page }) => {
+    return EventParticipant.findAndCountAll({
+        where: {
+            ...(filter.city_id && { city_id: filter.city_id }),
+            ...(filter.is_verified && { is_verified: filter.is_verified === 'true' }),
+            ...(filter.search && {
+                name: {
+                    [sequelize.Op.iLike]: `%${filter.search}%`
+                }
+            }),
+        },
+        ...(paginate && {
+            limit: per_page,
+            offset: (page - 1) * per_page,
+        }),
+        order: [['created_at', 'ASC']],
+    })
+}
+
 const getParticipants = async (filter, { paginate, page, per_page }) => {
     return EventParticipant.findAndCountAll({
         where: {
@@ -162,6 +181,7 @@ module.exports = {
     updateTotalTransaction,
 
     getParticipantByCity,
+    getBaseParticipants,
     getParticipants,
     getParticipantDetail,
 
