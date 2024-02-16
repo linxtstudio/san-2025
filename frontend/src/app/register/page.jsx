@@ -50,6 +50,8 @@ const RegisterPage = ({}) => {
     contribution: 0,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const resetState = () => {
     setCityList([]);
     setSelectedValues([]);
@@ -143,6 +145,7 @@ const RegisterPage = ({}) => {
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append('file', selectedFile);
 
@@ -176,7 +179,9 @@ const RegisterPage = ({}) => {
         router.push('/register/ticket');
       }
     } catch (error) {
-      toast.error('error');
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -279,7 +284,7 @@ const RegisterPage = ({}) => {
                 label="Please write stay duration (Max. 4 Days)"
                 inputProps={{
                   placeholder: '1-4 Days',
-                  type: 'text',
+                  type: 'number',
                   value: form.event_participant_hotel_facility.stay_duration,
                 }}
                 onInput={(value) =>
@@ -389,6 +394,7 @@ const RegisterPage = ({}) => {
             onclick={() => {
               handleRegister();
             }}
+            disabled={loading}
           >
             Register
           </Button>

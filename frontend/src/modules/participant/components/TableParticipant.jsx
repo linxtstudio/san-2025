@@ -1,6 +1,7 @@
 'use client';
 
 import Table from '@/common/components/Table/Table';
+import { formatRupiah } from '@/common/helper/formatRupiah';
 import { useUpdateParam } from '@/common/hooks/useParams';
 import IconDownload from '@/common/icons/IconDownload';
 import { createColumnHelper } from '@tanstack/react-table';
@@ -162,6 +163,12 @@ const TableParticipant = ({
         })
       );
     }
+    columns.push(
+      columnHelper.accessor('event_participant.total_transaction', {
+        header: () => 'Transaksi',
+        cell: (info) => formatRupiah(info.renderValue()),
+      })
+    );
 
     columns.push(
       columnHelper.accessor('event_participant.is_verified', {

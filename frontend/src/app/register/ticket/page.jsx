@@ -28,10 +28,12 @@ const TicketPage = ({}) => {
           <div className="flex w-full flex-col justify-between gap-8 md:flex-row">
             <div className="flex w-full flex-col gap-3">
               <h1 className="text-3xl font-semibold md:text-display">
-                SAN Main Event E&#8208;Ticket
+                E&#8208;Ticket
               </h1>
               <span className="text-title-2 font-semibold md:text-title-1">
-                Pool Party, Workshop
+                {registerData.event_participant_details
+                  .map((event) => event.event_type.name)
+                  .join(', ')}
               </span>
               <div className="flex w-full max-w-[560px]">
                 <ItemList
