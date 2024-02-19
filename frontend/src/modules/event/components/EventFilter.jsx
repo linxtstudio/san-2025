@@ -1,16 +1,15 @@
 'use client';
 
+import Input from '@/common/components/Input/Input';
 import IconSearch from '@/common/icons/IconSearch';
 import IconX from '@/common/icons/IconX';
-import Input from '@/common/components/Input/Input';
 
-import { useEffect, useState } from 'react';
-import { getEvents } from '../services/getEvent';
-import toast from 'react-hot-toast';
 import Select from '@/common/components/Select/Select';
 import Tabs from '@/common/components/Tabs/Tabs';
 import { useUpdateParam } from '@/common/hooks/useParams';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { getEvents } from '../services/getEvent';
 
 const tabFilter = [
   {
@@ -66,7 +65,7 @@ const EventFilter = ({
         );
       }
     } catch (error) {
-      toast.error('error');
+      toast.error(error.message);
     }
   };
 

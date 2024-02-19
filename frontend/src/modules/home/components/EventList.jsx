@@ -18,7 +18,7 @@ export function EventList() {
         setEventList(response.data.data.data);
       }
     } catch (error) {
-      toast.error('error');
+      toast.error(error.message);
     }
   };
 

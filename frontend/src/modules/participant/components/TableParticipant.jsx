@@ -86,7 +86,7 @@ const TableParticipant = ({
       setParticipants(response.data.data);
     } catch (error) {
       setParticipants([]);
-      toast.error('error');
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -105,7 +105,7 @@ const TableParticipant = ({
         handleGetData();
       }
     } catch (error) {
-      toast.error('error');
+      toast.error(error.message);
     }
   };
 
