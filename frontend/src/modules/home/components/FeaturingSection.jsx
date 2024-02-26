@@ -1,26 +1,8 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
-
-function Card({ name, title, image, link = '' }) {
-  return (
-    <Link href={link} className="flex w-[200px] flex-col gap-6">
-      <Image
-        height={200}
-        width={200}
-        src={image}
-        alt={name}
-        className="h-[200px] w-[200px] rounded-[20px] object-cover"
-      />
-      <div className="flex flex-col text-center">
-        <p className="text-[20px]">{name}</p>
-        {title ? <p className="text-neutral-400">{title}</p> : null}
-      </div>
-    </Link>
-  );
-}
+import { BandImageSlider } from './BandImageSlider';
+import { Card } from './Card';
 
 export function FeaturingSection() {
   const [isShowMore, setIsShowMore] = useState(false);
@@ -77,44 +59,7 @@ export function FeaturingSection() {
             <p className="text-title-2 font-semibold">Band</p>
             <p>Buena Tierra Latin Band Bali</p>
           </div>
-          <div className="flex w-full flex-wrap gap-6">
-            <Card
-              image="/image/featuring/indri.png"
-              name="Indri"
-              title="Lead Vocal"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-            <Card
-              image="/image/featuring/dian.png"
-              name="Dian Marisqha"
-              title="Rhythm Guitar & Singer"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-            <Card
-              image="/image/featuring/anang.png"
-              name="Anang Orba"
-              title="Bass Guitar & Singer"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-            <Card
-              image="/image/featuring/nidom.png"
-              name="Nidom Mashuri"
-              title="Percussion & Lead Vocal"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-            <Card
-              image="/image/featuring/otto.png"
-              name="Otto Nugroho"
-              title="Lead Guitar"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-            <Card
-              image="/image/featuring/simson.png"
-              name="Simson Nicolas"
-              title="Drummer"
-              link="https://www.instagram.com/buenatierra_bali"
-            />
-          </div>
+          <BandImageSlider />
         </div>
         {/* Djs */}
         <div className="flex w-full flex-col gap-6">
@@ -158,7 +103,7 @@ export function FeaturingSection() {
             />
             <Card
               image="/image/featuring/tisha.jpg"
-              name="DJ Tisha"
+              name="DJ TISH"
               title="from Surabaya"
               link="https://www.instagram.com/septyshaputri"
             />
@@ -221,7 +166,7 @@ export function FeaturingSection() {
                 <Card
                   image="/image/featuring/rieza.png"
                   name="Rieza Vaganza"
-                  title="Project Director"
+                  title="Program Director"
                   link="https://www.instagram.com/riezavaganza99"
                 />
                 <Card
