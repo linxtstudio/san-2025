@@ -78,12 +78,6 @@ export function FeaturingSection() {
               link="https://www.instagram.com/indrung"
             />
             <Card
-              image="/image/featuring/dj-pancho.png"
-              name="DJ Pancho Ugalde"
-              title="from Surabaya"
-              link="https://www.instagram.com/panchougaldes"
-            />
-            <Card
               image="/image/featuring/billy.png"
               name="DJ Billy"
               title="from Bali"
