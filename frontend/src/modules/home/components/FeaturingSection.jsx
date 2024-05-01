@@ -66,16 +66,10 @@ export function FeaturingSection() {
           <p className="text-title-2 font-semibold">DJs</p>
           <div className="flex w-full flex-wrap gap-6">
             <Card
-              image="/image/featuring/dj-adhyn.png"
-              name="DJ Adhyn"
-              title="from Jakarta"
-              link="https://www.instagram.com/dj_adhyn"
-            />
-            <Card
-              image="/image/featuring/dj-indrung.png"
-              name="DJ Indrung"
-              title="from Surabaya"
-              link="https://www.instagram.com/indrung"
+              image="/image/featuring/made.png"
+              name="DJ Made Alfa"
+              title="from Bali"
+              link="https://www.instagram.com/madealfa"
             />
             <Card
               image="/image/featuring/billy.png"
@@ -84,10 +78,16 @@ export function FeaturingSection() {
               link="https://www.instagram.com/my_memoribillya"
             />
             <Card
-              image="/image/featuring/made.png"
-              name="DJ Made Alfa"
+              image="/image/featuring/king-guapo.jpeg"
+              name="DJ King Guapo"
               title="from Bali"
-              link="https://www.instagram.com/madealfa"
+              link="https://www.instagram.com/deejay_kingguapo"
+            />
+            <Card
+              image="/image/featuring/dj-adhyn.png"
+              name="DJ Adhyn"
+              title="from Jakarta"
+              link="https://www.instagram.com/dj_adhyn"
             />
             <Card
               image="/image/featuring/adis.png"
@@ -101,6 +101,18 @@ export function FeaturingSection() {
               title="from Surabaya"
               link="https://www.instagram.com/septyshaputri"
             />
+            <Card
+              image="/image/featuring/rezack.jpg"
+              name="DJ Rezack"
+              title="from Bali"
+              link="https://www.instagram.com/rcca_dancer"
+            />
+            <Card
+              image="/image/featuring/dj-indrung.png"
+              name="DJ Indrung"
+              title="from Surabaya"
+              link="https://www.instagram.com/indrung"
+            />
           </div>
         </div>
         {/* Commitee */}
@@ -110,7 +122,7 @@ export function FeaturingSection() {
             <Card
               image="/image/featuring/diah.png"
               name="Diah Anggara"
-              title="Project Director"
+              title="Project Manager"
               link="https://www.instagram.com/diahbali"
             />
             <Card
@@ -122,7 +134,7 @@ export function FeaturingSection() {
             <Card
               image="/image/featuring/gungde.png"
               name="Gung De"
-              title="Artistic Director"
+              title="Artistic Manager"
               link="https://www.instagram.com/gungdewita"
             />
             {isShowMore ? (
@@ -136,31 +148,31 @@ export function FeaturingSection() {
                 <Card
                   image="/image/featuring/made.png"
                   name="Made Alfa"
-                  title="Logistic Manager"
+                  title="Coordinator"
                   link="https://www.instagram.com/madealfa"
                 />
                 <Card
                   image="/image/featuring/yuli.png"
                   name="Yuli Rahayu"
-                  title="Funding Manager"
+                  title="Band Manager"
                   link="https://www.instagram.com/yuli_rahayu_41"
                 />
                 <Card
                   image="/image/featuring/reinard.png"
                   name="Reinard Arga"
-                  title="Social Media Manager"
+                  title="Multimedia (Promote & Socmed) Manager"
                   link="https://www.instagram.com/reinardarga"
                 />
                 <Card
                   image="/image/featuring/billy.png"
                   name="Billy"
-                  title="Talent Manager"
+                  title="Artist Manager & Stage Manager"
                   link="https://www.instagram.com/my_memoribillya"
                 />
                 <Card
                   image="/image/featuring/rieza.png"
                   name="Rieza Vaganza"
-                  title="Program Director"
+                  title="Logistic Manager"
                   link="https://www.instagram.com/riezavaganza99"
                 />
                 <Card
@@ -190,7 +202,7 @@ export function FeaturingSection() {
                 <Card
                   image="/image/featuring/jimmy.png"
                   name="Jimmy"
-                  title="Social Media Member"
+                  title="Promote & Socmed Member"
                   link="https://www.instagram.com/cakrajimme"
                 />
                 <Card

@@ -345,23 +345,73 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="flex w-full flex-col justify-center text-[22px] lg:w-5/12">
-                <ItemList
-                  items={[
-                    {
-                      title: 'Location',
-                      description: 'To Be Announced',
-                    },
-                    {
-                      title: 'Time',
-                      description: '3 PM - 9 PM',
-                    },
-                    {
-                      title: 'DJs',
-                      description: 'To Be Announced',
-                    },
-                  ]}
-                />
+              <div className="flex w-full flex-col justify-center gap-8 lg:w-5/12">
+                <div className="flex w-full flex-col justify-center text-[22px]">
+                  <ItemList
+                    items={[
+                      {
+                        title: 'Location',
+                        description: (
+                          <a
+                            href="https://maps.app.goo.gl/6MAgi6LEME2So2R38"
+                            className="text-[#0400B2] underline"
+                            target="_blank"
+                          >
+                            Azul Beach Club Bali
+                          </a>
+                        ),
+                      },
+                      {
+                        title: 'Time',
+                        description: '2 PM - 5 PM',
+                      },
+                    ]}
+                  />
+                </div>
+                <div className="flex w-full flex-col justify-center text-[22px]">
+                  <ItemList
+                    items={[
+                      {
+                        title: 'Location',
+                        description: (
+                          <a
+                            href="https://maps.app.goo.gl/tPPUzixZDd6K9gRr7"
+                            className="text-[#0400B2] underline"
+                            target="_blank"
+                          >
+                            Wr Italy
+                          </a>
+                        ),
+                      },
+                      {
+                        title: 'Time',
+                        description: '8 PM - 11 PM',
+                      },
+                    ]}
+                  />
+                </div>
+                <div className="flex w-full flex-col justify-center text-[22px]">
+                  <ItemList
+                    items={[
+                      {
+                        title: 'Location',
+                        description: (
+                          <a
+                            href="https://maps.app.goo.gl/8132x8aP5sDwXyfj8"
+                            className="text-[#0400B2] underline"
+                            target="_blank"
+                          >
+                            1959 Cocktail Bar & Dance Club
+                          </a>
+                        ),
+                      },
+                      {
+                        title: 'Time',
+                        description: '10 PM - 2.30 AM',
+                      },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
           </div>
