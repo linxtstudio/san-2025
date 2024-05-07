@@ -25,36 +25,43 @@ const MAIN_EVENT_SCHEDULE = [
     ),
   },
   {
+    title: 'General Rehearsal',
+    description: '11 AM - 1.30 PM',
+  },
+  {
     title: 'Open Registration',
     description: '2 PM',
   },
   {
-    id: 'workshop',
     title: 'Workshop: Salsa & Zouk',
-    description: '3 PM - 4 PM',
+    description: '3 PM',
   },
   {
     title: 'Workshop: Bachata & Kizomba',
-    description: '4 PM - 5 PM',
+    description: '4 PM',
   },
   {
     title: 'Open Ballroom I',
-    description: '5.30 PM',
+    description: '5 PM',
   },
   {
-    title: 'Dinner Served',
-    description: '6 PM - 7.30 PM',
+    title: 'Dinner',
+    description: '6 PM - 9 PM',
+  },
+  {
+    title: 'Final Bonie & Clyde',
+    description: '6.30 PM',
   },
   {
     title: 'Performance',
     description: '7.30 PM - 9.30 PM',
   },
   {
-    title: 'Colour Exchange Social Dance featuring Band',
+    title: 'Colour Exchange Social Dance featuring Buena Tiera',
     description: '9.30 PM - 12 PM',
   },
   {
-    title: 'Open Ballroom II',
+    title: 'Open Ballroom II for Kiz & Zouk',
     description: '12 PM - 2 AM',
   },
 ];
@@ -256,11 +263,42 @@ export default function Home() {
                     },
                     {
                       title: 'Time',
-                      description: '3 PM - 9 PM',
+                      description: '3 PM - 10 PM',
                     },
                     {
                       title: 'DJs',
                       description: 'To Be Announced',
+                    },
+                  ]}
+                />
+              </div>
+            </div>
+            <div className="mt-12 flex flex-col gap-[90px] lg:flex-row">
+              <div className="flex w-full flex-col gap-10 lg:w-7/12">
+                <div className="flex flex-col">
+                  <h4 className="text-title-1 font-semibold" id="pool-party">
+                    After Pool Party
+                  </h4>
+                </div>
+              </div>
+              <div className="flex w-full flex-col justify-center text-[22px] lg:w-5/12">
+                <ItemList
+                  items={[
+                    {
+                      title: 'Location',
+                      description: (
+                        <a
+                          href="https://maps.app.goo.gl/6mPk9xhez9qrzhPq9"
+                          className="text-[#0400B2] underline"
+                          target="_blank"
+                        >
+                          PADDLE Café & Bar Bali
+                        </a>
+                      ),
+                    },
+                    {
+                      title: 'Time',
+                      description: '10 PM - 1 AM',
                     },
                   ]}
                 />
@@ -364,28 +402,6 @@ export default function Home() {
                       {
                         title: 'Time',
                         description: '2 PM - 5 PM',
-                      },
-                    ]}
-                  />
-                </div>
-                <div className="flex w-full flex-col justify-center text-[22px]">
-                  <ItemList
-                    items={[
-                      {
-                        title: 'Location',
-                        description: (
-                          <a
-                            href="https://maps.app.goo.gl/tPPUzixZDd6K9gRr7"
-                            className="text-[#0400B2] underline"
-                            target="_blank"
-                          >
-                            Wr Italy
-                          </a>
-                        ),
-                      },
-                      {
-                        title: 'Time',
-                        description: '8 PM - 11 PM',
                       },
                     ]}
                   />
