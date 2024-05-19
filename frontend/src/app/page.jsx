@@ -205,7 +205,7 @@ export default function Home() {
                     },
                     {
                       title: 'Time',
-                      description: '7 PM - 11 PM',
+                      description: '7 PM - 12 AM',
                     },
                     {
                       title: 'DJs',
@@ -492,7 +492,7 @@ export default function Home() {
                       },
                       {
                         title: 'Time',
-                        description: '10 PM - 2.30 AM',
+                        description: '9 PM - 3 AM',
                       },
                       {
                         title: 'DJs',
