@@ -1,4 +1,5 @@
 const eventRepository = require('../repositories/event.repository')
+const eventParticipantAttendanceRepository = require('../repositories/event.participant.attendance.repository')
 const hotelFacilityRepository = require('../repositories/hotel.facility.repository')
 const url = require('../config/url.config')
 
@@ -130,6 +131,9 @@ const setVerified = async (req, res) => {
     }
 
     await eventRepository.setVerified(req.params.participantId)
+    await eventParticipantAttendanceRepository.create({
+        event_participant_id: req.params.participantId,
+    })
 
     res.status(200).json({
         status: 200,
