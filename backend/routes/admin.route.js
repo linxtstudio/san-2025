@@ -11,6 +11,7 @@ router.get('/event/participants', verifyToken, eventController.getParticipants)
 router.get('/event/participants/:participantId', verifyToken, eventController.getParticipantDetailAdmin)
 router.put('/event/participants/:participantId/verified', verifyToken, eventController.setVerified)
 router.put('/event/participants/:participantId/unverified', verifyToken, eventController.setUnverified)
+router.put('/event/participants/unverified/all', verifyToken, eventController.setAllUnverified)
 
 router.get('/event/total-transaction', verifyToken, eventController.sumTotalTransaction)
 

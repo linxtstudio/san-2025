@@ -148,6 +148,16 @@ const setUnverified = async (req, res) => {
     })
 }
 
+const setAllUnverified = async (req, res) => {
+    await eventRepository.setAllUnVerified()
+
+    res.status(200).json({
+        status: 200,
+        message: 'Success to set all participant unverified',
+        data: null,
+    })
+}
+
 const sumTotalTransaction = async (req, res) => {
     const totalTransaction = await eventRepository.sumTotalTransaction()
 
@@ -170,6 +180,7 @@ module.exports = {
 
     setVerified,
     setUnverified,
+    setAllUnverified,
 
     sumTotalTransaction,
 }
