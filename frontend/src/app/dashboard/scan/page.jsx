@@ -1,155 +1,256 @@
 'use client';
 
-import IconBack from '@/common/icons/IconBack';
-import { getHotels } from '@/modules/hotel/services/getHotels';
-import { updateAllHotel } from '@/modules/hotel/services/updateAllHotels';
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
 
+import Button from '@/common/components/Button/Button';
+import IconBack from '@/common/icons/IconBack';
+import IconDownload from '@/common/icons/IconDownload';
+import IconError from '@/common/icons/IconError';
+import { getParticipant } from '@/modules/participant/services/getParticipant';
+import { setVerification } from '@/modules/participant/services/setVerification';
 import { QrScanner } from '@yudiel/react-qr-scanner';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-
 export default function ScanPage() {
-  const [form, setForm] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [participant, setParticipant] = useState({});
+  const [modalType, setModalType] = useState('');
+  const [error, setError] = useState({
+    title: '',
+    message: '',
+  });
   const router = useRouter();
 
-  const handleGetHotel = async () => {
+  function closeModal() {
+    setIsOpen(false);
+    setIsScanning(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  const handleGetParticipant = async (id) => {
     try {
-      const response = await getHotels();
-      console.log(response);
+      const response = await getParticipant(id);
       if (response.status === 200) {
-        setForm(
-          response.data.data.data.map((hotel) => {
-            return {
-              name: hotel.name,
-              code: hotel.code,
-              room_availability: hotel.room_availability,
-              price: hotel.price,
-            };
-          })
-        );
+        setParticipant(response.data.data);
+        console.log(response.data);
       }
     } catch (error) {
       toast.error(error.message);
     }
   };
+  const [isScanning, setIsScanning] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleScan = async (result) => {
+    if (isScanning) return;
+    setIsScanning(true);
+
     try {
-      const payloadData = {};
-      form.forEach((room) => {
-        const key = room.code;
-        payloadData[key] = {
-          room_availability: Number(room.room_availability),
-          price: Number(room.price),
-        };
-      });
+      const response = await setVerification('verified', result);
 
-      const payload = {
-        data: payloadData,
-      };
-      const response = await updateAllHotel(payload);
-      toast.success('Hotel setting successfully updated');
-      // router.push('/dashboard/hotel');
+      if (response.status === 200) {
+        toast.success('Participant successfully verified');
+        setModalType('success');
+        handleGetParticipant(result);
+        setIsOpen(true);
+      }
     } catch (error) {
-      toast.error(error.message);
+      console.log(error);
+      setModalType('error');
+      if (error.response.data.message === 'Participant already verified') {
+        setError({
+          title: 'Ticked Used',
+          message: 'Ticket has been used before!',
+        });
+
+        toast.error('Ticket has been used');
+      } else if (error.response.data.message === 'Participant does not exist') {
+        setError({
+          title: 'Invalid Ticket',
+          message: 'Ticket is invalid or not scanned properly!',
+        });
+        toast.error('Participant not found');
+      }
+      setIsOpen(true);
     }
   };
-  useEffect(() => {
-    handleGetHotel();
-  }, []);
+
+  const downloadImage = async (imageSrc, nameOfDownload = 'payment-proof') => {
+    const response = await fetch(imageSrc);
+
+    const blobImage = await response.blob();
+
+    const href = URL.createObjectURL(blobImage);
+
+    const anchorElement = document.createElement('a');
+    anchorElement.href = href;
+    anchorElement.download = nameOfDownload;
+
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+
+    document.body.removeChild(anchorElement);
+    window.URL.revokeObjectURL(href);
+  };
+
   return (
-    <div className="flex flex-col">
-      <Link
-        href="/dashboard/hotel"
-        className="mb-12 flex items-center text-title-1 font-semibold"
-      >
-        <IconBack /> Back
-      </Link>
-      <div className="relative rounded-xl">
-        <div
-          className="absolute inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50 bg-clip-content"
-          style={{
-            clipPath:
-              'polygon(37.72% 21.67%, 65.84% 21.67%, 65.84% 71.67%, 37.72% 71.67%)',
-            WebkitClipPath:
-              'polygon(37.72% 21.67%, 65.84% 21.67%, 65.84% 71.67%, 37.72% 71.67%)',
-          }}
-        >
-          <div className="rounded-lg border border-white bg-transparent p-4">
-            a
-          </div>
-        </div>
-        <QrScanner
-          containerStyle={{
-            width: '100%',
-            aspectRatio: '16/9',
-            paddingTop: 'unset',
-            borderRadius: '20px',
-          }}
-          videoStyle={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '20px',
-          }}
-          onDecode={(result) => console.log(result)}
-          onError={(error) => console.log(error?.message)}
-          viewFinder={() => {
-            <div className="z-50">aa</div>;
-          }}
-        />
-      </div>
-      {/* <div className="gap flex flex-col gap-12 rounded-[20px] border-2 border-orange-1 px-8 py-4">
-        {form.map((hotel, index) => {
-          return (
-            <div className="flex flex-col gap-3" key={index}>
-              <h3 className="text-[28px] font-bold">{hotel.name}</h3>
-              <div className="grid gap-8 md:grid-cols-2">
-                <Input
-                  label="Room Availability"
-                  inputProps={{
-                    placeholder: 'Room Availability',
-                    type: 'text',
-                    value: hotel.room_availability,
-                  }}
-                  onInput={(value) =>
-                    setForm((prev) => {
-                      const updatedForm = [...prev];
-                      updatedForm[index].room_availability = value;
-                      return updatedForm;
-                    })
-                  }
-                />
-                <Input
-                  label="Room Price"
-                  inputProps={{
-                    placeholder: 'Room Price',
-                    type: 'text',
-                    value: hotel.price,
-                  }}
-                  onInput={(value) =>
-                    setForm((prev) => {
-                      const updatedForm = [...prev];
-                      updatedForm[index].price = value;
-                      return updatedForm;
-                    })
-                  }
-                />
-              </div>
-            </div>
-          );
-        })}
-        <div className="mt-10 flex w-full justify-end">
-          <Button
-            onclick={() => {
-              handleSubmit();
-            }}
+    <>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            Save
-          </Button>
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="flex w-full max-w-md transform flex-col items-center overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
+                  <>
+                    <Dialog.Title
+                      as="h3"
+                      className="text-center text-3xl font-medium leading-6 text-gray-900"
+                    >
+                      {modalType === 'success' ? 'Ticket Detail' : error.title}
+                    </Dialog.Title>
+                    <div className="mt-5 flex flex-col gap-2 !text-left">
+                      {Object.keys(participant).length > 0 &&
+                        modalType === 'success' && (
+                          <>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Name:</span>
+                              </div>
+                              <div>
+                                <span>{participant.name}</span>
+                              </div>
+                            </div>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Email:</span>
+                              </div>
+                              <div>
+                                <span>{participant.email}</span>
+                              </div>
+                            </div>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">
+                                  Phone Number:
+                                </span>
+                              </div>
+                              <div>
+                                <span>{participant.phone_number}</span>
+                              </div>
+                            </div>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Event:</span>
+                              </div>
+                              <div>
+                                <ul className="list-disc">
+                                  {participant.event_participant_details.map(
+                                    (event) => (
+                                      <li key={event.id}>
+                                        {event.event_type.name}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            </div>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">
+                                  Payment Proof:{' '}
+                                </span>
+                              </div>
+                              <div>
+                                <button
+                                  className="mx-auto flex items-center gap-2 text-[#0400B2] underline"
+                                  onClick={() => {
+                                    downloadImage(
+                                      participant.transfer_receipt_url,
+                                      'payment-proof-' + participant.name
+                                    );
+                                  }}
+                                >
+                                  Download <IconDownload />
+                                </button>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      {modalType === 'error' && (
+                        <div className="flex flex-col items-center justify-center">
+                          <IconError />
+                          <span>{error.message}</span>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                  <div className="mx-auto mt-4">
+                    <Button
+                      onclick={() => {
+                        closeModal();
+                      }}
+                    >
+                      Close{' '}
+                    </Button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+      <div className="flex flex-col">
+        <Link
+          href="/dashboard/hotel"
+          className="mb-12 flex items-center text-title-1 font-semibold"
+        >
+          <IconBack /> Back
+        </Link>
+        <div className="relative rounded-xl">
+          <QrScanner
+            containerStyle={{
+              width: '100%',
+              aspectRatio: '16/9',
+              paddingTop: 'unset',
+              borderRadius: '20px',
+            }}
+            videoStyle={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '20px',
+            }}
+            onDecode={handleScan}
+            onError={(error) => console.log(error?.message)}
+            viewFinder={() => {
+              <div className="z-50">aa</div>;
+            }}
+          />
         </div>
-      </div> */}
-    </div>
+      </div>
+    </>
   );
 }
