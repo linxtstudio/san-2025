@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 export default function ScanPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
   const [participant, setParticipant] = useState({});
   const [modalType, setModalType] = useState('');
   const [error, setError] = useState({
@@ -43,7 +44,6 @@ export default function ScanPage() {
       toast.error(error.message);
     }
   };
-  const [isScanning, setIsScanning] = useState(false);
 
   const handleScan = async (result) => {
     if (isScanning) return;
@@ -231,10 +231,20 @@ export default function ScanPage() {
           <IconBack /> Back
         </Link>
         <div className="relative rounded-xl">
+          <div className="absolute inset-0 z-20 box-border  border-b-[160px] border-l-[310px] border-r-[310px] border-t-[160px] border-black/50">
+            <div className="absolute left-0 top-[-5px] h-1 w-10 bg-white"></div>
+            <div className="absolute right-0 top-[-5px] h-1 w-10 bg-white"></div>
+            <div className="absolute bottom-[-5px] left-0 h-1 w-10 bg-white"></div>
+            <div className="absolute bottom-[-5px] right-0 h-1 w-10 bg-white"></div>
+            <div className="absolute left-[-5px] top-[-5px] h-11 w-1 bg-white"></div>
+            <div className="absolute bottom-[-5px] left-[-5px] h-11 w-1 bg-white"></div>
+            <div className="absolute right-[-5px] top-[-5px] h-11 w-1 bg-white"></div>
+            <div className="absolute bottom-[-5px] right-[-5px] h-11 w-1 bg-white"></div>
+          </div>
           <QrScanner
             containerStyle={{
               width: '100%',
-              aspectRatio: '16/9',
+              aspectRatio: '4/3',
               paddingTop: 'unset',
               borderRadius: '20px',
             }}
