@@ -11,7 +11,7 @@ export default function Dashboard() {
       <div className="mb-6 flex items-end justify-between">
         <EventTotalTransaction />
         <div>
-          <Link href="/dashboard">
+          <Link href="/dashboard/scan">
             <Button>
               Scan Ticket
               <IconScan />
