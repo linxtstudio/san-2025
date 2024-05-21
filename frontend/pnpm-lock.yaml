@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@headlessui/react':
-    specifier: ^1.7.17
+    specifier: ^1.7.18
     version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-table':
     specifier: ^8.10.7
