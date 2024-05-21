@@ -172,6 +172,16 @@ const setUnVerified = async (participantId) => {
     })
 }
 
+const setAllUnVerified = async () => {
+    return await EventParticipant.update({
+        is_verified: false,
+    }, {
+        where: {
+            is_verified: true,
+        },
+    })
+}
+
 const sumTotalTransaction = async () => {
     return await EventParticipant.sum('total_transaction')
 }
@@ -187,6 +197,7 @@ module.exports = {
 
     setVerified,
     setUnVerified,
+    setAllUnVerified,
 
     sumTotalTransaction,
 }
