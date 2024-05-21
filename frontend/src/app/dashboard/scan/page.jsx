@@ -3,7 +3,10 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 
+import Button from '@/common/components/Button/Button';
 import IconBack from '@/common/icons/IconBack';
+import IconDownload from '@/common/icons/IconDownload';
+import IconError from '@/common/icons/IconError';
 import { getParticipant } from '@/modules/participant/services/getParticipant';
 import { setVerification } from '@/modules/participant/services/setVerification';
 import { QrScanner } from '@yudiel/react-qr-scanner';
@@ -11,12 +14,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 export default function ScanPage() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [participant, setParticipant] = useState({});
+  const [modalType, setModalType] = useState('');
+  const [error, setError] = useState({
+    title: '',
+    message: '',
+  });
   const router = useRouter();
 
   function closeModal() {
     setIsOpen(false);
+    setIsScanning(false);
   }
 
   function openModal() {
@@ -45,19 +54,47 @@ export default function ScanPage() {
 
       if (response.status === 200) {
         toast.success('Participant successfully verified');
+        setModalType('success');
         handleGetParticipant(result);
         setIsOpen(true);
       }
     } catch (error) {
+      console.log(error);
+      setModalType('error');
       if (error.response.data.message === 'Participant already verified') {
-        return toast.error('Participant already verified');
+        setError({
+          title: 'Ticked Used',
+          message: 'Ticket has been used before!',
+        });
+
+        toast.error('Ticket has been used');
+      } else if (error.response.data.message === 'Participant does not exist') {
+        setError({
+          title: 'Invalid Ticket',
+          message: 'Ticket is invalid or not scanned properly!',
+        });
+        toast.error('Participant not found');
       }
       setIsOpen(true);
-
-      toast.error(error.message);
-    } finally {
-      setIsScanning(false);
     }
+  };
+
+  const downloadImage = async (imageSrc, nameOfDownload = 'payment-proof') => {
+    const response = await fetch(imageSrc);
+
+    const blobImage = await response.blob();
+
+    const href = URL.createObjectURL(blobImage);
+
+    const anchorElement = document.createElement('a');
+    anchorElement.href = href;
+    anchorElement.download = nameOfDownload;
+
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+
+    document.body.removeChild(anchorElement);
+    window.URL.revokeObjectURL(href);
   };
 
   return (
@@ -87,71 +124,98 @@ export default function ScanPage() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="flex w-full max-w-md transform flex-col items-center overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
                   <>
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="text-center text-3xl font-medium leading-6 text-gray-900"
                     >
-                      Ticket Detail
+                      {modalType === 'success' ? 'Ticket Detail' : error.title}
                     </Dialog.Title>
-                    <div className="mt-5 flex flex-col gap-2">
-                      {Object.keys(participant).length > 0 && (
-                        <>
-                          <div className="flex">
-                            <div className="w-[200px]">
-                              <span className="font-semibold">Name:</span>
+                    <div className="mt-5 flex flex-col gap-2 !text-left">
+                      {Object.keys(participant).length > 0 &&
+                        modalType === 'success' && (
+                          <>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Name:</span>
+                              </div>
+                              <div>
+                                <span>{participant.name}</span>
+                              </div>
                             </div>
-                            <div>
-                              <span>{participant.name}</span>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Email:</span>
+                              </div>
+                              <div>
+                                <span>{participant.email}</span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex">
-                            <div className="w-[200px]">
-                              <span className="font-semibold">Email:</span>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">
+                                  Phone Number:
+                                </span>
+                              </div>
+                              <div>
+                                <span>{participant.phone_number}</span>
+                              </div>
                             </div>
-                            <div>
-                              <span>{participant.email}</span>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">Event:</span>
+                              </div>
+                              <div>
+                                <ul className="list-disc">
+                                  {participant.event_participant_details.map(
+                                    (event) => (
+                                      <li key={event.id}>
+                                        {event.event_type.name}
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex">
-                            <div className="w-[200px]">
-                              <span className="font-semibold">
-                                Phone Number:
-                              </span>
+                            <div className="flex">
+                              <div className="w-[200px]">
+                                <span className="font-semibold">
+                                  Payment Proof:{' '}
+                                </span>
+                              </div>
+                              <div>
+                                <button
+                                  className="mx-auto flex items-center gap-2 text-[#0400B2] underline"
+                                  onClick={() => {
+                                    downloadImage(
+                                      participant.transfer_receipt_url,
+                                      'payment-proof-' + participant.name
+                                    );
+                                  }}
+                                >
+                                  Download <IconDownload />
+                                </button>
+                              </div>
                             </div>
-                            <div>
-                              <span>{participant.phone_number}</span>
-                            </div>
-                          </div>
-                          <div className="flex">
-                            <div className="w-[200px]">
-                              <span className="font-semibold">Event:</span>
-                            </div>
-                            <div>
-                              <ul>
-                                {participant.event_participant_details.map(
-                                  (event) => (
-                                    <li key={event.id}>
-                                      {event.event_type.name}
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          </div>
-                        </>
+                          </>
+                        )}
+                      {modalType === 'error' && (
+                        <div className="flex flex-col items-center justify-center">
+                          <IconError />
+                          <span>{error.message}</span>
+                        </div>
                       )}
                     </div>
                   </>
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                  <div className="mx-auto mt-4">
+                    <Button
+                      onclick={() => {
+                        closeModal();
+                      }}
                     >
-                      Got it, thanks!
-                    </button>
+                      Close{' '}
+                    </Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -179,7 +243,7 @@ export default function ScanPage() {
               height: 'auto',
               borderRadius: '20px',
             }}
-            onDecode={(result) => handleScan(result)}
+            onDecode={handleScan}
             onError={(error) => console.log(error?.message)}
             viewFinder={() => {
               <div className="z-50">aa</div>;
