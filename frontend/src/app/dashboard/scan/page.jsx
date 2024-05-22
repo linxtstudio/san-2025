@@ -40,7 +40,6 @@ export default function ScanPage() {
       const response = await getParticipant(id);
       if (response.status === 200) {
         setParticipant(response.data.data);
-        console.log(response.data);
       }
     } catch (error) {
       toast.error(error.message);
@@ -242,7 +241,7 @@ export default function ScanPage() {
         </div>
 
         <div className="relative rounded-xl">
-          <div className="absolute inset-0 z-20 box-border  border-b-[160px] border-l-[310px] border-r-[310px] border-t-[160px] border-black/50">
+          <div className="absolute inset-0 z-20 box-border border-x-[50px] border-y-[20px]   border-black/50 md:border-x-[150px] md:border-y-[90px]  lg:border-x-[310px]  lg:border-y-[160px]">
             <div className="absolute left-0 top-[-5px] h-1 w-10 bg-white"></div>
             <div className="absolute right-0 top-[-5px] h-1 w-10 bg-white"></div>
             <div className="absolute bottom-[-5px] left-0 h-1 w-10 bg-white"></div>
