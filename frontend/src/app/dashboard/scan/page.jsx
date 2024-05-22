@@ -15,6 +15,8 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 export default function ScanPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const [cameraError, setCameraError] = useState('');
+  const [isCameraEnabled, setIsCameraEnabled] = useState(true);
   const [isScanning, setIsScanning] = useState(false);
   const [participant, setParticipant] = useState({});
   const [modalType, setModalType] = useState('');
@@ -224,12 +226,21 @@ export default function ScanPage() {
         </Dialog>
       </Transition>
       <div className="flex flex-col">
-        <Link
-          href="/dashboard/hotel"
-          className="mb-12 flex items-center text-title-1 font-semibold"
-        >
-          <IconBack /> Back
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/dashboard/hotel"
+            className="mb-12 flex items-center text-title-1 font-semibold"
+          >
+            <IconBack /> Back
+          </Link>
+          {!isCameraEnabled && (
+            <div className="mb-8  flex items-center gap-7 rounded-[20px] border-2 border-orange-1 p-4">
+              <IconError width={40} height={40} />
+              {cameraError}
+            </div>
+          )}
+        </div>
+
         <div className="relative rounded-xl">
           <div className="absolute inset-0 z-20 box-border  border-b-[160px] border-l-[310px] border-r-[310px] border-t-[160px] border-black/50">
             <div className="absolute left-0 top-[-5px] h-1 w-10 bg-white"></div>
@@ -254,9 +265,17 @@ export default function ScanPage() {
               borderRadius: '20px',
             }}
             onDecode={handleScan}
-            onError={(error) => console.log(error?.message)}
+            onError={(error) => {
+              console.log(error?.message);
+              if (error?.message === 'Permission denied') {
+                setCameraError(
+                  'Camera access was denied. Please allow camera access to scan the QR code.'
+                );
+                setIsCameraEnabled(false);
+              }
+            }}
             viewFinder={() => {
-              <div className="z-50">aa</div>;
+              <div></div>;
             }}
           />
         </div>

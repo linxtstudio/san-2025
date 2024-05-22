@@ -1,7 +1,7 @@
-const IconError = () => (
+const IconError = ({ width = 174, height = 174 }) => (
   <svg
-    width="174"
-    height="174"
+    width={width}
+    height={height}
     viewBox="0 0 174 174"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
