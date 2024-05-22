@@ -3,6 +3,7 @@ const eventParticipantAttendanceRepository = require('../repositories/event.part
 const hotelFacilityRepository = require('../repositories/hotel.facility.repository')
 const url = require('../config/url.config')
 
+const { isValidUuid } = require("../utils/string.util")
 const { getPaginatePayload, getPaginateData } = require("../utils/pagination.util")
 const { eventListResource, eventParticipantDetailResource } = require("../resources/event.resource")
 const { calculateTotalTransaction } = require("../utils/transaction.util");
@@ -110,6 +111,14 @@ const getParticipantDetailAdmin = async (req, res) => {
 }
 
 const setVerified = async (req, res) => {
+    if  (!isValidUuid(req.params.participantId)) {
+        return res.status(422).json({
+            status: 422,
+            message: 'Participant does not exist',
+            data: null,
+        })
+    }
+
     const participant = await eventRepository.getParticipantDetail({
         id: req.params.participantId,
     })

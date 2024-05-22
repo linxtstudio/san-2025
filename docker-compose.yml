@@ -18,7 +18,7 @@ services:
       - db
     environment:
       - NODE_ENV=production
-      - BASE_URL=http://103.117.56.241:7004
+      - BASE_URL=https://api.socialdance.ilhamsh.id
       - APP_PORT=3000
       - DB_HOST=db
       - DB_PORT=5432
