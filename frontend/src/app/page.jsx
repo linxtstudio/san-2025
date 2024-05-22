@@ -358,7 +358,7 @@ export default function Home() {
                     },
                     {
                       title: 'Time',
-                      description: '10 PM - 1 AM',
+                      description: '9 PM - 1 AM',
                     },
                     {
                       title: 'DJs',
