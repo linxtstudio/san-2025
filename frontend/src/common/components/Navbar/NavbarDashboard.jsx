@@ -10,7 +10,10 @@ const NavbarDashboard = ({}) => {
   return (
     <div className="bg-orange-1">
       <div className=" container flex justify-between px-6 py-2">
-        <Link className="text-4xl font-semibold text-white" href="/dashboard">
+        <Link
+          className="text-2xl font-semibold text-white md:text-4xl"
+          href="/dashboard"
+        >
           Dashboard
         </Link>
         <div className="flex items-center gap-12">
