@@ -142,9 +142,9 @@ export default function Home() {
               <Link href="/hotel">
                 <Button type="outline">Hotel Detail</Button>
               </Link>
-              <Link href="/register">
+              {/* <Link href="/register">
                 <Button>Register</Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

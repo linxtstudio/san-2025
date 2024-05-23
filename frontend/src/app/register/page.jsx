@@ -246,6 +246,8 @@ const RegisterPage = ({}) => {
 
   if (isLoading) return <></>;
 
+  return <></>;
+
   return (
     <div className="container z-20 py-8">
       <Link href="/" className="flex items-center">
