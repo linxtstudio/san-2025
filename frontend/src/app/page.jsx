@@ -33,12 +33,20 @@ const MAIN_EVENT_SCHEDULE = [
     description: '2 PM',
   },
   {
-    title: 'Workshop: Salsa & Zouk',
-    description: '3 PM',
+    title: 'Workshop: Salsa',
+    description: '2 PM - 3 PM',
   },
   {
-    title: 'Workshop: Bachata & Kizomba',
-    description: '4 PM',
+    title: 'Workshop: Zouk',
+    description: '3 PM - 4 PM',
+  },
+  {
+    title: 'Workshop: Bachata',
+    description: '4 PM - 5 PM',
+  },
+  {
+    title: 'Workshop: Kizomba',
+    description: '5 PM - 6 PM',
   },
   {
     title: 'Open Ballroom I',
