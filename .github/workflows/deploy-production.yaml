@@ -78,17 +78,5 @@ jobs:
           port: 22
           script: |
             cd ~/app/san-2025
-
-            # Clone backend repository
-            if [ ! -d backend ]; then
-              git clone https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git tmp_repo
-              mv tmp_repo/backend backend
-              rm -rf tmp_repo
-            else
-              cd backend
-              git pull
-              cd ..
-            fi
-
             docker compose -f docker-compose-prod.yml pull
             docker compose -f docker-compose-prod.yml up -d
