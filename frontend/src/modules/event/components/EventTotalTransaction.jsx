@@ -6,6 +6,7 @@ import { getTotalEventTransaction } from '../services/getTotalEventTransaction';
 
 const EventTotalTransaction = ({}) => {
   const [total, setTotal] = useState(0);
+  const totalTransaction = formatRupiah(total);
   const handleGetTotalTransaction = async () => {
     try {
       const response = await getTotalEventTransaction();

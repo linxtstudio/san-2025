@@ -7,7 +7,6 @@ services:
       - 7005:7005
     networks:
       - san-2025-network
-
   backend:
     build: ./backend
     container_name: san-2025-be
