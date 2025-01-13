@@ -1,5 +1,5 @@
-import { Poppins } from 'next/font/google';
 import '@/style/globals.css';
+import { Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({
@@ -8,7 +8,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'SAN 2024 - The Most Anticipated Social Dance Gathering In Indonesia',
+  title: 'SAN 2025 - The Most Anticipated Social Dance Gathering In Indonesia',
   description:
     'The highly awaited dance extravaganza that promises to be a spellbinding fusion of artistry, rhythm, and sheer spectacle of afro latin dances in Indonesia.',
 };

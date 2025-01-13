@@ -78,17 +78,17 @@ const PRICE_LIST = [
   {
     title: 'Early bird 1',
     description: 'IDR 350k',
-    label: 'until 31 March 2024',
+    label: 'until 31 March 2025',
   },
   {
     title: 'Early bird 2',
     description: 'IDR 400k',
-    label: 'until 30 April 2024',
+    label: 'until 30 April 2025',
   },
   {
     title: 'Regular Price',
     description: 'IDR 450k',
-    label: 'until 23 May 2024',
+    label: 'until 23 May 2025',
   },
   {
     title: 'At the door',
@@ -160,7 +160,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <h2 className="text-display font-semibold">Event Rundown</h2>
             <p className="max-w-[470px] text-justify">
-              Below this are the events will be held at SAN 2024, it’s gonna be
+              Below this are the events will be held at SAN 2025, it’s gonna be
               fun, exciting and of course memorable, kindly check and register
               after that
             </p>
@@ -334,7 +334,7 @@ export default function Home() {
                     <li>Never compete as Professional</li>
                     <li>Never win Jack & Jill in Salsa Arisan</li>
                     <li>
-                      Already registered as Salsa Arisan 2024 Main Event
+                      Already registered as Salsa Arisan 2025 Main Event
                       Participant
                     </li>
                   </ol>

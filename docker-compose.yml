@@ -2,15 +2,15 @@ version: "3"
 services:
   frontend:
     build: ./frontend
-    container_name: san-2024-fe
+    container_name: san-2025-fe
     ports:
       - 7005:7005
     networks:
-      - san-2024-network
+      - san-2025-network
 
   backend:
     build: ./backend
-    container_name: san-2024-be
+    container_name: san-2025-be
     restart: always
     ports:
       - 7004:3000
@@ -18,16 +18,16 @@ services:
       - db
     environment:
       - NODE_ENV=production
-      - BASE_URL=https://api.socialdance.ilhamsh.id
+      - BASE_URL=https://dev.api.socialdance.id
       - APP_PORT=3000
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=san_2024
+      - DB_NAME=san_2025
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
-      - JWT_SECRET=san2024jwt
+      - JWT_SECRET=san2025jwt
     networks:
-      - san-2024-network
+      - san-2025-network
     volumes:
       - ./backend/public/uploads:/app/public/uploads
 
@@ -44,10 +44,10 @@ services:
     ports:
       - 7003:5432
     networks:
-      - san-2024-network
+      - san-2025-network
 
 networks:
-  san-2024-network:
+  san-2025-network:
     driver: bridge
 
 volumes:

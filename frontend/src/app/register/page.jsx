@@ -302,7 +302,7 @@ const RegisterPage = ({}) => {
               <Input
                 label="Please write the date and additional notes"
                 inputProps={{
-                  placeholder: '24 - 26 May 2024',
+                  placeholder: '24 - 26 May 2025',
                   type: 'text',
                   value: form.event_participant_hotel_facility.booking_note,
                 }}

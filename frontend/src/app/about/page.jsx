@@ -43,7 +43,7 @@ export default function AboutPage() {
                   willing to volunteer to create this unforgettable event
                 </p>
                 <p>
-                  This year, 2024 will be our 7th time doing the Salsa Arisan
+                  This year, 2025 will be our 7th time doing the Salsa Arisan
                   Nyok, and this time will be held in Bali. New ideas and more
                   parties will be added this year in hope that everyone can
                   enjoy this warm heartfelt event even more.

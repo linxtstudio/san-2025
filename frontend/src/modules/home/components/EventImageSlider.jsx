@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
-import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
 import './EventImageSlider.css';
 
 function Slide({ children }) {
@@ -20,7 +20,7 @@ export function EventImageSlider() {
         <Slide>
           <Image
             src="/image/home/nyok1.png"
-            alt="SAN 2024 Event"
+            alt="SAN 2025 Event"
             fill
             className="rounded-[20px] object-cover"
           />
@@ -28,7 +28,7 @@ export function EventImageSlider() {
         <Slide>
           <Image
             src="/image/home/nyok2.png"
-            alt="SAN 2024 Event"
+            alt="SAN 2025 Event"
             fill
             className="rounded-[20px] object-cover"
           />
@@ -36,7 +36,7 @@ export function EventImageSlider() {
         <Slide>
           <Image
             src="/image/home/nyok3.png"
-            alt="SAN 2024 Event"
+            alt="SAN 2025 Event"
             fill
             className="rounded-[20px] object-cover"
           />
@@ -44,7 +44,7 @@ export function EventImageSlider() {
         <Slide>
           <Image
             src="/image/home/nyok4.png"
-            alt="SAN 2024 Event"
+            alt="SAN 2025 Event"
             fill
             className="rounded-[20px] object-cover"
           />
@@ -52,7 +52,7 @@ export function EventImageSlider() {
         <Slide>
           <Image
             src="/image/home/nyok5.png"
-            alt="SAN 2024 Event"
+            alt="SAN 2025 Event"
             fill
             className="rounded-[20px] object-cover"
           />

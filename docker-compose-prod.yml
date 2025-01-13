@@ -1,19 +1,16 @@
 version: "3"
 services:
   frontend:
-    build:
-      context: "./frontend"
-      args:
-        BUILD_ENV: production
-    container_name: san-2024-fe
+    image: ${DOCKERHUB_USERNAME}/san-2025-frontend:latest
+    container_name: san-2025-fe
     ports:
       - 7005:7005
     networks:
-      - san-2024-network
+      - san-2025-network
 
   backend:
-    build: ./backend
-    container_name: san-2024-be
+    image: ${DOCKERHUB_USERNAME}/san-2025-backend:latest
+    container_name: san-2025-be
     restart: always
     ports:
       - 7004:3000
@@ -25,12 +22,12 @@ services:
       - APP_PORT=3000
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=san_2024
+      - DB_NAME=san_2025
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
-      - JWT_SECRET=san2024jwt
+      - JWT_SECRET=san2025jwt
     networks:
-      - san-2024-network
+      - san-2025-network
     volumes:
       - ./backend/public/uploads:/app/public/uploads
 
@@ -47,10 +44,10 @@ services:
     ports:
       - 7003:5432
     networks:
-      - san-2024-network
+      - san-2025-network
 
 networks:
-  san-2024-network:
+  san-2025-network:
     driver: bridge
 
 volumes:

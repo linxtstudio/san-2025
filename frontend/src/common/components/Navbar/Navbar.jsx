@@ -6,7 +6,7 @@ const Navbar = ({}) => {
           <h1 className="text-xl font-semibold md:text-3xl">
             Salsa Arisan Nyok
           </h1>
-          <p className="md:text-lg">Bali, 24 - 26 May 2024</p>
+          <p className="md:text-lg">Bali, 24 - 26 May 2025</p>
         </div>
         <nav className="flex">
           {/* <ul className="flex gap-7 items-center">
