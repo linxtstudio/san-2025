@@ -23,7 +23,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:${{ github.ref_name }}
           build-args: |
-        BUILD_ENV=production
+            BUILD_ENV=production
 
       - name: Build and push Backend
         uses: docker/build-push-action@v6
