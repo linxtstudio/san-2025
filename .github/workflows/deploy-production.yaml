@@ -21,21 +21,16 @@ jobs:
         with:
           context: ./frontend-v2
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:latest
-
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:${{ github.ref_name }}
           build-args: |
-            BUILD_ENV=production
+        BUILD_ENV=production
 
       - name: Build and push Backend
         uses: docker/build-push-action@v6
         with:
           context: ./backend
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-backend:${{ github.ref_name }}
 
       - name: Setup Server
         uses: appleboy/ssh-action@master
