@@ -1,101 +1,116 @@
-import Image from "next/image";
+import { Header } from "@/common/components/ui/header"
+import { cn } from "@/lib/utils"
+import { EventCarousel } from "@/modules/home/components/event-carousel"
+import { HomeCarousel } from "@/modules/home/components/home-carousel"
+
+const MINIMUM_CONTRIBUTION = [
+	{
+		title: "Early bird 1",
+		price: "IDR 350k",
+		date: "31 March 2024",
+	},
+	{
+		title: "Early bird 2",
+		price: "IDR 400k",
+		date: "31 April 2025",
+	},
+	{
+		title: "Normal Price",
+		price: "IDR 450k",
+		date: "31 May 2025",
+	},
+	{
+		title: "At the door",
+		price: "IDR 500k",
+		date: "",
+	},
+]
+
+function parseDate(dateStr: string) {
+	if (!dateStr) return null
+	const date = new Date(dateStr)
+	return Number.isNaN(date.getTime()) ? null : date
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded-sm font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	const currentDate = new Date()
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	// Determine current contribution from those with a valid date that's not past.
+	const upcomingContributions = MINIMUM_CONTRIBUTION.filter((c) => {
+		const cDate = parseDate(c.date)
+		return cDate && cDate >= currentDate
+	})
+
+	let currentContributionTitle: string | null = null
+	if (upcomingContributions.length > 0) {
+		upcomingContributions.sort((a, b) => {
+			return (
+				(parseDate(a.date) as Date).getTime() -
+				(parseDate(b.date) as Date).getTime()
+			)
+		})
+		currentContributionTitle = upcomingContributions[0].title
+	}
+
+	return (
+		<main className="bg-primary-950">
+			<Header />
+			<HomeCarousel />
+			<div className="w-full flex justify-center items-center">
+				<div className="flex w-full justify-between items-center max-w-screen-2xl">
+					<div className="flex justify-between w-full text-white py-24">
+						<h2 className="text-display font-semibold">Event Rundown</h2>
+						<p className="max-w-120 text-neutral-200">
+							Below this are the events will be held at SAN 2025, it's gonna be
+							fun, exciting and of course memorable, kindly check and register
+							after that
+						</p>
+					</div>
+				</div>
+			</div>
+			<div className="w-full flex justify-center items-center">
+				<div className="flex w-full justify-between items-center max-w-screen-2xl">
+					<EventCarousel />
+				</div>
+			</div>
+			<div className="w-full flex justify-center items-center">
+				<div className="flex w-full justify-between items-center max-w-screen-2xl">
+					<div className="flex w-full text-white py-15 gap-16 flex-col">
+						<h2 className="text-title-1 font-semibold">Minimum Contribution</h2>
+						<div className="flex w-full flex-col gap-4">
+							{MINIMUM_CONTRIBUTION.map((contribution) => {
+								const contributionDate = parseDate(contribution.date)
+								const isPast =
+									contributionDate && contributionDate < currentDate
+								const isCurrent =
+									contribution.title === currentContributionTitle
+
+								return (
+									<div
+										key={contribution.title}
+										className={cn(
+											"grid grid-cols-3 max-w-screen-sm text-white *:text-title-2 px-4",
+											isPast &&
+												"line-through *:text-neutral-700 decoration-neutral-500",
+											isCurrent && "bg-neutral-900 py-2 rounded-lg",
+										)}
+									>
+										<p className="font-semibold">{contribution.title}</p>
+										<p className="text-neutral-400 text-right">
+											{contribution.price}
+										</p>
+										{contribution.date ? (
+											<p className="text-neutral-400 text-right">
+												{contribution.date}
+											</p>
+										) : null}
+									</div>
+								)
+							})}
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	)
 }
