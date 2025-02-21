@@ -1,4 +1,4 @@
-FROM node:18-bullseye AS base
+FROM node:20.10-alpine AS base
 FROM base AS builder
 
 RUN corepack enable
@@ -28,7 +28,7 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/next.config.ts ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/.env.local ./.env.local

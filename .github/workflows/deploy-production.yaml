@@ -8,10 +8,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -21,7 +21,10 @@ jobs:
         with:
           context: ./frontend-v2
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:latest
+
           build-args: |
             BUILD_ENV=production
 
@@ -30,6 +33,8 @@ jobs:
         with:
           context: ./backend
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-backend:latest
 
       - name: Setup Server
