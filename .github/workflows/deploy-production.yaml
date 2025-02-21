@@ -19,7 +19,7 @@ jobs:
       - name: Build and push Frontend
         uses: docker/build-push-action@v4
         with:
-          context: ./frontend
+          context: ./frontend-v2
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:latest
           build-args: |
