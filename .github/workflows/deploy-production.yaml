@@ -21,7 +21,7 @@ jobs:
         with:
           context: ./frontend-v2
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-frontend:latest
           build-args: |
             BUILD_ENV=production
 
@@ -30,7 +30,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-backend:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/san-2025-backend:latest
 
       - name: Setup Server
         uses: appleboy/ssh-action@master
