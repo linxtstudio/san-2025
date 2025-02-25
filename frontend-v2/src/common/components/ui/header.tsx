@@ -3,13 +3,21 @@ import Image from "next/image"
 
 export function Header() {
 	return (
-		<nav className="bg-brand-700 h-27 w-full flex justify-center items-center text-white">
-			<div className="flex w-full justify-between items-center max-w-screen-2xl">
+		<nav className="flex w-full items-center justify-center bg-brand-700 py-4 text-white">
+			<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
 				<div className="flex items-center">
-					<Image src="/logo.svg" alt="SAN 2025" width={86} height={86} />
-					<div className="flex flex-col">
-						<h2 className="text-title-1 font-semibold">Social Arisan Nyok</h2>
-						<p className="text-lg">Jakarta, 24 - 26 February 2025</p>
+					<Image
+						src="/logo.svg"
+						className="size-12 md:size-21"
+						alt="SAN 2025"
+						width={86}
+						height={86}
+					/>
+					<div className="xs:flex hidden flex-col">
+						<h2 className="font-semibold text-body md:text-title-1">
+							Social Arisan Nyok
+						</h2>
+						<p className="text-sm md:text-lg">Jakarta, 24 - 26 February 2025</p>
 					</div>
 				</div>
 				<HeaderNav />

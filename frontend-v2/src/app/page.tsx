@@ -1,6 +1,8 @@
 import { Header } from "@/common/components/ui/header"
 import { cn } from "@/lib/utils"
 import { EventCarousel } from "@/modules/home/components/event-carousel"
+import { EventList } from "@/modules/home/components/event-list"
+import { FeaturedList } from "@/modules/home/components/featured-list"
 import { HomeCarousel } from "@/modules/home/components/home-carousel"
 
 const MINIMUM_CONTRIBUTION = [
@@ -53,63 +55,114 @@ export default function Home() {
 	}
 
 	return (
-		<main className="bg-primary-950">
+		<main className="flex w-full flex-col bg-primary-950">
 			<Header />
 			<HomeCarousel />
-			<div className="w-full flex justify-center items-center">
-				<div className="flex w-full justify-between items-center max-w-screen-2xl">
-					<div className="flex justify-between w-full text-white py-24">
-						<h2 className="text-display font-semibold">Event Rundown</h2>
-						<p className="max-w-120 text-neutral-200">
-							Below this are the events will be held at SAN 2025, it's gonna be
-							fun, exciting and of course memorable, kindly check and register
-							after that
-						</p>
-					</div>
-				</div>
-			</div>
-			<div className="w-full flex justify-center items-center">
-				<div className="flex w-full justify-between items-center max-w-screen-2xl">
-					<EventCarousel />
-				</div>
-			</div>
-			<div className="w-full flex justify-center items-center">
-				<div className="flex w-full justify-between items-center max-w-screen-2xl">
-					<div className="flex w-full text-white py-15 gap-16 flex-col">
-						<h2 className="text-title-1 font-semibold">Minimum Contribution</h2>
-						<div className="flex w-full flex-col gap-4">
-							{MINIMUM_CONTRIBUTION.map((contribution) => {
-								const contributionDate = parseDate(contribution.date)
-								const isPast =
-									contributionDate && contributionDate < currentDate
-								const isCurrent =
-									contribution.title === currentContributionTitle
-
-								return (
-									<div
-										key={contribution.title}
-										className={cn(
-											"grid grid-cols-3 max-w-screen-sm text-white *:text-title-2 px-4",
-											isPast &&
-												"line-through *:text-neutral-700 decoration-neutral-500",
-											isCurrent && "bg-neutral-900 py-2 rounded-lg",
-										)}
-									>
-										<p className="font-semibold">{contribution.title}</p>
-										<p className="text-neutral-400 text-right">
-											{contribution.price}
-										</p>
-										{contribution.date ? (
-											<p className="text-neutral-400 text-right">
-												{contribution.date}
-											</p>
-										) : null}
-									</div>
-								)
-							})}
+			<div className="relative flex w-full flex-col gap-8 overflow-x-hidden">
+				<div className="z-1 flex w-full items-center justify-center">
+					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+						<div className="flex w-full flex-col justify-between gap-3 py-24 text-white lg:flex-row">
+							<h2 className="font-semibold text-title-1 lg:text-display">
+								Event Rundown
+							</h2>
+							<p className="max-w-120 text-neutral-200 text-sm/relaxed lg:text-body">
+								Below this are the events will be held at SAN 2025, it's gonna
+								be fun, exciting and of course memorable, kindly check and
+								register after that
+							</p>
 						</div>
 					</div>
 				</div>
+				<div className="z-1 flex w-full items-center justify-center">
+					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+						<EventCarousel />
+					</div>
+				</div>
+				<div className="z-1 flex w-full items-center justify-center">
+					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+						<div className="flex w-full flex-col gap-16 py-15 text-white">
+							<h2
+								id="minimum_contribution"
+								className="font-semibold text-title-2 lg:text-title-1"
+							>
+								Minimum Contribution
+							</h2>
+							<div className="flex w-full flex-col gap-4">
+								{MINIMUM_CONTRIBUTION.map((contribution) => {
+									const contributionDate = parseDate(contribution.date)
+									const isPast =
+										contributionDate && contributionDate < currentDate
+									const isCurrent =
+										contribution.title === currentContributionTitle
+
+									return (
+										<div
+											key={contribution.title}
+											className={cn(
+												"grid max-w-screen-sm grid-cols-3 px-4 text-white *:text-lg lg:*:text-title-2",
+												isPast &&
+													"line-through decoration-neutral-500 *:text-neutral-700",
+												isCurrent && "rounded-lg bg-neutral-900 py-2",
+											)}
+										>
+											<p className="font-semibold">{contribution.title}</p>
+											<p className="text-right text-neutral-400">
+												{contribution.price}
+											</p>
+											{contribution.date ? (
+												<p className="text-right text-neutral-400">
+													{contribution.date}
+												</p>
+											) : null}
+										</div>
+									)
+								})}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="z-1 flex w-full items-center justify-center">
+					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+						<FeaturedList />
+					</div>
+				</div>
+				<div className="z-1 flex w-full items-center justify-center">
+					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+						<EventList />
+					</div>
+				</div>
+				<div className="opacity-25">
+					<img
+						src="/graphic/light.svg"
+						alt=""
+						className="-left-40 absolute top-40 w-full max-w-1/2 select-none"
+						draggable={false}
+					/>
+					<img
+						src="/graphic/discoball.png"
+						alt=""
+						className="-right-40 absolute top-40 aspect-square w-full max-w-1/5 select-none"
+						draggable={false}
+					/>
+					<img
+						src="/graphic/discoball.png"
+						alt=""
+						className="-left-40 absolute top-480 aspect-square w-full max-w-1/5 select-none"
+						draggable={false}
+					/>
+					<img
+						src="/graphic/light.svg"
+						alt=""
+						className="-right-40 -scale-x-100 absolute top-480 w-full max-w-1/2 select-none"
+						draggable={false}
+					/>
+				</div>
+				<img
+					src="/graphic/footer.svg"
+					alt=""
+					className="absolute bottom-0 w-full"
+				/>
+				<footer className="h-20" />
 			</div>
 		</main>
 	)

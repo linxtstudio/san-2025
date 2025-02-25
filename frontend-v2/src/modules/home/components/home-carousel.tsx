@@ -95,19 +95,19 @@ export function HomeCarousel() {
 	}, [emblaApi, tweenParallax])
 
 	return (
-		<div className="w-full relative">
-			<div className="bg-black/50 flex items-center justify-center h-full w-full absolute inset-0 z-10 pointer-events-none">
-				<div className="flex flex-col max-w-screen-2xl gap-14 w-full">
-					<div className="flex flex-col gap-5 text-white max-w-screen-md">
-						<h2 className="text-display font-semibold">
+		<div className="relative flex h-full w-full flex-col">
+			<div className="pointer-events-none inset-0 z-10 flex h-full w-full items-center justify-center bg-primary-950 py-16 lg:absolute lg:bg-primary-950/65">
+				<div className="flex w-full max-w-screen-2xl flex-col gap-14 px-8 md:px-16">
+					<div className="flex max-w-screen-md flex-col gap-5 text-white">
+						<h2 className="font-semibold text-title-1 lg:text-display">
 							The Most Anticipated Social Dance Gathering In Indonesia
 						</h2>
-						<p className="text-body">
+						<p className="text-sm/relaxed lg:text-body">
 							The highly awaited dance extravaganza that promises to be a
 							spellbinding fusion of artistry, rhythm, and sheer spectacle of
 							afro latin dances in Indonesia.
 						</p>
-						<p className="text-body">
+						<p className="text-sm/relaxed lg:text-body">
 							Embark on a meaningful journey with us as we unite in a
 							heartwarming festival, celebrating the pinnacle of social dance
 							within the vibrant Indonesian community. Come together to not only
@@ -115,7 +115,7 @@ export function HomeCarousel() {
 							togetherness.
 						</p>
 					</div>
-					<div className="flex items-center gap-5 pointer-events-auto">
+					<div className="pointer-events-auto flex flex-wrap items-center gap-5">
 						<Button variant="secondary" href="/about">
 							About SAN
 						</Button>
@@ -126,13 +126,13 @@ export function HomeCarousel() {
 					</div>
 				</div>
 			</div>
-			<div className="w-full h-full overflow-x-hidden relative" ref={emblaRef}>
-				<div className="flex w-full aspect-video *:flex-[0_0_100%]">
+			<div className="relative h-full w-full overflow-x-hidden" ref={emblaRef}>
+				<div className="flex w-full *:flex-[0_0_100%] lg:aspect-video">
 					{SLIDES.map((slide) => (
 						<div key={slide} className="h-full overflow-hidden">
 							<div
 								className={cn(
-									"relative h-full w-full justify-center items-center",
+									"relative h-full w-full items-center justify-center",
 									"embla__parallax__layer",
 								)}
 							>
@@ -152,7 +152,7 @@ export function HomeCarousel() {
 							key={_}
 							onClick={() => onDotButtonClick(index)}
 							className={cn(
-								"w-3.5 h-3.5 rounded-full cursor-pointer",
+								"h-3.5 w-3.5 cursor-pointer rounded-full",
 								index === selectedIndex ? "bg-brand-700" : "bg-neutral-500",
 							)}
 						/>

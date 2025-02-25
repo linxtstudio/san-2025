@@ -5,6 +5,7 @@ import {
 	useEmblaCarouselDotButton,
 } from "@/common/components/shared/embla-carousel-dot-button"
 import { cn } from "@/lib/utils"
+import AutoHeight from "embla-carousel-auto-height"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import type { ReactNode } from "react"
@@ -23,7 +24,7 @@ export type Event = {
 
 const EVENTS: Event[] = [
 	{
-		date: "23 May 2025",
+		date: "23 May",
 		title: "Pre-party",
 		imageSrc: "/images/event/pre-party.png",
 		description: () => (
@@ -42,7 +43,7 @@ const EVENTS: Event[] = [
 		],
 	},
 	{
-		date: "24 May 2025",
+		date: "24 May",
 		title: "Pool Party",
 		imageSrc: "/images/event/pool-party.png",
 		description: () => (
@@ -64,7 +65,7 @@ const EVENTS: Event[] = [
 	},
 	{
 		isMainEvent: true,
-		date: "25 May 2025",
+		date: "25 May",
 		title: "Social Arisan Nyok The Party",
 		imageSrc: "/images/event/event.png",
 		description: () => (
@@ -94,7 +95,7 @@ const EVENTS: Event[] = [
 		],
 	},
 	{
-		date: "26 May 2025",
+		date: "26 May",
 		title: "After Party",
 		imageSrc: "/images/event/after-party.png",
 		description: () => (
@@ -116,33 +117,33 @@ const EVENTS: Event[] = [
 ]
 
 export function EventCarousel() {
-	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
+	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [AutoHeight()])
 	const { selectedIndex, scrollSnaps, onDotButtonClick } =
 		useEmblaCarouselDotButton(emblaApi)
 
 	return (
-		<div className="w-full relative gap-16 flex flex-col select-none cursor-grab">
-			<div className="flex items-end">
+		<div className="relative flex w-full cursor-grab select-none flex-col gap-16">
+			<div className="flex w-full flex-wrap items-end gap-y-8 md:w-full md:flex-row md:flex-nowrap">
 				{scrollSnaps.map((_, index) => (
 					<EmblaCarouselDotButton
 						key={_}
 						onClick={() => onDotButtonClick(index)}
 						className={cn(
-							"cursor-pointer border-b px-16 pb-4",
+							"cursor-pointer border-b px-4 pb-4 md:w-full",
 							index === selectedIndex
 								? "border-b-brand-700"
 								: "border-b-neutral-500",
 						)}
 					>
-						<div className="flex flex-col gap-4 items-center">
+						<div className="flex flex-col items-center gap-4">
 							{EVENTS[index].isMainEvent ? (
-								<span className="text-white bg-brand-700 rounded-xl w-fit px-4">
+								<span className="w-fit rounded-xl bg-brand-700 px-4 text-sm text-white md:text-body">
 									Main Event
 								</span>
 							) : null}
 							<span
 								className={cn(
-									"text-title-1",
+									"w-full text-title-2 md:text-title-1",
 									index === selectedIndex
 										? "font-semibold text-white"
 										: "text-neutral-400",
@@ -154,21 +155,25 @@ export function EventCarousel() {
 					</EmblaCarouselDotButton>
 				))}
 			</div>
-			<div className="w-full h-full relative overflow-hidden" ref={emblaRef}>
-				<div className="flex w-full *:flex-[0_0_100%] gap-16">
+			<div className="relative h-full w-full overflow-hidden" ref={emblaRef}>
+				<div className="flex w-full items-start gap-16 *:flex-[0_0_100%]">
 					{EVENTS.map((event) => (
 						<div
 							key={event.title}
 							className={cn(
-								"flex w-full justify-between gap-25 items-center",
+								"flex w-full flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-25",
 								event.imageSrc ? "" : "flex-col",
 							)}
 						>
-							<div className="flex flex-col gap-10 text-white w-full">
-								<h3 className="font-semibold text-title-1">{event.title}</h3>
-								{event.description()}
+							<div className="flex w-full flex-col gap-10 text-white">
+								<h3 className="font-semibold text-title-2 lg:text-title-1">
+									{event.title}
+								</h3>
+								<div className="text-sm/relaxed lg:text-body">
+									{event.description()}
+								</div>
 								{event.imageSrc ? (
-									<div className="w-full relative aspect-2/1 rounded-2xl">
+									<div className="relative aspect-2/1 w-full rounded-2xl">
 										<Image
 											className="rounded-2xl object-cover object-top"
 											fill
@@ -181,14 +186,14 @@ export function EventCarousel() {
 							{event.items.length > 0 ? (
 								<div
 									className={cn(
-										"flex flex-col w-full gap-4",
-										event.imageSrc ? "max-w-125" : "",
+										"flex w-full flex-col gap-4",
+										event.imageSrc ? "lg:max-w-125" : "",
 									)}
 								>
 									{event.items.map((item) => (
 										<div
 											key={item.label}
-											className="grid grid-cols-2 text-white *:text-title-2"
+											className="grid grid-cols-2 text-white *:text-lg lg:*:text-title-2"
 										>
 											<p className="font-semibold">{item.label}</p>
 											<p className="text-right text-neutral-400">
