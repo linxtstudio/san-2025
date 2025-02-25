@@ -2,6 +2,7 @@
 
 import { Button } from "@/common/components/ui/button"
 import { LoadingSpinner } from "@/common/components/ui/loading-spinner"
+import { formatPrice } from "@/lib/utils"
 import {
 	type EventType,
 	getEventTypeList,
@@ -11,14 +12,11 @@ import Link from "next/link"
 
 export function EventList() {
 	const { data, isPending } = useQuery({
-		queryKey: ["get-recent-post"],
+		queryKey: ["get-event-type-list"],
 		queryFn: async () => await getEventTypeList(),
 	})
 
 	const eventTypeList = data?.data.data
-	const formatPrice = (price: number) => {
-		return `${price / 1000}K`
-	}
 
 	function renderLabel(event: EventType) {
 		if (event.fee_type === "minimum_contribution") {

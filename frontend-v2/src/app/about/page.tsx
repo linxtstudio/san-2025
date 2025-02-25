@@ -11,7 +11,7 @@ export default function About() {
 				<div className="z-1 flex w-full items-center justify-center">
 					<div className="flex w-full max-w-screen-2xl flex-col items-center justify-between px-8 py-16 md:px-16">
 						<h2 className="font-semibold text-title-1 text-white lg:text-display">
-							About Us
+							About SAN
 						</h2>
 						<div className="grid w-full grid-cols-1 flex-col items-center gap-3 py-24 text-white lg:grid-cols-2">
 							<Image
@@ -23,6 +23,9 @@ export default function About() {
 							/>
 							<div className="flex flex-col gap-16">
 								<div className="flex flex-col gap-5 *:text-neutral-200 *:text-sm/relaxed *:lg:text-body">
+									<p className="font-semibold">
+										The Most Anticipated Social Dance Gathering In Indonesia
+									</p>
 									<p>
 										Held in a different cities around Indonesia every year so
 										the local community can experience being the host of the
@@ -37,40 +40,6 @@ export default function About() {
 										this time will be held in Bali. New ideas and more parties
 										will be added this year in hope that everyone can enjoy this
 										warm heartfelt event even more.
-									</p>
-								</div>
-								<div className="flex flex-col gap-5 *:text-neutral-200 *:text-sm/relaxed *:lg:text-body">
-									<p className="font-semibold">About Logo</p>
-									<p>
-										The logo Social Arisan Nyok use a combination of imaginative
-										dance figures and blend it with delicate typography
-										capturing the passion, the love and the joy of dancing while
-										conveying the vibrant energy of this social dance gathering
-										event.
-									</p>
-									<p>
-										The multi coloured in unison represent the diversity of the
-										dance genre fostering a community that continuously grows
-										and evolves with vibrant enthusiasm. It also represent our
-										annual changing colour dance, a cherished custom which
-										celebrated each year.
-									</p>
-									<p>
-										The solid circle represents the harmony among all dance
-										community across Indonesia, reflecting their unwavering
-										support for one another. ir also symbolizes how dance unites
-										us all as one big family.
-									</p>
-									<p>
-										The 5 scattered stars represent the first 5 cities that
-										initiated this event, warmly welcoming others who shares the
-										same passion & spirit. They symbolize the ever-growing dance
-										family, embracing new members with open arms.
-									</p>
-									<p>
-										The 2 music notes symbolize our origin in 2 genres of dance
-										& our continuous growth. Symbolize our evolution to embrace
-										& incorporate other dance genre along the way.
 									</p>
 								</div>
 							</div>

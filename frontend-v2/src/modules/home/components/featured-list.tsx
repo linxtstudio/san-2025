@@ -1,6 +1,5 @@
 "use client"
 
-import { FeaturedBandCarousel } from "@/modules/home/components/featured-band-carousel"
 import { useState } from "react"
 import { FeaturedCard } from "./featured-card"
 
@@ -202,7 +201,7 @@ export function FeaturedList() {
 				<h2 className="font-semibold text-title-1 text-white lg:text-display">
 					Featuring
 				</h2>
-				<div className="flex w-full flex-col gap-6">
+				{/* <div className="flex w-full flex-col gap-6">
 					<div className="flex flex-col gap-1">
 						<p className="font-semibold text-title-2 text-white">Band</p>
 						<p className="text-lg text-neutral-400">
@@ -210,7 +209,7 @@ export function FeaturedList() {
 						</p>
 					</div>
 					<FeaturedBandCarousel />
-				</div>
+				</div> */}
 				<div className="flex w-full flex-col gap-6">
 					<p className="font-semibold text-title-2 text-white">
 						Workshop Instructors

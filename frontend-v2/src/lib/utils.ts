@@ -20,3 +20,7 @@ const customTwMerge = extendTailwindMerge({
 export function cn(...inputs: ClassValue[]) {
 	return customTwMerge(clsx(inputs))
 }
+
+export const formatPrice = (price: number) => {
+	return `${price / 1000}K`
+}

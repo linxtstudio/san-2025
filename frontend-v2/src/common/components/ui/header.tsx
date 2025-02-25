@@ -5,7 +5,7 @@ import Link from "next/link"
 export function Header() {
 	return (
 		<nav className="flex w-full items-center justify-center bg-brand-700 py-4 text-white">
-			<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
+			<div className="flex w-full max-w-screen-2xl items-center justify-between gap-5 px-8 md:px-16">
 				<Link href="/" className="flex items-center">
 					<Image
 						src="/logo-white.svg"
