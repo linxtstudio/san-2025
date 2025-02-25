@@ -15,13 +15,13 @@ export function FeaturedCard({
 	link = "",
 }: FeaturedCardProps) {
 	return (
-		<Link href={link} className="flex w-40 xs:w-50 flex-col gap-6">
+		<Link href={link} className="flex w-32 xs:w-50 flex-col gap-6">
 			<Image
 				height={200}
 				width={200}
 				src={image}
 				alt={name}
-				className="size-40 xs:size-50 rounded-2xl object-cover transition-transform hover:scale-105"
+				className="size-32 xs:size-50 rounded-2xl object-cover transition-transform hover:scale-105"
 			/>
 			<div className="flex flex-col text-center">
 				<p className="text-body text-white xs:text-title-2">{name}</p>

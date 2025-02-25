@@ -1,4 +1,5 @@
 import { Header } from "@/common/components/ui/header"
+import { ContactFloatingButton } from "@/modules/home/components/contact-floating-button"
 import { EventCarousel } from "@/modules/home/components/event-carousel"
 import { EventList } from "@/modules/home/components/event-list"
 import { FeaturedList } from "@/modules/home/components/featured-list"
@@ -8,6 +9,7 @@ import { MinContributionList } from "@/modules/home/components/min-contribution-
 export default function Home() {
 	return (
 		<main className="flex w-full flex-col bg-primary-950">
+			<ContactFloatingButton />
 			<Header />
 			<HomeCarousel />
 			<div className="relative flex w-full flex-col gap-8 overflow-x-hidden">

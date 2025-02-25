@@ -218,7 +218,7 @@ export function FeaturedList() {
 					<div className="flex w-full flex-wrap gap-6">
 						{WORKSHOP_INSTRUCTORS.map((instructor, index) => (
 							<div key={index} className="flex flex-col gap-6">
-								<p className="text-lg text-neutral-400">
+								<p className="max-w-30 xs:max-w-50 text-body text-neutral-400 xs:text-lg">
 									{instructor.workshop}
 								</p>
 								<FeaturedCard {...instructor.card} />

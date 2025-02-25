@@ -13,6 +13,10 @@ export function HeaderNav() {
 			href: "/",
 		},
 		{
+			label: "Hotel",
+			href: "/hotel",
+		},
+		{
 			label: "About",
 			href: "/about",
 		},

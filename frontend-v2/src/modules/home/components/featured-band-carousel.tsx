@@ -5,7 +5,6 @@ import {
 	useEmblaCarouselDotButton,
 } from "@/common/components/shared/embla-carousel-dot-button"
 import { cn } from "@/lib/utils"
-import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -50,7 +49,7 @@ const BAND_MEMBERS = [
 ]
 
 export function FeaturedBandCarousel() {
-	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [Autoplay()])
+	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
 	const { selectedIndex, scrollSnaps, onDotButtonClick } =
 		useEmblaCarouselDotButton(emblaApi)
 
