@@ -92,11 +92,13 @@ export function EventList() {
 				) : (
 					eventTypeList?.data.map((event) => (
 						<div
-							className="flex h-auto min-h-50 w-full xs:max-w-60 flex-col gap-2 rounded-xl border border-brand-700 bg-primary-950/75 p-6 text-white"
+							className="flex h-auto min-h-50 w-full xs:max-w-64 flex-col gap-2 rounded-xl border border-brand-700 bg-primary-950/75 p-6 text-white"
 							key={event.name}
 						>
 							<p className="font-semibold text-title-2">{event.name}</p>
-							<p className="pb-4 text-xs">{event.description}</p>
+							<p className="pb-4 text-neutral-400 text-xs/relaxed">
+								{event.description}
+							</p>
 							{renderLabel(event)}
 						</div>
 					))

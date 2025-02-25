@@ -126,7 +126,10 @@ export function HomeCarousel() {
 					</div>
 				</div>
 			</div>
-			<div className="relative h-full w-full overflow-x-hidden" ref={emblaRef}>
+			<div
+				className="relative h-full w-full overflow-x-hidden pb-8 lg:pb-0"
+				ref={emblaRef}
+			>
 				<div className="flex w-full *:flex-[0_0_100%] lg:aspect-video">
 					{SLIDES.map((slide) => (
 						<div key={slide} className="h-full overflow-hidden">
@@ -146,13 +149,13 @@ export function HomeCarousel() {
 						</div>
 					))}
 				</div>
-				<div className="absolute inset-x-0 bottom-8 z-10 flex items-center justify-center gap-2">
+				<div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-center gap-2 lg:bottom-8">
 					{scrollSnaps.map((_, index) => (
 						<EmblaCarouselDotButton
 							key={_}
 							onClick={() => onDotButtonClick(index)}
 							className={cn(
-								"h-3.5 w-3.5 cursor-pointer rounded-full",
+								"h-3 w-3 cursor-pointer rounded-full",
 								index === selectedIndex ? "bg-brand-700" : "bg-neutral-500",
 							)}
 						/>
