@@ -106,6 +106,7 @@ export function HomeCarousel() {
 							className="size-45"
 							width={200}
 							height={200}
+							priority
 						/>
 						<h2 className="font-semibold text-title-1 lg:text-display">
 							About Logo

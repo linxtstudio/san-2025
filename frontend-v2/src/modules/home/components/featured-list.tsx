@@ -44,19 +44,19 @@ const WORKSHOP_INSTRUCTORS = [
 
 const DJS = [
 	{
-		image: "/images/featured/made.png",
-		name: "DJ Made Alfa",
+		image: "/images/featured/dj-alfa.png",
+		name: "DJ Alfa",
 		title: "from Bali",
 		link: "https://www.instagram.com/madealfa",
 	},
 	{
-		image: "/images/featured/billy.png",
+		image: "/images/featured/dj-billy.png",
 		name: "DJ Billy",
 		title: "from Bali",
 		link: "https://www.instagram.com/my_memoribillya",
 	},
 	{
-		image: "/images/featured/king-guapo.jpeg",
+		image: "/images/featured/dj-kingguapo.png",
 		name: "DJ King Guapo",
 		title: "from Bali",
 		link: "https://www.instagram.com/deejay_kingguapo",
@@ -68,22 +68,16 @@ const DJS = [
 		link: "https://www.instagram.com/dj_adhyn",
 	},
 	{
-		image: "/images/featured/adis.png",
+		image: "/images/featured/dj-adish.png",
 		name: "DJ Adish",
 		title: "from Bali",
 		link: "https://www.instagram.com/adishkrisna",
 	},
 	{
-		image: "/images/featured/tisha.jpg",
+		image: "/images/featured/dj-tysh.png",
 		name: "DJ TYSH",
 		title: "from Surabaya",
 		link: "https://www.instagram.com/septyshaputri",
-	},
-	{
-		image: "/images/featured/rezack.jpg",
-		name: "DJ Rezack",
-		title: "from Bali",
-		link: "https://www.instagram.com/rcca_dancer",
 	},
 	{
 		image: "/images/featured/dj-indrung.png",

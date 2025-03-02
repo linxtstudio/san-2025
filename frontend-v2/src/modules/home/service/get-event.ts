@@ -1,5 +1,7 @@
 import { webRequest } from "@/lib/http"
-import type { APIListResponse } from "@/lib/http.type"
+import type { PaginatedResponseType } from "@/lib/http.type"
+import type { AxiosResponse } from "axios"
+import qs from "query-string"
 
 type GetEventTypeListParams = {
 	paginate?: boolean
@@ -13,8 +15,8 @@ export type EventType = {
 	fee_nominal: number
 }
 
-export async function getEventTypeList(params?: GetEventTypeListParams) {
-	return await webRequest.get<APIListResponse<EventType>>("/event/types", {
-		params,
-	})
+export async function getEventTypeList<T extends GetEventTypeListParams>(
+	params: T = {} as T,
+): Promise<AxiosResponse<PaginatedResponseType<EventType, T>>> {
+	return await webRequest.get(`/event/types?${qs.stringify(params)}`)
 }

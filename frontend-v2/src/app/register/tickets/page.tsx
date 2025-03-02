@@ -1,8 +1,8 @@
-import { RegisterForm } from "@/modules/registration/components/register-form"
-import { RegisterTicketButton } from "@/modules/registration/components/register-ticket-button"
+import { Button } from "@/common/components/ui/button"
+import { RegisterTicketList } from "@/modules/registration/components/register-ticket-list"
 import Link from "next/link"
 
-export default function Register() {
+export default function RegisterTickets() {
 	return (
 		<main className="flex w-full flex-col bg-primary-950">
 			<div className="relative flex h-full min-h-screen w-full flex-col gap-8 overflow-x-hidden">
@@ -10,7 +10,7 @@ export default function Register() {
 					<div className="flex w-full max-w-screen-2xl flex-col gap-16 px-8 py-16 md:px-16">
 						<div className="flex w-full flex-col gap-5">
 							<div className="flex items-center gap-6 text-white">
-								<Link href="/">
+								<Link href="/register">
 									<svg
 										width="24"
 										height="20"
@@ -28,11 +28,17 @@ export default function Register() {
 									</svg>
 								</Link>
 								<h2 className="font-semibold text-title-1 text-white lg:text-display">
-									Registration Form
+									Your Tickets
 								</h2>
 							</div>
-							<RegisterTicketButton />
-							<RegisterForm />
+							<Button
+								variant="secondary"
+								className="mb-8 w-fit"
+								href="/register"
+							>
+								Register new ticket
+							</Button>
+							<RegisterTicketList />
 						</div>
 					</div>
 				</div>
@@ -41,7 +47,6 @@ export default function Register() {
 					alt=""
 					className="absolute bottom-0 w-full"
 				/>
-				<footer className="h-20 md:h-40 lg:h-80" />
 			</div>
 		</main>
 	)

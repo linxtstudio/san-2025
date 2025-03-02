@@ -12,7 +12,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
 	}
 
 const buttonVariants = cva(
-	"py-2 px-8 flex items-center justify-center rounded-md text-white",
+	"py-2 px-8 gap-2 flex items-center justify-center rounded-md text-white cursor-pointer disabled:bg-neutral-800 disabled:border-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-500",
 	{
 		variants: {
 			variant: {

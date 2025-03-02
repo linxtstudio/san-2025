@@ -13,10 +13,10 @@ import Link from "next/link"
 export function EventList() {
 	const { data, isPending } = useQuery({
 		queryKey: ["get-event-type-list"],
-		queryFn: async () => await getEventTypeList(),
+		queryFn: async () => await getEventTypeList({ paginate: false }),
 	})
 
-	const eventTypeList = data?.data.data
+	const eventTypeList = data?.data
 
 	function renderLabel(event: EventType) {
 		if (event.fee_type === "minimum_contribution") {

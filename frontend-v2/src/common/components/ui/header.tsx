@@ -13,6 +13,7 @@ export function Header() {
 						alt="SAN 2025"
 						width={86}
 						height={86}
+						priority
 					/>
 					<div className="xs:flex hidden flex-col">
 						<h2 className="font-semibold text-body md:text-title-1">
