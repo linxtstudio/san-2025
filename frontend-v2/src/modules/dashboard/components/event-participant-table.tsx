@@ -29,13 +29,24 @@ export function EventParticipantTable({
 	defaultFolded = false,
 	...filter
 }: EventParticipantTableProps) {
+	const [pagination, setPagination] = useState({ page: 1, per_page: 10 })
 	const [isFolded, setIsFolded] = useState(defaultFolded)
 	function toggleFolded() {
 		setIsFolded((prev) => !prev)
 	}
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	const columns: ColumnDef<Participant>[] = useMemo(
 		() => [
+			{
+				header: "No",
+				accessorKey: "id",
+				cell: (info) => (
+					<span className="px-2">
+						{info.row.index + 1 + (pagination.page - 1) * pagination.per_page}
+					</span>
+				),
+			},
 			{
 				header: "Name",
 				accessorKey: "event_participant.name",
@@ -104,10 +115,9 @@ export function EventParticipantTable({
 				),
 			},
 		],
-		[],
+		[pagination],
 	)
 
-	const [pagination, setPagination] = useState({ page: 1, per_page: 10 })
 	function handlePreviousPage() {
 		setPagination((prev) => ({ ...prev, page: prev.page - 1 }))
 	}
@@ -116,7 +126,11 @@ export function EventParticipantTable({
 		setPagination((prev) => ({ ...prev, page: prev.page + 1 }))
 	}
 
-	const { data: participantList, isPending } = useQuery({
+	const {
+		data: participantList,
+		isPending,
+		isFetching,
+	} = useQuery({
 		queryKey: ["get-participant-list", filter, pagination],
 		queryFn: async () =>
 			await getParticipantList({
@@ -125,6 +139,7 @@ export function EventParticipantTable({
 				...pagination,
 			}),
 		placeholderData: keepPreviousData,
+		refetchOnWindowFocus: false,
 	})
 	const isLastPage =
 		participantList?.data?.data.current_page ===
@@ -140,7 +155,7 @@ export function EventParticipantTable({
 
 	return (
 		<div className="relative flex w-full flex-col gap-4">
-			{isPending && (
+			{(isPending || isFetching) && (
 				<div className="absolute inset-0 z-10 flex items-center justify-center rounded-xl bg-primary-950/90">
 					<LoadingSpinner />
 				</div>
