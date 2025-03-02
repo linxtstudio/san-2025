@@ -11,7 +11,13 @@ export type APIListResponse<T> = APIResponse<{
 	current_page: number
 }>
 
-export type PaginatedResponseType<
-	T,
-	P extends { paginate?: boolean },
-> = P["paginate"] extends true ? APIListResponse<T> : APIResponse<T[]>
+export type PaginatedResponseType<T, P> = P extends { paginate: boolean }
+	? P["paginate"] extends true
+		? APIListResponse<T>
+		: APIResponse<T[]>
+	: never
+
+export type NamedRecord<T = number> = {
+	id: T
+	name: string
+}

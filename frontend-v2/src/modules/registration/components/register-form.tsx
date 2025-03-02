@@ -1,5 +1,6 @@
 "use client"
 
+import { ErrorMessage } from "@/common/components/shared/error-message"
 import { Button } from "@/common/components/ui/button"
 import { LoadingSpinner } from "@/common/components/ui/loading-spinner"
 import { getCityList } from "@/common/service/get-city"
@@ -19,7 +20,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 const PAYMENT_INFORMATION = {
-	name: "Mirawati",
+	name: "Virginie Patricia",
 	number: "5855331567",
 }
 
@@ -57,10 +58,6 @@ const registerFormSchema = z.object({
 })
 
 export type FormData = z.infer<typeof registerFormSchema>
-
-function ErrorMessage({ error }: { error: string | undefined }) {
-	return error ? <span className="text-red-400 text-sm">{error}</span> : null
-}
 
 export function RegisterForm() {
 	const router = useRouter()

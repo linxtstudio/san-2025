@@ -32,7 +32,7 @@ const EVENTS: Event[] = [
 	// 	description: () => (
 	// 		<p className="max-w-screen-sm text-neutral-400">
 	// 			Teaming up with the local club, we extend a warm invitation to dancers
-	// 			nationwide, inviting them to savor the hospitality of Bali.
+	// 			nationwide, inviting them to savor the hospitality of Jakarta.
 	// 			<br className="mb-4" />
 	// 			Immerse yourself in the exhilaration of dancing alongside locals,
 	// 			forging new friendships, and rekindling family bonds in the midst of
@@ -66,16 +66,36 @@ const EVENTS: Event[] = [
 	// 	],
 	// },
 	{
+		date: "30 May",
+		title: "Welcome Party",
+		imageSrc: "/images/event/pre-party.png",
+		description: () => (
+			<p className="max-w-screen-sm text-neutral-400">To be announced</p>
+			// <p className="max-w-screen-sm text-neutral-400">
+			// 	Teaming up with the local club, we extend a warm invitation to dancers
+			// 	nationwide, inviting them to savor the hospitality of Jakarta.
+			// 	<br className="mb-4" />
+			// 	Immerse yourself in the exhilaration of dancing alongside locals,
+			// 	forging new friendships, and rekindling family bonds in the midst of
+			// 	this electrifying experience.
+			// </p>
+		),
+		items: [
+			{ label: "Location", value: "To be announced" },
+			// { label: "Time", value: "7 PM - 11 PM WIB" },
+		],
+	},
+	{
 		isMainEvent: true,
-		date: "30 May - 1 June",
+		date: "31 May",
 		title: "Social Arisan Nyok The Party",
 		imageSrc: "/images/event/event.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
-				For those who still enjoying the weekend in Bali, we offer you another
-				dance party to remember. Enjoying sunset and the warm sand of Bali beach
-				will be the ultimate dancing experience as we say see you again next
-				year to all our beloved friends and family.
+				For those who still enjoying the weekend in Jakarta, we offer you
+				another dance party to remember. Enjoying sunset and the warm sand of
+				Jakarta beach will be the ultimate dancing experience as we say see you
+				again next year to all our beloved friends and family.
 				<br className="mb-4" /> Barbeque menus from the bar and best music from
 				the DJ will accompany our last night together.
 			</p>
@@ -106,10 +126,10 @@ const EVENTS: Event[] = [
 		imageSrc: "/images/event/after-party.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
-				For those who still enjoying the weekend in Bali, we offer you another
-				dance party to remember. Enjoying sunset and the warm sand of Bali beach
-				will be the ultimate dancing experience as we say see you again next
-				year to all our beloved friends and family.
+				For those who still enjoying the weekend in Jakarta, we offer you
+				another dance party to remember. Enjoying sunset and the warm sand of
+				Jakarta beach will be the ultimate dancing experience as we say see you
+				again next year to all our beloved friends and family.
 				<br className="mb-4" /> Barbeque menus from the bar and best music from
 				the DJ will accompany our last night together.
 			</p>

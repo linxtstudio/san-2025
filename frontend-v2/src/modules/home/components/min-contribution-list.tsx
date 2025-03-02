@@ -2,23 +2,28 @@ import { cn } from "@/lib/utils"
 
 const MINIMUM_CONTRIBUTION = [
 	{
-		title: "Early bird 1",
-		price: "IDR 350k",
-		date: "31 March 2024",
-	},
-	{
-		title: "Early bird 2",
-		price: "IDR 400k",
-		date: "31 April 2025",
+		title: "Early Bird",
+		price: "IDR 400K",
+		date: "1 March 2025",
 	},
 	{
 		title: "Normal Price",
-		price: "IDR 450k",
-		date: "31 May 2025",
+		price: "IDR 400k",
+		date: "24 March 2025",
 	},
 	{
-		title: "At the door",
-		price: "IDR 500k",
+		title: "Last Call",
+		price: "IDR 450k",
+		date: "24 April 2025",
+	},
+	{
+		title: "At the door (2 day)",
+		price: "IDR 600K",
+		date: "",
+	},
+	{
+		title: "At the door (1 day)",
+		price: "IDR 400K",
 		date: "",
 	},
 ]
@@ -32,21 +37,25 @@ function parseDate(dateStr: string) {
 export function MinContributionList() {
 	const currentDate = new Date()
 
-	// Determine current contribution from those with a valid date that's not past.
-	const upcomingContributions = MINIMUM_CONTRIBUTION.filter((c) => {
-		const cDate = parseDate(c.date)
-		return cDate && cDate >= currentDate
+	const validContributions = MINIMUM_CONTRIBUTION.filter((c) => c.date)
+	validContributions.sort((a, b) => {
+		const dateA = parseDate(a.date) as Date
+		const dateB = parseDate(b.date) as Date
+		return dateA.getTime() - dateB.getTime()
 	})
 
 	let currentContributionTitle: string | null = null
-	if (upcomingContributions.length > 0) {
-		upcomingContributions.sort((a, b) => {
-			return (
-				(parseDate(a.date) as Date).getTime() -
-				(parseDate(b.date) as Date).getTime()
-			)
-		})
-		currentContributionTitle = upcomingContributions[0].title
+
+	for (let i = 0; i < validContributions.length; i++) {
+		const contributionDate = parseDate(validContributions[i].date) as Date
+		if (contributionDate > currentDate) break
+
+		currentContributionTitle = validContributions[i].title
+
+		if (i < validContributions.length - 1) {
+			const nextDate = parseDate(validContributions[i + 1].date) as Date
+			if (currentDate < nextDate) break
+		}
 	}
 
 	return (
@@ -60,14 +69,27 @@ export function MinContributionList() {
 			<div className="flex w-full flex-col gap-4">
 				{MINIMUM_CONTRIBUTION.map((contribution) => {
 					const contributionDate = parseDate(contribution.date)
-					const isPast = contributionDate && contributionDate < currentDate
+					let isPast = false
+					if (contributionDate) {
+						const nextIndex =
+							MINIMUM_CONTRIBUTION.findIndex(
+								(c) => c.title === contribution.title,
+							) + 1
+						const nextDate =
+							nextIndex < MINIMUM_CONTRIBUTION.length
+								? parseDate(MINIMUM_CONTRIBUTION[nextIndex].date)
+								: null
+						isPast =
+							contributionDate < currentDate &&
+							(nextDate === null || currentDate >= nextDate)
+					}
 					const isCurrent = contribution.title === currentContributionTitle
 
 					return (
 						<div
 							key={contribution.title}
 							className={cn(
-								"grid max-w-screen-sm grid-cols-2 xs:grid-cols-3 px-4 text-white *:text-lg lg:*:text-title-2",
+								"grid max-w-screen-md grid-cols-2 xs:grid-cols-3 px-4 text-white *:text-lg lg:*:text-title-2",
 								isPast &&
 									"line-through decoration-neutral-500 *:text-neutral-700",
 								isCurrent && "rounded-lg bg-neutral-900 py-2",

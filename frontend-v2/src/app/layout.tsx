@@ -35,7 +35,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" data-color-scheme="dark">
 			<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 			<body className={`${poppins.variable} bg-primary-950 antialiased`}>
 				<Providers>{children}</Providers>

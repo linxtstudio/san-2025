@@ -212,7 +212,7 @@ export function FeaturedList() {
 								<p className="max-w-30 xs:max-w-50 text-body text-neutral-400 xs:text-lg">
 									{instructor.workshop}
 								</p>
-								{/* <FeaturedCard {...instructor.card} /> */}
+								<FeaturedCard {...instructor.card} hide />
 							</div>
 						))}
 					</div>

@@ -4,8 +4,8 @@ import type { AxiosResponse } from "axios"
 import qs from "query-string"
 
 type GetCityListParams = {
+	paginate: boolean
 	province_id: string
-	paginate?: boolean
 }
 
 export type City = {
@@ -13,8 +13,8 @@ export type City = {
 	name: string
 }
 
-export async function getCityList<T extends GetCityListParams>(
-	params: GetCityListParams,
-): Promise<AxiosResponse<PaginatedResponseType<City, T>>> {
+export async function getCityList<P extends GetCityListParams>(
+	params: P,
+): Promise<AxiosResponse<PaginatedResponseType<City, P>>> {
 	return await webRequest.get(`/region/cities?${qs.stringify(params)}`)
 }

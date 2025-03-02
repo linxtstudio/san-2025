@@ -1,8 +1,10 @@
 import { Config } from "@/lib/config"
+import { APIResponse } from "@/lib/http.type"
 import axios, {
 	type AxiosInstance,
 	type InternalAxiosRequestConfig,
 	type AxiosResponse,
+	AxiosError,
 } from "axios"
 import { toast } from "sonner"
 
@@ -65,8 +67,11 @@ class HttpClient {
 
 		this.instance.interceptors.response.use(
 			(response: AxiosResponse) => response,
-			(error: ApiError) => {
-				if (error.response?.status === 401) {
+			(error: AxiosError<APIResponse<unknown>>) => {
+				const requestUrl = error.response?.config?.url || ""
+				const isExcludedEndpoint = requestUrl.includes("/auth/login")
+
+				if (error.response?.status === 401 && !isExcludedEndpoint) {
 					toast.error("You are not authorized to access this resource", {
 						id: "api-error",
 					})
