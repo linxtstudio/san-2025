@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import AutoHeight from "embla-carousel-auto-height"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
+import Link from "next/link"
 import type { ReactNode } from "react"
 
 export type Event = {
@@ -19,53 +20,54 @@ export type Event = {
 	items: {
 		label: string
 		value: string
+		url?: string
 	}[]
 }
 
 const EVENTS: Event[] = [
-	{
-		date: "23 May",
-		title: "Pre-party",
-		imageSrc: "/images/event/pre-party.png",
-		description: () => (
-			<p className="max-w-screen-sm text-neutral-400">
-				Teaming up with the local club, we extend a warm invitation to dancers
-				nationwide, inviting them to savor the hospitality of Bali.
-				<br className="mb-4" />
-				Immerse yourself in the exhilaration of dancing alongside locals,
-				forging new friendships, and rekindling family bonds in the midst of
-				this electrifying experience.
-			</p>
-		),
-		items: [
-			{ label: "Location", value: "Red Ruby" },
-			{ label: "Time", value: "7 PM - 11 PM WIB" },
-		],
-	},
-	{
-		date: "24 May",
-		title: "Pool Party",
-		imageSrc: "/images/event/pool-party.png",
-		description: () => (
-			<p className="max-w-screen-sm text-neutral-400">
-				Indulge in the joy of dancing by the exquisite poolside, surrounded by
-				the mesmerizing hues of the sunset. Let the DJ weave the beats of your
-				favorite dance tunes, creating an unforgettable ambiance.
-				<br className="mb-4" />
-				Elevate the excitement with a Bonnie & Clyde competition, promising not
-				only added fun but also crafting cherished memories that will linger in
-				our hearts.
-			</p>
-		),
-		items: [
-			{ label: "Location", value: "LV8" },
-			{ label: "Time", value: "3 - 9 PM WIB" },
-			{ label: "Djs", value: "To be announced" },
-		],
-	},
+	// {
+	// 	date: "23 May",
+	// 	title: "Pre-party",
+	// 	imageSrc: "/images/event/pre-party.png",
+	// 	description: () => (
+	// 		<p className="max-w-screen-sm text-neutral-400">
+	// 			Teaming up with the local club, we extend a warm invitation to dancers
+	// 			nationwide, inviting them to savor the hospitality of Bali.
+	// 			<br className="mb-4" />
+	// 			Immerse yourself in the exhilaration of dancing alongside locals,
+	// 			forging new friendships, and rekindling family bonds in the midst of
+	// 			this electrifying experience.
+	// 		</p>
+	// 	),
+	// 	items: [
+	// 		{ label: "Location", value: "Red Ruby" },
+	// 		{ label: "Time", value: "7 PM - 11 PM WIB" },
+	// 	],
+	// },
+	// {
+	// 	date: "24 May",
+	// 	title: "Pool Party",
+	// 	imageSrc: "/images/event/pool-party.png",
+	// 	description: () => (
+	// 		<p className="max-w-screen-sm text-neutral-400">
+	// 			Indulge in the joy of dancing by the exquisite poolside, surrounded by
+	// 			the mesmerizing hues of the sunset. Let the DJ weave the beats of your
+	// 			favorite dance tunes, creating an unforgettable ambiance.
+	// 			<br className="mb-4" />
+	// 			Elevate the excitement with a Bonnie & Clyde competition, promising not
+	// 			only added fun but also crafting cherished memories that will linger in
+	// 			our hearts.
+	// 		</p>
+	// 	),
+	// 	items: [
+	// 		{ label: "Location", value: "LV8" },
+	// 		{ label: "Time", value: "3 - 9 PM WIB" },
+	// 		{ label: "Djs", value: "To be announced" },
+	// 	],
+	// },
 	{
 		isMainEvent: true,
-		date: "25 May",
+		date: "30 May - 1 June",
 		title: "Social Arisan Nyok The Party",
 		imageSrc: "/images/event/event.png",
 		description: () => (
@@ -79,7 +81,11 @@ const EVENTS: Event[] = [
 			</p>
 		),
 		items: [
-			{ label: "Location", value: "ASTON Denpasar Hotel & Convention" },
+			{
+				label: "Location",
+				value: "Taman Ismal Marzuki",
+				url: "https://g.co/kgs/t6mgam2",
+			},
 			{ label: "Open Registration", value: "3 - 9 PM WIB" },
 			{ label: "Workshop", value: "3 - 9 PM WIB" },
 			{ label: "Dinner Served", value: "6 PM - 7.30 PM WIB" },
@@ -95,7 +101,7 @@ const EVENTS: Event[] = [
 		],
 	},
 	{
-		date: "26 May",
+		date: "2 June",
 		title: "After Party",
 		imageSrc: "/images/event/after-party.png",
 		description: () => (
@@ -196,9 +202,18 @@ export function EventCarousel() {
 											className="grid grid-cols-2 text-white *:text-lg lg:*:text-title-2"
 										>
 											<p className="font-semibold">{item.label}</p>
-											<p className="text-right text-neutral-400">
-												{item.value}
-											</p>
+											{item.url ? (
+												<Link
+													href={item.url}
+													className="text-right text-neutral-300 underline underline-offset-4 hover:text-white"
+												>
+													{item.value}
+												</Link>
+											) : (
+												<p className="text-right text-neutral-400">
+													{item.value}
+												</p>
+											)}
 										</div>
 									))}
 								</div>

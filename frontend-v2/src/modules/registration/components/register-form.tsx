@@ -20,7 +20,7 @@ import { z } from "zod"
 
 const PAYMENT_INFORMATION = {
 	name: "Mirawati",
-	number: "8271372183",
+	number: "5855331567",
 }
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024

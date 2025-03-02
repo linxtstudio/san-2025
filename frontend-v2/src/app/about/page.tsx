@@ -23,6 +23,21 @@ export default function About() {
 							/>
 							<div className="flex flex-col gap-16">
 								<div className="flex flex-col gap-5 *:text-neutral-200 *:text-sm/relaxed *:lg:text-body">
+									<p>
+										The highly awaited dance extravaganza that promises to be a
+										spellbinding fusion of artistry, rhythm, and sheer spectacle
+										of afro latin dances in Indonesia.
+									</p>
+									<p>
+										Embark on a meaningful journey with us as we unite in a
+										heartwarming festival, celebrating the pinnacle of social
+										dance within the vibrant Indonesian community. Come together
+										to not only embrace the art of dance but also champion the
+										essence of family togetherness.
+									</p>
+								</div>
+
+								<div className="flex flex-col gap-5 *:text-neutral-200 *:text-sm/relaxed *:lg:text-body">
 									<p className="font-semibold">
 										The Most Anticipated Social Dance Gathering In Indonesia
 									</p>
@@ -36,10 +51,10 @@ export default function About() {
 										willing to volunteer to create this unforgettable event
 									</p>
 									<p>
-										2025 will be our 7th time doing the Social Arisan Nyok, and
-										this time will be held in Bali. New ideas and more parties
-										will be added this year in hope that everyone can enjoy this
-										warm heartfelt event even more.
+										2025 will be our 8th time doing the Social Arisan Nyok, and
+										this time will be held in Jakarta. New ideas and more
+										parties will be added this year in hope that everyone can
+										enjoy this warm heartfelt event even more.
 									</p>
 								</div>
 							</div>

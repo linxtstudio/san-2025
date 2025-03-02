@@ -205,16 +205,14 @@ export function FeaturedList() {
 					<FeaturedBandCarousel />
 				</div> */}
 				<div className="flex w-full flex-col gap-6">
-					<p className="font-semibold text-title-2 text-white">
-						Workshop Instructors
-					</p>
+					<p className="font-semibold text-title-2 text-white">Workshop</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{WORKSHOP_INSTRUCTORS.map((instructor, index) => (
 							<div key={index} className="flex flex-col gap-6">
 								<p className="max-w-30 xs:max-w-50 text-body text-neutral-400 xs:text-lg">
 									{instructor.workshop}
 								</p>
-								<FeaturedCard {...instructor.card} />
+								{/* <FeaturedCard {...instructor.card} /> */}
 							</div>
 						))}
 					</div>
@@ -227,7 +225,7 @@ export function FeaturedList() {
 						))}
 					</div>
 				</div>
-				<div className="flex w-full flex-col items-start gap-6">
+				{/* <div className="flex w-full flex-col items-start gap-6">
 					<p className="font-semibold text-title-2 text-white">Committee</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{(isShowMore ? COMMITTEES : COMMITTEES.slice(0, 5)).map(
@@ -245,7 +243,7 @@ export function FeaturedList() {
 							Show more
 						</button>
 					)}
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)

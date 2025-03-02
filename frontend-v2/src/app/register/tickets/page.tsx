@@ -4,12 +4,12 @@ import Link from "next/link"
 
 export default function RegisterTickets() {
 	return (
-		<main className="flex w-full flex-col bg-primary-950">
+		<main className="flex w-full flex-col bg-primary-950 print:bg-white">
 			<div className="relative flex h-full min-h-screen w-full flex-col gap-8 overflow-x-hidden">
 				<div className="z-1 flex w-full items-center justify-center">
-					<div className="flex w-full max-w-screen-2xl flex-col gap-16 px-8 py-16 md:px-16">
+					<div className="flex w-full max-w-screen-2xl flex-col gap-16 px-8 py-16 md:px-16 print:p-0">
 						<div className="flex w-full flex-col gap-5">
-							<div className="flex items-center gap-6 text-white">
+							<div className="flex items-center gap-6 text-white print:hidden">
 								<Link href="/register">
 									<svg
 										width="24"
@@ -33,7 +33,7 @@ export default function RegisterTickets() {
 							</div>
 							<Button
 								variant="secondary"
-								className="mb-8 w-fit"
+								className="mb-8 w-fit print:hidden"
 								href="/register"
 							>
 								Register new ticket
@@ -45,7 +45,7 @@ export default function RegisterTickets() {
 				<img
 					src="/graphic/footer.svg"
 					alt=""
-					className="absolute bottom-0 w-full"
+					className="absolute bottom-0 w-full print:hidden"
 				/>
 			</div>
 		</main>
