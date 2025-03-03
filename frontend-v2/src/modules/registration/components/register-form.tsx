@@ -185,12 +185,12 @@ export function RegisterForm() {
 											<Fragment key={event.id}>
 												<label
 													className={cn(
-														"flex w-full cursor-pointer justify-between rounded-xl border-2 border-neutral-500 p-3 text-neutral-500 shadow-md shadow-neutral-400/5",
+														"flex w-full cursor-pointer xs:flex-row flex-col items-center justify-between gap-2 rounded-xl border-2 border-neutral-500 p-3 text-neutral-500 shadow-md shadow-neutral-400/5",
 														"has-[:disabled]:cursor-default has-[:disabled]:border-neutral-900 has-[:disabled]:bg-neutral-900 has-[:disabled]:text-neutral-700 has-[:disabled]:shadow-none",
 														"has-[:checked]:border-brand-700 has-[:checked]:text-neutral-200",
 													)}
 												>
-													<div className="flex items-center gap-2">
+													<div className="flex w-full items-center gap-2">
 														<input
 															type="checkbox"
 															value={event.id}
@@ -201,7 +201,7 @@ export function RegisterForm() {
 														/>
 														<span className="select-none">{event.name}</span>
 													</div>
-													<span className="select-none text-xs">
+													<span className="ml-auto shrink-0 select-none text-xs">
 														{event.fee_nominal
 															? event.fee_type === "minimum_contribution"
 																? `*Minimum Contribution ${formatPrice(event.fee_nominal)}`

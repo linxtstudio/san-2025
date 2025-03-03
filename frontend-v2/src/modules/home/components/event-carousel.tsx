@@ -67,18 +67,17 @@ const EVENTS: Event[] = [
 	// },
 	{
 		date: "30 May",
-		title: "Welcome Party",
+		title: "Pre-Party & After Party",
 		imageSrc: "/images/event/pre-party.png",
 		description: () => (
-			<p className="max-w-screen-sm text-neutral-400">To be announced</p>
-			// <p className="max-w-screen-sm text-neutral-400">
-			// 	Teaming up with the local club, we extend a warm invitation to dancers
-			// 	nationwide, inviting them to savor the hospitality of Jakarta.
-			// 	<br className="mb-4" />
-			// 	Immerse yourself in the exhilaration of dancing alongside locals,
-			// 	forging new friendships, and rekindling family bonds in the midst of
-			// 	this electrifying experience.
-			// </p>
+			<p className="max-w-screen-sm text-neutral-400">
+				Teaming up with the local club, we extend a warm invitation to dancers
+				nationwide, inviting them to savor the hospitality of Jakarta.
+				<br className="mb-4" />
+				Immerse yourself in the exhilaration of dancing alongside locals,
+				forging new friendships, and rekindling family bonds in the midst of
+				this electrifying experience.
+			</p>
 		),
 		items: [
 			{ label: "Location", value: "To be announced" },
@@ -169,7 +168,7 @@ export function EventCarousel() {
 							) : null}
 							<span
 								className={cn(
-									"w-full text-title-2 md:text-title-1",
+									"w-full sm:text-title-2 md:text-title-1",
 									index === selectedIndex
 										? "font-semibold text-white"
 										: "text-neutral-400",
@@ -225,7 +224,7 @@ export function EventCarousel() {
 											{item.url ? (
 												<Link
 													href={item.url}
-													className="text-right text-neutral-300 underline underline-offset-4 hover:text-white"
+													className="text-right text-blue-500 hover:underline"
 												>
 													{item.value}
 												</Link>

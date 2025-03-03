@@ -35,7 +35,6 @@ export function EventParticipantTable({
 		setIsFolded((prev) => !prev)
 	}
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	const columns: ColumnDef<Participant>[] = useMemo(
 		() => [
 			{

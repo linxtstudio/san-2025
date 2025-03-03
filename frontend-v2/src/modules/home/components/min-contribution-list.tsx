@@ -17,13 +17,8 @@ const MINIMUM_CONTRIBUTION = [
 		date: "24 April 2025",
 	},
 	{
-		title: "At the door (2 day)",
+		title: "At the door",
 		price: "IDR 600K",
-		date: "",
-	},
-	{
-		title: "At the door (1 day)",
-		price: "IDR 400K",
 		date: "",
 	},
 ]
