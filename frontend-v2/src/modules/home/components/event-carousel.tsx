@@ -25,25 +25,25 @@ export type Event = {
 }
 
 const EVENTS: Event[] = [
-	// {
-	// 	date: "23 May",
-	// 	title: "Pre-party",
-	// 	imageSrc: "/images/event/pre-party.png",
-	// 	description: () => (
-	// 		<p className="max-w-screen-sm text-neutral-400">
-	// 			Teaming up with the local club, we extend a warm invitation to dancers
-	// 			nationwide, inviting them to savor the hospitality of Jakarta.
-	// 			<br className="mb-4" />
-	// 			Immerse yourself in the exhilaration of dancing alongside locals,
-	// 			forging new friendships, and rekindling family bonds in the midst of
-	// 			this electrifying experience.
-	// 		</p>
-	// 	),
-	// 	items: [
-	// 		{ label: "Location", value: "Red Ruby" },
-	// 		{ label: "Time", value: "7 PM - 11 PM WIB" },
-	// 	],
-	// },
+	{
+		date: "29 May",
+		title: "Pre-party",
+		imageSrc: "/images/event/pre-party.png",
+		description: () => (
+			<p className="max-w-screen-sm text-neutral-400">
+				Get ready for an unforgettable night that sets the stage for SAN 2025!
+				Our exclusive pre-party brings together attendees in a relaxed
+				atmosphere with music, networking, and special previews of what's to
+				come. Join us for drinks, connections, and the perfect warm-up to the
+				main event. Stay tuned for details on venue, date, and registration.
+			</p>
+		),
+		items: [
+			{ label: "Location", value: "To be announced" },
+			{ label: "Time", value: "To be announced" },
+			{ label: "Djs", value: "To be announced" },
+		],
+	},
 	// {
 	// 	date: "24 May",
 	// 	title: "Pool Party",
@@ -68,7 +68,7 @@ const EVENTS: Event[] = [
 	{
 		date: "30 May",
 		title: "Welcome Party",
-		imageSrc: "/images/event/pre-party.png",
+		imageSrc: "/images/event/pool-party.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
 				Teaming up with the local club, we extend a warm invitation to dancers

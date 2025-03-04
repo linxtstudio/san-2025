@@ -8,12 +8,12 @@ const MINIMUM_CONTRIBUTION = [
 	},
 	{
 		title: "Normal Price",
-		price: "IDR 400k",
+		price: "IDR 450k",
 		date: "24 March 2025",
 	},
 	{
 		title: "Last Call",
-		price: "IDR 450k",
+		price: "IDR 500k",
 		date: "24 April 2025",
 	},
 	{
