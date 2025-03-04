@@ -15,7 +15,7 @@ export function TotalTransactionCard() {
 				Total Transaksi
 			</span>
 			<span className="text-headline text-neutral-200">
-				{data?.data.data.total_transaction.toLocaleString("id-ID", {
+				{(data?.data.data.total_transaction || 0).toLocaleString("id-ID", {
 					style: "currency",
 					currency: "IDR",
 				})}
