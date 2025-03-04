@@ -111,31 +111,31 @@ export function HomeCarousel() {
 						<h2 className="font-semibold text-title-1 lg:text-display">
 							About Logo
 						</h2>
-						<p>
+						<p className="text-neutral-200">
 							The logo Social Arisan Nyok use a combination of imaginative dance
 							figures and blend it with delicate typography capturing the
 							passion, the love and the joy of dancing while conveying the
 							vibrant energy of this social dance gathering event.
 						</p>
-						<p>
+						<p className="text-neutral-200">
 							The multi coloured in unison represent the diversity of the dance
 							genre fostering a community that continuously grows and evolves
 							with vibrant enthusiasm. It also represent our annual changing
 							colour dance, a cherished custom which celebrated each year.
 						</p>
-						<p>
+						<p className="text-neutral-200">
 							The solid circle represents the harmony among all dance community
 							across Indonesia, reflecting their unwavering support for one
 							another. ir also symbolizes how dance unites us all as one big
 							family.
 						</p>
-						<p>
+						<p className="text-neutral-200">
 							The 5 scattered stars represent the first 5 cities that initiated
 							this event, warmly welcoming others who shares the same passion &
 							spirit. They symbolize the ever-growing dance family, embracing
 							new members with open arms.
 						</p>
-						<p>
+						<p className="text-neutral-200">
 							The 2 music notes symbolize our origin in 2 genres of dance & our
 							continuous growth. Symbolize our evolution to embrace &
 							incorporate other dance genre along the way.

@@ -67,7 +67,7 @@ const EVENTS: Event[] = [
 	// },
 	{
 		date: "30 May",
-		title: "Pre-Party & After Party",
+		title: "Welcome Party",
 		imageSrc: "/images/event/pre-party.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
@@ -81,7 +81,8 @@ const EVENTS: Event[] = [
 		),
 		items: [
 			{ label: "Location", value: "To be announced" },
-			// { label: "Time", value: "7 PM - 11 PM WIB" },
+			{ label: "Time", value: "To be announced" },
+			{ label: "Djs", value: "To be announced" },
 		],
 	},
 	{
@@ -105,22 +106,11 @@ const EVENTS: Event[] = [
 				value: "Taman Ismal Marzuki",
 				url: "https://g.co/kgs/t6mgam2",
 			},
-			{ label: "Open Registration", value: "3 - 9 PM WIB" },
-			{ label: "Workshop", value: "3 - 9 PM WIB" },
-			{ label: "Dinner Served", value: "6 PM - 7.30 PM WIB" },
-			{ label: "Performance", value: "6 PM - 7.30 PM WIB" },
-			{
-				label: "Colour Exchange Social Dance featuring Band",
-				value: "6 PM - 7.30 PM WIB",
-			},
-			{
-				label: "Open Ballroom II",
-				value: "6 PM - 7.30 PM WIB",
-			},
+			{ label: "Schedule", value: "To be announced" },
 		],
 	},
 	{
-		date: "2 June",
+		date: "1 June",
 		title: "After Party",
 		imageSrc: "/images/event/after-party.png",
 		description: () => (
@@ -135,7 +125,7 @@ const EVENTS: Event[] = [
 		),
 		items: [
 			{ label: "Location", value: "To be announced" },
-			{ label: "Time", value: "3 - 9 PM WIB" },
+			{ label: "Time", value: "To be announced" },
 			{ label: "Djs", value: "To be announced" },
 		],
 	},

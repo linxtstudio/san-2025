@@ -44,43 +44,43 @@ const WORKSHOP_INSTRUCTORS = [
 
 const DJS = [
 	{
-		image: "/images/featured/dj-alfa.png",
+		image: "/images/featured/dj/dj-alfa.png",
 		name: "DJ Alfa",
 		title: "from Bali",
 		link: "https://www.instagram.com/madealfa",
 	},
 	{
-		image: "/images/featured/dj-billy.png",
+		image: "/images/featured/dj/dj-billy.png",
 		name: "DJ Billy",
 		title: "from Bali",
 		link: "https://www.instagram.com/my_memoribillya",
 	},
 	{
-		image: "/images/featured/dj-kingguapo.png",
+		image: "/images/featured/dj/dj-kingguapo.png",
 		name: "DJ King Guapo",
 		title: "from Bali",
 		link: "https://www.instagram.com/deejay_kingguapo",
 	},
 	{
-		image: "/images/featured/dj-adhyn.png",
+		image: "/images/featured/dj/dj-adhyn.png",
 		name: "DJ Adhyn",
 		title: "from Jakarta",
 		link: "https://www.instagram.com/dj_adhyn",
 	},
 	{
-		image: "/images/featured/dj-adish.png",
+		image: "/images/featured/dj/dj-adish.png",
 		name: "DJ Adish",
 		title: "from Bali",
 		link: "https://www.instagram.com/adishkrisna",
 	},
 	{
-		image: "/images/featured/dj-tysh.png",
+		image: "/images/featured/dj/dj-tysh.png",
 		name: "DJ TYSH",
 		title: "from Surabaya",
 		link: "https://www.instagram.com/septyshaputri",
 	},
 	{
-		image: "/images/featured/dj-indrung.png",
+		image: "/images/featured/dj/dj-indrung.png",
 		name: "DJ Indrung",
 		title: "from Surabaya",
 		link: "https://www.instagram.com/indrung",
@@ -89,100 +89,70 @@ const DJS = [
 
 const COMMITTEES = [
 	{
-		image: "/images/featured/diah.png",
-		name: "Diah Anggara",
-		title: "Project Manager",
-		link: "https://www.instagram.com/diahbali",
+		image: "/images/featured/committee/ADHI.png",
+		name: "Adhi",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/dewak.png",
-		name: "Dewak",
-		title: "Creative Director",
-		link: "https://www.instagram.com/dewak__",
+		image: "/images/featured/committee/AJI.png",
+		name: "Aji",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/gungde.png",
-		name: "Gung De",
-		title: "Artistic Manager",
-		link: "https://www.instagram.com/gungdewita",
+		image: "/images/featured/committee/ANDIKA.png",
+		name: "Andika",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/mirawati.png",
-		name: "Mirawati",
-		title: "Treasury",
-		link: "https://www.instagram.com/mieramierain",
+		image: "/images/featured/committee/ANNE.png",
+		name: "Anne",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/made.png",
-		name: "Made Alfa",
-		title: "Coordinator",
-		link: "https://www.instagram.com/madealfa",
+		image: "/images/featured/committee/ELDA.png",
+		name: "Elda",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/yuli.png",
-		name: "Yuli Rahayu",
-		title: "Band Manager",
-		link: "https://www.instagram.com/yuli_rahayu_41",
+		image: "/images/featured/committee/JACKY.png",
+		name: "Jacky",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/reinard.png",
-		name: "Reinard Arga",
-		title: "Multimedia (Promote & Socmed) Manager",
-		link: "https://www.instagram.com/reinardarga",
+		image: "/images/featured/committee/LIA.png",
+		name: "Lia",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/billy.png",
-		name: "Billy",
-		title: "Artist Manager & Stage Manager",
-		link: "https://www.instagram.com/my_memoribillya",
+		image: "/images/featured/committee/MICHAEL.png",
+		name: "Michael",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/rieza.png",
-		name: "Rieza Vaganza",
-		title: "Logistic Manager",
-		link: "https://www.instagram.com/riezavaganza99",
+		image: "/images/featured/committee/OLIVE.png",
+		name: "Olive",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/adis.png",
-		name: "Adis Krisna",
-		title: "Secretarial Manager",
-		link: "https://www.instagram.com/adishkrisna",
+		image: "/images/featured/committee/VERA.png",
+		name: "Vera",
+		title: "",
+		link: "",
 	},
 	{
-		image: "/images/featured/dhawani.png",
-		name: "Dhwani",
-		title: "Workshop Manager",
-		link: "https://www.instagram.com/dhwani.cubansalsaindonesia",
-	},
-	{
-		image: "/images/featured/gungis.png",
-		name: "Gung Is",
-		title: "Stage Manager",
-		link: "https://www.instagram.com/istripradnyandari",
-	},
-	{
-		image: "/images/featured/jamal.png",
-		name: "Jamal",
-		title: "Artistic Member",
-		link: "https://www.instagram.com/jamallatinos13",
-	},
-	{
-		image: "/images/featured/jimmy.png",
-		name: "Jimmy",
-		title: "Promote & Socmed Member",
-		link: "https://www.instagram.com/cakrajimme",
-	},
-	{
-		image: "/images/featured/athika.png",
-		name: "Athika",
-		title: "Secretarial Member",
-		link: "https://www.instagram.com/athikanasution",
-	},
-	{
-		image: "/images/featured/diana.png",
-		name: "Diana Jansen",
-		title: "Secretarial Member",
-		link: "https://www.instagram.com/dianajansen21",
+		image: "/images/featured/committee/VIRGINIE.png",
+		name: "Virginie",
+		title: "",
+		link: "",
 	},
 ]
 
@@ -225,7 +195,7 @@ export function FeaturedList() {
 						))}
 					</div>
 				</div>
-				{/* <div className="flex w-full flex-col items-start gap-6">
+				<div className="flex w-full flex-col items-start gap-6">
 					<p className="font-semibold text-title-2 text-white">Committee</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{(isShowMore ? COMMITTEES : COMMITTEES.slice(0, 5)).map(
@@ -243,7 +213,7 @@ export function FeaturedList() {
 							Show more
 						</button>
 					)}
-				</div> */}
+				</div>
 			</div>
 		</div>
 	)

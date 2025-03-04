@@ -29,7 +29,25 @@ export default function Home() {
 				</div>
 				<div className="z-1 flex w-full items-center justify-center">
 					<div className="flex w-full max-w-screen-2xl items-center justify-between px-8 md:px-16">
-						<EventCarousel />
+						<div className="flex w-full flex-col gap-16">
+							<div className="flex w-full flex-col gap-10">
+								<h3 className="font-semibold text-title-2 text-white lg:text-title-1">
+									Pre-party{" "}
+									<span className="font-normal text-neutral-200">
+										(To be announced)
+									</span>
+								</h3>
+								<div className="w-full max-w-screen-sm text-neutral-400 text-sm/relaxed lg:text-body">
+									Get ready for an unforgettable night that sets the stage for
+									SAN 2025! Our exclusive pre-party brings together attendees in
+									a relaxed atmosphere with music, networking, and special
+									previews of what's to come. Join us for drinks, connections,
+									and the perfect warm-up to the main event. Stay tuned for
+									details on venue, date, and registration.
+								</div>
+							</div>
+							<EventCarousel />
+						</div>
 					</div>
 				</div>
 				<div className="z-1 flex w-full items-center justify-center">
