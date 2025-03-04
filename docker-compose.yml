@@ -1,7 +1,6 @@
-version: "3"
 services:
   frontend:
-    build: ./frontend
+    build: ./frontend-v2
     container_name: san-2025-fe
     ports:
       - 7005:7005
