@@ -89,70 +89,70 @@ const DJS = [
 
 const COMMITTEES = [
 	{
-		image: "/images/featured/committee/ADHI.png",
-		name: "Adhi",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/AJI.png",
-		name: "Aji",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/ANDIKA.png",
-		name: "Andika",
-		title: "",
-		link: "",
-	},
-	{
 		image: "/images/featured/committee/ANNE.png",
 		name: "Anne",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/ELDA.png",
-		name: "Elda",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/JACKY.png",
-		name: "Jacky",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/LIA.png",
-		name: "Lia",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/MICHAEL.png",
-		name: "Michael",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/OLIVE.png",
-		name: "Olive",
-		title: "",
-		link: "",
-	},
-	{
-		image: "/images/featured/committee/VERA.png",
-		name: "Vera",
-		title: "",
-		link: "",
+		title: "Chief",
+		link: "https://www.instagram.com/aefel",
 	},
 	{
 		image: "/images/featured/committee/VIRGINIE.png",
 		name: "Virginie",
-		title: "",
-		link: "",
+		title: "Treasurer",
+		link: "https://www.instagram.com/vdanse?igsh=cnlhaHByOGl4MWw0",
+	},
+	{
+		image: "/images/featured/committee/LIA.png",
+		name: "Lia",
+		title: "Secretary",
+		link: "https://www.instagram.com/cumiqu?igsh=MWtoeGRpY2d2eGcwYQ==",
+	},
+	{
+		image: "/images/featured/committee/OLIVE.png",
+		name: "Olive",
+		title: "Registration Manager",
+		link: "https://www.instagram.com/oleev_moy?igsh=bWlmeXZqZTdvczhv",
+	},
+	{
+		image: "/images/featured/committee/AJI.png",
+		name: "Aji",
+		title: "Competition Manager",
+		link: "https://www.instagram.com/ajibagja",
+	},
+	{
+		image: "/images/featured/committee/JACKY.png",
+		name: "Jacky",
+		title: "Performer Coordinator",
+		link: "https://www.instagram.com/jackdinatadecoco",
+	},
+	{
+		image: "/images/featured/committee/VERA.png",
+		name: "Vera",
+		title: "Stage Manager",
+		link: "https://www.instagram.com/vera_robinss",
+	},
+	{
+		image: "/images/featured/committee/ANDIKA.png",
+		name: "Andika",
+		title: "Website Manager",
+		link: "https://www.instagram.com/andika.christy",
+	},
+	{
+		image: "/images/featured/committee/ELDA.png",
+		name: "Elda",
+		title: "Media Manager",
+		link: "https://www.instagram.com/elda.kiz.ai",
+	},
+	{
+		image: "/images/featured/committee/MICHAEL.png",
+		name: "Michael",
+		title: "Promotion Manager",
+		link: "https://www.instagram.com/yohanesmichael_mc",
+	},
+	{
+		image: "/images/featured/committee/ADHI.png",
+		name: "Adhi",
+		title: "DJ Coordinator",
+		link: "https://www.instagram.com/dj_adhyn",
 	},
 ]
 

@@ -80,7 +80,11 @@ const EVENTS: Event[] = [
 			</p>
 		),
 		items: [
-			{ label: "Location", value: "To be announced" },
+			{
+				label: "Location",
+				value: "Taman Ismal Marzuki",
+				url: "https://g.co/kgs/t6mgam2",
+			},
 			{ label: "Time", value: "To be announced" },
 			{ label: "Djs", value: "To be announced" },
 		],
