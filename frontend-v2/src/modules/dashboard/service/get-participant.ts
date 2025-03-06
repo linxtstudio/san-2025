@@ -1,8 +1,8 @@
 import { webRequest } from "@/lib/http"
-import {
+import type {
 	APIResponse,
-	type NamedRecord,
-	type PaginatedResponseType,
+	NamedRecord,
+	PaginatedResponseType,
 } from "@/lib/http.type"
 import type { AxiosResponse } from "axios"
 import qs from "query-string"

@@ -85,6 +85,16 @@ export function EventParticipantTable({
 				),
 			},
 			{
+				header: "Total Transaction",
+				accessorKey: "event_participant.total_transaction",
+				cell: (info) =>
+					new Intl.NumberFormat("id-ID", {
+						style: "currency",
+						currency: "IDR",
+						minimumFractionDigits: 0,
+					}).format(info.row.original.event_participant.total_transaction || 0),
+			},
+			{
 				header: "Payment Proof",
 				accessorKey: "event_participant.transfer_receipt_url",
 				cell: (info) => (
@@ -161,7 +171,7 @@ export function EventParticipantTable({
 			)}
 			{title ? (
 				<div className="flex w-full items-center justify-between gap-8 rounded-xl bg-neutral-900 px-4 py-2 text-white">
-					<h2 className="font-medium text-title-2 lg:text-title-1">
+					<h2 className="font-medium text-lg md:text-title-2 lg:text-title-1">
 						{title}{" "}
 						<span className="font-normal text-neutral-400">
 							({participantList?.data.data.total})
@@ -213,7 +223,7 @@ export function EventParticipantTable({
 													width: `${100 / headerGroup.headers.length}%`,
 												}}
 											>
-												<div className="font-medium text-headline text-neutral-200">
+												<div className="font-medium text-neutral-200 lg:text-headline">
 													{flexRender(
 														header.column.columnDef.header,
 														header.getContext(),
@@ -230,7 +240,7 @@ export function EventParticipantTable({
 										{row.getVisibleCells().map((cell) => (
 											<td
 												key={cell.id}
-												className="w-fit px-4 py-4 text-neutral-400 first:pl-0 last:pr-0"
+												className="w-fit px-4 py-4 text-neutral-400 text-sm first:pl-0 last:pr-0 lg:text-body"
 											>
 												{flexRender(
 													cell.column.columnDef.cell,
