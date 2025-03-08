@@ -85,6 +85,12 @@ const DJS = [
 		title: "from Surabaya",
 		link: "https://www.instagram.com/indrung",
 	},
+	{
+		image: "/images/featured/dj/dj-pancho.png",
+		name: "DJ Pancho",
+		title: "from Ecuador",
+		link: "https://www.instagram.com/panchougaldes",
+	},
 ]
 
 const COMMITTEES = [
