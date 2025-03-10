@@ -1,4 +1,4 @@
-const PHONE_NUMBER = "628179792764"
+const PHONE_NUMBER = "62811212505"
 const MESSAGE = encodeURIComponent(
 	"Hello, I want to ask about Salsa Arisan Nyok",
 )

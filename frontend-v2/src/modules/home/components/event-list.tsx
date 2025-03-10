@@ -56,7 +56,7 @@ export function EventList() {
 			return (
 				<div className="mt-auto flex w-full items-center justify-between">
 					<span className="font-semibold text-xs">Contact Us</span>
-					<Link href="https://wa.me/628179792764?text=Hello, I would like to register for performance at Salsa Arisan Nyok 2025">
+					<Link href="https://wa.me/62811212505?text=Hello, I would like to register for performance at Salsa Arisan Nyok 2025">
 						<svg
 							width="20"
 							height="20"
