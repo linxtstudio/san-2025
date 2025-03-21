@@ -13,6 +13,7 @@ import {
 	getCoreRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
+import Link from "next/link"
 import { useMemo, useState } from "react"
 
 type EventParticipantTableProps = {
@@ -75,7 +76,7 @@ export function EventParticipantTable({
 							"flex w-fit shrink-0 items-center justify-center whitespace-nowrap rounded-full px-2 py-1",
 							info.row.original.event_participant.is_verified
 								? "bg-green-500/5 text-green-500"
-								: "text-neutral-400",
+								: "bg-neutral-900 text-neutral-500",
 						)}
 					>
 						{info.row.original.event_participant.is_verified
@@ -111,17 +112,54 @@ export function EventParticipantTable({
 			{
 				header: "",
 				accessorKey: "event_participant.id",
-				cell: (info) => (
-					<button
-						type="button"
-						disabled={info.row.original.event_participant.is_verified}
-						className="flex w-full max-w-24 cursor-pointer items-center justify-center gap-2 rounded-md border-2 border-green-800 bg-green-700 px-4 py-2 text-white disabled:cursor-not-allowed disabled:border-neutral-800 disabled:bg-neutral-800 disabled:text-neutral-500"
-					>
-						{info.row.original.event_participant.is_verified
-							? "Verified"
-							: "Verify"}
-					</button>
-				),
+				cell: (info) => {
+					const isVerified = info.row.original.event_participant.is_verified
+
+					return (
+						<div className="group relative">
+							<button
+								type="button"
+								className="flex w-full max-w-30 cursor-pointer items-center justify-between gap-2 rounded-md border border-neutral-800 bg-neutral-900 px-4 py-2 text-white"
+							>
+								<span>Action</span>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									strokeWidth="1.5"
+									stroke="currentColor"
+									className="size-6 transition-transform group-focus-within:rotate-180"
+								>
+									<title>Chevron down icon</title>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="m19.5 8.25-7.5 7.5-7.5-7.5"
+									/>
+								</svg>
+							</button>
+							<div className="invisible absolute right-0 z-100 mt-1 w-36 origin-top-right rounded-md bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5 group-focus-within:visible">
+								<div className="py-1">
+									<button
+										type="button"
+										disabled={true}
+										className="block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700 disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-neutral-800"
+									>
+										{isVerified ? "✔ Already Verified" : "✔ Verify"}
+									</button>
+									<Link
+										target="_blank"
+										rel="noopener noreferrer"
+										href={`/dashboard/ticket/${info.row.original.event_participant.id}`}
+										className="block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700"
+									>
+										Generate Ticket
+									</Link>
+								</div>
+							</div>
+						</div>
+					)
+				},
 			},
 		],
 		[pagination],
