@@ -1,5 +1,4 @@
 "use client"
-
 import { ErrorMessage } from "@/common/components/shared/error-message"
 import { Button } from "@/common/components/ui/button"
 import { LoadingSpinner } from "@/common/components/ui/loading-spinner"
@@ -10,11 +9,12 @@ import { setRegisterStorage } from "@/lib/storage"
 import { cn, formatFileSize, formatPrice } from "@/lib/utils"
 import { getEventTypeList } from "@/modules/home/service/get-event"
 import { registerEvent } from "@/modules/registration/service/register-event"
+import { sendTicketEmail } from "@/modules/registration/service/send-ticket-email"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { Fragment } from "react"
+import { Fragment, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
@@ -60,6 +60,7 @@ const registerFormSchema = z.object({
 export type FormData = z.infer<typeof registerFormSchema>
 
 export function RegisterForm() {
+	const [redirectLoading, setRedirectLoading] = useState(false)
 	const router = useRouter()
 	const { data, isPending } = useQuery({
 		queryKey: ["get-event-type-list"],
@@ -132,9 +133,19 @@ export function RegisterForm() {
 
 			const registerResponse = await registerEvent(registerPayload)
 			if (registerResponse.data.data) {
-				toast.success("Registration successful")
-				setRegisterStorage(registerResponse.data.data)
-				router.push("/register/tickets")
+				try {
+					await sendTicketEmail({
+						target: formValue.email,
+						ticket: registerResponse.data.data,
+					})
+				} catch (error) {
+					toast.error("Failed to send ticket email")
+				} finally {
+					setRegisterStorage(registerResponse.data.data)
+					setRedirectLoading(true)
+					toast.success("Registration successful")
+					router.push("/register/tickets")
+				}
 			}
 		} catch (error) {
 			toast.error(
@@ -149,6 +160,15 @@ export function RegisterForm() {
 			onSubmit={handleSubmit(handleSubmitRegister)}
 			className="grid w-full grid-cols-1 gap-16 lg:grid-cols-2"
 		>
+			{redirectLoading ? (
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/85">
+					<div className="flex flex-col items-center gap-4">
+						<LoadingSpinner className="h-12 w-12" />
+						<p className="text-white">Redirecting to your ticket...</p>
+					</div>
+				</div>
+			) : null}
+
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col gap-4">
 					<p className="text-headline text-white">
@@ -186,7 +206,7 @@ export function RegisterForm() {
 												<label
 													className={cn(
 														"flex w-full cursor-pointer xs:flex-row flex-col items-center justify-between gap-2 rounded-xl border-2 border-neutral-500 p-3 text-neutral-500 shadow-md shadow-neutral-400/5",
-														"has-[:disabled]:cursor-default has-[:disabled]:border-neutral-900 has-[:disabled]:bg-neutral-900 has-[:disabled]:text-neutral-700 has-[:disabled]:shadow-none",
+														"has-[:disabled]:cursor-not-allowed has-[:disabled]:border-neutral-900 has-[:disabled]:bg-neutral-900 has-[:disabled]:text-neutral-700 has-[:disabled]:shadow-none",
 														"has-[:checked]:border-brand-700 has-[:checked]:text-neutral-200",
 													)}
 												>
@@ -199,7 +219,16 @@ export function RegisterForm() {
 															className="rounded-sm bg-transparent accent-brand-700 checked:bg-brand-700 focus:ring-0"
 															disabled={isDisabled}
 														/>
-														<span className="select-none">{event.name}</span>
+														<div className="flex select-none xs:flex-row flex-col xs:items-center gap-x-2">
+															<span>{event.name}</span>
+
+															{event.fee_type !== "minimum_contribution" &&
+															event.description ? (
+																<span className="text-sm opacity-50">
+																	{event.description}
+																</span>
+															) : null}
+														</div>
 													</div>
 													<span className="ml-auto shrink-0 select-none text-xs">
 														{event.fee_nominal
@@ -259,7 +288,7 @@ export function RegisterForm() {
 					<input
 						{...register("phone_number")}
 						className="rounded-xl border-2 border-neutral-500 bg-primary-950 p-3 text-neutral-200 placeholder:text-neutral-800 focus:ring-0"
-						placeholder="+62 800 0000 0000"
+						placeholder="0851 0000 0000"
 					/>
 					<ErrorMessage error={errors.phone_number?.message} />
 				</div>

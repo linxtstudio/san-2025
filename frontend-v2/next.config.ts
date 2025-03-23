@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
 			{
 				hostname: "103.59.160.95",
 			},
+			{
+				protocol: "https",
+				hostname: "api.dicebear.com",
+			},
 		],
 	},
 	eslint: {

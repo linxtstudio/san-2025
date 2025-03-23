@@ -7,37 +7,37 @@ const WORKSHOP_INSTRUCTORS = [
 	{
 		workshop: "Salsa Workshop",
 		card: {
-			image: "/images/featured/tonno.png",
-			name: "Tonno Effendi",
-			title: "from Jogjakarta",
-			link: "https://www.instagram.com/s_tono_effendi",
+			image: "",
+			name: "Dhwani Bahar",
+			title: "",
+			link: "https://www.instagram.com/dancing_dhwani",
 		},
 	},
 	{
 		workshop: "Bachata Workshop",
 		card: {
-			image: "/images/featured/berry-eta.png",
-			name: "Berry & Eta",
-			title: "from Jakarta",
-			link: "https://www.instagram.com/berry_valentino",
+			image: "",
+			name: "Billy",
+			title: "",
+			link: "https://www.instagram.com/my_memoribillya",
 		},
 	},
 	{
 		workshop: "Kizomba Workshop",
 		card: {
-			image: "/images/featured/nancy-nathan.png",
-			name: "Nancy & Nathan",
-			title: "from Jakarta",
+			image: "",
+			name: "Danzevo",
+			title: "",
 			link: "https://www.instagram.com/danzevo_kiz",
 		},
 	},
 	{
 		workshop: "Zouk Workshop",
 		card: {
-			image: "/images/featured/virginie.png",
-			name: "Virginie",
-			title: "from Jakarta",
-			link: "https://www.instagram.com/vdanse",
+			image: "",
+			name: "Arga Diana",
+			title: "",
+			link: "https://www.instagram.com/brazilianzoukindonesia",
 		},
 	},
 ]
@@ -188,7 +188,7 @@ export function FeaturedList() {
 								<p className="max-w-30 xs:max-w-50 text-body text-neutral-400 xs:text-lg">
 									{instructor.workshop}
 								</p>
-								<FeaturedCard {...instructor.card} hide />
+								<FeaturedCard {...instructor.card} />
 							</div>
 						))}
 					</div>
