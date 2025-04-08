@@ -129,7 +129,7 @@ export function DashboardTable() {
 	}
 
 	return (
-		<div className="z-1 flex w-full flex-col-reverse justify-between gap-6 rounded-2xl border border-neutral-700 bg-primary-950/50 px-8 py-8 backdrop-blur-2xl lg:flex-row 2xl:px-16">
+		<div className="z-1 flex w-full flex-col-reverse justify-between gap-6 rounded-2xl border-neutral-700 border-t bg-primary-950/50 px-8 py-8 backdrop-blur-2xl lg:flex-row 2xl:px-16">
 			<div className="flex w-full flex-col gap-8">
 				<div className="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-2 lg:grid-cols-3">
 					<div className="flex w-full flex-col gap-4">

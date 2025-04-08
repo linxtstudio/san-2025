@@ -7,35 +7,35 @@ const WORKSHOP_INSTRUCTORS = [
 	{
 		workshop: "Salsa Workshop",
 		card: {
-			image: "",
+			image: "/images/featured/instructor/dhwani.png",
 			name: "Dhwani Bahar",
-			title: "",
+			title: "Cuba",
 			link: "https://www.instagram.com/dancing_dhwani",
 		},
 	},
 	{
 		workshop: "Bachata Workshop",
 		card: {
-			image: "",
+			image: "/images/featured/instructor/billy.png",
 			name: "Billy",
-			title: "",
+			title: "Footwork in couple",
 			link: "https://www.instagram.com/my_memoribillya",
 		},
 	},
 	{
 		workshop: "Kizomba Workshop",
 		card: {
-			image: "",
-			name: "Danzevo",
-			title: "",
+			image: "/images/featured/instructor/nathan-nancy.png",
+			name: "Nathan & Nancy",
+			title: "Tarraxo",
 			link: "https://www.instagram.com/danzevo_kiz",
 		},
 	},
 	{
 		workshop: "Zouk Workshop",
 		card: {
-			image: "",
-			name: "Arga Diana",
+			image: "/images/featured/instructor/reinard-diana.png",
+			name: "Reinard & Diana",
 			title: "",
 			link: "https://www.instagram.com/brazilianzoukindonesia",
 		},
@@ -181,7 +181,7 @@ export function FeaturedList() {
 					<FeaturedBandCarousel />
 				</div> */}
 				<div className="flex w-full flex-col gap-6">
-					<p className="font-semibold text-title-2 text-white">Workshop</p>
+					<p className="font-semibold text-title-2 text-white">Instructor</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{WORKSHOP_INSTRUCTORS.map((instructor, index) => (
 							<div key={index} className="flex flex-col gap-6">

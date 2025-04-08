@@ -278,7 +278,7 @@ export function EventParticipantTable({
 										{row.getVisibleCells().map((cell) => (
 											<td
 												key={cell.id}
-												className="w-fit px-4 py-4 text-neutral-400 text-sm first:pl-0 last:pr-0 lg:text-body"
+												className="w-fit px-2 py-2 text-neutral-400 text-sm first:pl-0 last:pr-0 lg:px-4 lg:py-4 lg:text-body"
 											>
 												{flexRender(
 													cell.column.columnDef.cell,

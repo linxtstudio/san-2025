@@ -9,9 +9,9 @@ export default function Dashboard() {
 			<DashboardHeader />
 			<div className="relative flex w-full flex-col gap-8 overflow-x-hidden">
 				<div className="z-1 flex w-full items-center justify-center">
-					<div className="flex w-full flex-col items-center justify-between px-8 py-16 md:px-16">
+					<div className="flex w-full flex-col items-center justify-between ">
 						<div className="flex w-full flex-col gap-8">
-							<div className="flex w-full flex-col-reverse items-end justify-between gap-8 sm:flex-row">
+							<div className="flex w-full flex-col-reverse items-end justify-between gap-8 px-8 pt-16 sm:flex-row md:px-16">
 								<TotalTransactionCard />
 								<Button className="w-full sm:w-fit">
 									<svg

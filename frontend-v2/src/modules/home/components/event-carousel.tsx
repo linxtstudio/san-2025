@@ -21,6 +21,7 @@ export type Event = {
 		label: string
 		value: string
 		url?: string
+		bottomGutter?: boolean
 	}[]
 }
 
@@ -31,16 +32,21 @@ const EVENTS: Event[] = [
 		imageSrc: "/images/event/pre-party.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
-				Get ready for an unforgettable night that sets the stage for SAN 2025!
-				Our exclusive pre-party brings together attendees in a relaxed
-				atmosphere with music, networking, and special previews of what's to
-				come. Join us for drinks, connections, and the perfect warm-up to the
-				main event. Stay tuned for details on venue, date, and registration.
+				Teaming up with the local club, we extend a warm invitation to dancers
+				nationwide, inviting them to savor the hospitality of Jakarta.
+				<br className="mb-4" />
+				Immerse yourself in the exhilaration of dancing alongside locals,
+				forging new friendships, and rekindling family bonds in the midst of
+				this electrifying experience.
 			</p>
 		),
 		items: [
-			{ label: "Location", value: "To be announced" },
-			{ label: "Time", value: "To be announced" },
+			{
+				label: "Location",
+				value: "Blu Martini",
+				url: "https://maps.app.goo.gl/TEpdBXH7D5XXEb8g8",
+			},
+			{ label: "Time", value: "09.00 - 14.00" },
 			{ label: "Djs", value: "To be announced" },
 		],
 	},
@@ -71,22 +77,27 @@ const EVENTS: Event[] = [
 		imageSrc: "/images/event/pool-party.png",
 		description: () => (
 			<p className="max-w-screen-sm text-neutral-400">
-				Teaming up with the local club, we extend a warm invitation to dancers
-				nationwide, inviting them to savor the hospitality of Jakarta.
-				<br className="mb-4" />
-				Immerse yourself in the exhilaration of dancing alongside locals,
-				forging new friendships, and rekindling family bonds in the midst of
-				this electrifying experience.
+				Get ready for an unforgettable night that sets the stage for SAN 2025!
+				Our exclusive pre-party brings together attendees in a relaxed
+				atmosphere with music, networking, and special previews of what's to
+				come. Join us for drinks, connections, and the perfect warm-up to the
+				main event. Stay tuned for details on venue, date, and registration.
 			</p>
 		),
 		items: [
 			{
 				label: "Location",
-				value: "Taman Ismal Marzuki",
-				url: "https://g.co/kgs/t6mgam2",
+				value: "Taman Ismal Marzuki, Teater Wahyu Sihombing",
+				url: "https://maps.app.goo.gl/J29mYNTjrWcGjgLr9",
 			},
-			{ label: "Time", value: "To be announced" },
-			{ label: "Djs", value: "To be announced" },
+			{ label: "GR", value: "11.00 - 14.00" },
+			{ label: "Open Gate", value: "17.00" },
+			{ label: "Social Dance", value: "17.00 - 19.00" },
+			{ label: "Performance", value: "19.00 - 20.30" },
+			{ label: "Social Dance", value: "20.30 - 21.30" },
+			{ label: "J&J Preliminary", value: "21.30 - 22.00" },
+			{ label: "J&J Semifinal", value: "22.00 - 22.30" },
+			{ label: "Social Dance", value: "22.30 - 24.00" },
 		],
 	},
 	{
@@ -107,10 +118,20 @@ const EVENTS: Event[] = [
 		items: [
 			{
 				label: "Location",
-				value: "Taman Ismal Marzuki",
-				url: "https://g.co/kgs/t6mgam2",
+				value: "Taman Ismal Marzuki, Teater Wahyu Sihombing",
+				url: "https://maps.app.goo.gl/J29mYNTjrWcGjgLr9",
 			},
-			{ label: "Schedule", value: "To be announced" },
+			{ label: "GR", value: "10.00 - 13.00", bottomGutter: true },
+			{ label: "WS Kizomba", value: "13.00 - 14.00" },
+			{ label: "WS Salsa", value: "14.00 - 15.00" },
+			{ label: "WS Zouk", value: "15.00 - 16.00" },
+			{ label: "WS Bachata", value: "16.00 - 17.00", bottomGutter: true },
+			{ label: "Open Gate", value: "17.00" },
+			{ label: "Social Dance", value: "17.00 - 19.00" },
+			{ label: "Performance", value: "19.00 - 20.30" },
+			{ label: "Social Dance", value: "20.30 - 21.30" },
+			{ label: "Color Exchange and J&J Announcement", value: "21.30 - 22.00" },
+			{ label: "Social Dance Separate Room", value: "23.00 - 02.00" },
 		],
 	},
 	{
@@ -211,8 +232,11 @@ export function EventCarousel() {
 								>
 									{event.items.map((item) => (
 										<div
-											key={item.label}
-											className="grid grid-cols-2 text-white *:text-lg lg:*:text-title-2"
+											key={item.label + item.value}
+											className={cn(
+												"grid grid-cols-2 text-white *:text-lg lg:*:text-title-2",
+												item.bottomGutter ? "mb-4" : "",
+											)}
 										>
 											<p className="font-semibold">{item.label}</p>
 											{item.url ? (

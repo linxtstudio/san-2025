@@ -108,25 +108,39 @@ export function RegisterForm() {
 		let total = 0
 		const contribution = Number(watch("contribution") || 0)
 
-		for (const value of selectedEventTypes) {
-			if (value.fee_type === "minimum_contribution") {
-				total += Math.max(value.fee_nominal, contribution)
-			} else {
-				total += value.fee_nominal
+		if (Array.isArray(selectedEventTypes)) {
+			for (const value of selectedEventTypes) {
+				if (value.fee_type === "minimum_contribution") {
+					total += Math.max(value.fee_nominal, contribution)
+				} else {
+					total += value.fee_nominal
+				}
 			}
 		}
 		return total
 	}
 
 	async function handleSubmitRegister(formValue: FormData) {
+		if (!formValue.transfer_receipt_image) {
+			toast.error("Please upload a payment proof")
+			return
+		}
+
 		const uploadFileFormData = new FormData()
 		uploadFileFormData.append("file", formValue.transfer_receipt_image)
 
 		try {
 			const uploadedFile = await uploadFile(uploadFileFormData)
+			if (!uploadedFile?.data?.data?.filename) {
+				toast.error("Invalid upload file response. Please contact support")
+				return
+			}
+
 			const registerPayload = {
 				...formValue,
-				event_type_ids: formValue.event_type_ids.map((event) => event.id),
+				event_type_ids: Array.isArray(formValue.event_type_ids)
+					? formValue.event_type_ids.map((event) => event.id)
+					: [],
 				transfer_receipt_image: uploadedFile.data.data.filename,
 				event_participant_hotel_facility: null,
 			}
@@ -148,6 +162,7 @@ export function RegisterForm() {
 				}
 			}
 		} catch (error) {
+			console.log(error)
 			toast.error(
 				"Failed to upload file. Please check your connection and try again",
 			)

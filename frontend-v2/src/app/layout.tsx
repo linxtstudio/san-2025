@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Poppins } from "next/font/google"
 import "@/common/styles/globals.css"
 import { Providers } from "@/common/components/providers"
@@ -29,13 +29,17 @@ export const metadata: Metadata = {
 	},
 }
 
+export const viewport: Viewport = {
+	themeColor: "black",
+}
+
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en" data-color-scheme="dark">
+		<html lang="en">
 			<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 			<body className={`${poppins.variable} bg-primary-950 antialiased`}>
 				<Providers>{children}</Providers>
