@@ -31,6 +31,13 @@ export default function RegisterTickets() {
 									Your Tickets
 								</h2>
 							</div>
+
+							<p className="max-w-120 text-neutral-200 text-sm/relaxed lg:text-body">
+								Missing your ticket?{" "}
+								<a className="text-blue-500" href="https://wa.me/62811212505">
+									Contact us
+								</a>
+							</p>
 							<Button
 								variant="secondary"
 								className="mb-8 w-fit print:hidden"

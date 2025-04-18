@@ -27,9 +27,13 @@ export function FeaturedCard({
 		>
 			<div className="size-32 xs:size-50 overflow-hidden rounded-2xl bg-primary-950">
 				<Image
+					unoptimized={!image}
 					height={200}
 					width={200}
-					src={image}
+					src={
+						image ||
+						`https://api.dicebear.com/9.x/initials/svg?seed=${name}&backgroundColor=0e0e0e&textColor=282828&scale=50`
+					}
 					alt={name}
 					className={cn(
 						"size-32 xs:size-50 rounded-2xl object-cover transition-transform hover:scale-105",

@@ -7,37 +7,37 @@ const WORKSHOP_INSTRUCTORS = [
 	{
 		workshop: "Salsa Workshop",
 		card: {
-			image: "/images/featured/tonno.png",
-			name: "Tonno Effendi",
-			title: "from Jogjakarta",
-			link: "https://www.instagram.com/s_tono_effendi",
+			image: "/images/featured/instructor/dhwani.png",
+			name: "Dhwani Bahar",
+			title: "Cuba",
+			link: "https://www.instagram.com/dancing_dhwani",
 		},
 	},
 	{
 		workshop: "Bachata Workshop",
 		card: {
-			image: "/images/featured/berry-eta.png",
-			name: "Berry & Eta",
-			title: "from Jakarta",
-			link: "https://www.instagram.com/berry_valentino",
+			image: "/images/featured/instructor/billy.png",
+			name: "Billy",
+			title: "Footwork in couple",
+			link: "https://www.instagram.com/my_memoribillya",
 		},
 	},
 	{
 		workshop: "Kizomba Workshop",
 		card: {
-			image: "/images/featured/nancy-nathan.png",
-			name: "Nancy & Nathan",
-			title: "from Jakarta",
+			image: "/images/featured/instructor/nathan-nancy.png",
+			name: "Nathan & Nancy",
+			title: "Tarraxo",
 			link: "https://www.instagram.com/danzevo_kiz",
 		},
 	},
 	{
 		workshop: "Zouk Workshop",
 		card: {
-			image: "/images/featured/virginie.png",
-			name: "Virginie",
-			title: "from Jakarta",
-			link: "https://www.instagram.com/vdanse",
+			image: "/images/featured/instructor/reinard-diana.png",
+			name: "Reinard & Diana",
+			title: "",
+			link: "https://www.instagram.com/brazilianzoukindonesia",
 		},
 	},
 ]
@@ -181,14 +181,14 @@ export function FeaturedList() {
 					<FeaturedBandCarousel />
 				</div> */}
 				<div className="flex w-full flex-col gap-6">
-					<p className="font-semibold text-title-2 text-white">Workshop</p>
+					<p className="font-semibold text-title-2 text-white">Instructor</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{WORKSHOP_INSTRUCTORS.map((instructor, index) => (
 							<div key={index} className="flex flex-col gap-6">
 								<p className="max-w-30 xs:max-w-50 text-body text-neutral-400 xs:text-lg">
 									{instructor.workshop}
 								</p>
-								<FeaturedCard {...instructor.card} hide />
+								<FeaturedCard {...instructor.card} />
 							</div>
 						))}
 					</div>

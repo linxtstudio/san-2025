@@ -4,6 +4,7 @@ import type {
 	NamedRecord,
 	PaginatedResponseType,
 } from "@/lib/http.type"
+import type { RegisterEventResponse } from "@/modules/registration/service/register-event"
 import type { AxiosResponse } from "axios"
 import qs from "query-string"
 
@@ -38,6 +39,12 @@ export type TotalParticipantByCity = {
 	city: NamedRecord & {
 		province_id: number
 	}
+}
+
+export async function getParticipantById(
+	id: string,
+): Promise<AxiosResponse<APIResponse<RegisterEventResponse>>> {
+	return await webRequest.get(`/admin/event/participants/${id}`)
 }
 
 export async function getParticipantList<P extends GetParticipantListParams>(
