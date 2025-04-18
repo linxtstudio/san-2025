@@ -19,7 +19,7 @@ export function Header() {
 						<h2 className="font-semibold text-body md:text-title-1">
 							Social Arisan Nyok
 						</h2>
-						<p className="text-sm md:text-lg">Jakarta, 30 May - 2 June 2025</p>
+						<p className="text-sm md:text-lg">Jakarta, 30 May - 1 June 2025</p>
 					</div>
 				</Link>
 				<HeaderNav />

@@ -73,12 +73,12 @@ const DJS = [
 		title: "from Bali",
 		link: "https://www.instagram.com/adishkrisna",
 	},
-	{
-		image: "/images/featured/dj/dj-tysh.png",
-		name: "DJ TYSH",
-		title: "from Surabaya",
-		link: "https://www.instagram.com/septyshaputri",
-	},
+	// {
+	// 	image: "/images/featured/dj/dj-tysh.png",
+	// 	name: "DJ TYSH",
+	// 	title: "from Surabaya",
+	// 	link: "https://www.instagram.com/septyshaputri",
+	// },
 	{
 		image: "/images/featured/dj/dj-indrung.png",
 		name: "DJ Indrung",
