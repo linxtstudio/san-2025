@@ -14,12 +14,12 @@ const MINIMUM_CONTRIBUTION = [
 	{
 		title: "Last Call",
 		price: "IDR 500k",
-		date: "24 April 2025",
+		date: "1 May 2025",
 	},
 	{
 		title: "At the door",
 		price: "IDR 600K",
-		date: "",
+		date: "30 May 2025",
 	},
 ]
 
