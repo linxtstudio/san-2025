@@ -27,7 +27,7 @@ const WORKSHOP_INSTRUCTORS = [
 		card: {
 			image: "/images/featured/instructor/nathan-nancy.png",
 			name: "Nathan & Nancy",
-			title: "Tarraxo",
+			title: "Urban-Kiz",
 			link: "https://www.instagram.com/danzevo_kiz",
 		},
 	},
