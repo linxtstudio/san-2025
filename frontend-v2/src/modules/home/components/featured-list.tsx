@@ -55,24 +55,24 @@ const DJS = [
 		title: "from Bali",
 		link: "https://www.instagram.com/my_memoribillya",
 	},
-	{
-		image: "/images/featured/dj/dj-kingguapo.png",
-		name: "DJ King Guapo",
-		title: "from Bali",
-		link: "https://www.instagram.com/deejay_kingguapo",
-	},
+	// {
+	// 	image: "/images/featured/dj/dj-kingguapo.png",
+	// 	name: "DJ King Guapo",
+	// 	title: "from Bali",
+	// 	link: "https://www.instagram.com/deejay_kingguapo",
+	// },
 	{
 		image: "/images/featured/dj/dj-adhyn.png",
 		name: "DJ Adhyn",
 		title: "from Jakarta",
 		link: "https://www.instagram.com/dj_adhyn",
 	},
-	{
-		image: "/images/featured/dj/dj-adish.png",
-		name: "DJ Adish",
-		title: "from Bali",
-		link: "https://www.instagram.com/adishkrisna",
-	},
+	// {
+	// 	image: "/images/featured/dj/dj-adish.png",
+	// 	name: "DJ Adish",
+	// 	title: "from Bali",
+	// 	link: "https://www.instagram.com/adishkrisna",
+	// },
 	// {
 	// 	image: "/images/featured/dj/dj-tysh.png",
 	// 	name: "DJ TYSH",
@@ -90,6 +90,12 @@ const DJS = [
 		name: "DJ Pancho",
 		title: "from Ecuador",
 		link: "https://www.instagram.com/panchougaldes",
+	},
+	{
+		image: "/images/featured/dj/dj-rezack.png",
+		name: "DJ Rezack",
+		title: "from Bali",
+		link: "https://www.instagram.com/rcca_dancer",
 	},
 ]
 

@@ -46,8 +46,8 @@ const EVENTS: Event[] = [
 				value: "Blu Martini",
 				url: "https://maps.app.goo.gl/TEpdBXH7D5XXEb8g8",
 			},
-			{ label: "Time", value: "21.00 - 04.00" },
-			{ label: "Djs", value: "To be announced" },
+			{ label: "Time", value: "21.00 - 02.00" },
+			// { label: "Djs", value: "To be announced" },
 		],
 	},
 	// {
@@ -151,7 +151,7 @@ const EVENTS: Event[] = [
 		items: [
 			{ label: "Location", value: "To be announced" },
 			{ label: "Time", value: "To be announced" },
-			{ label: "Djs", value: "To be announced" },
+			// { label: "Djs", value: "To be announced" },
 		],
 	},
 ]
