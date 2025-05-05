@@ -47,7 +47,11 @@ const EVENTS: Event[] = [
 				url: "https://maps.app.goo.gl/TEpdBXH7D5XXEb8g8",
 			},
 			{ label: "Time", value: "21.00 - 02.00" },
-			// { label: "Djs", value: "To be announced" },
+			{
+				label: "Djs",
+				url: "#djs",
+				value: "DJ Indrung, DJ Rezack, DJ Alfa, DJ Adhyn, DJ Billy",
+			},
 		],
 	},
 	// {
@@ -90,6 +94,11 @@ const EVENTS: Event[] = [
 				value: "Taman Ismal Marzuki, Teater Wahyu Sihombing",
 				url: "https://maps.app.goo.gl/J29mYNTjrWcGjgLr9",
 			},
+			{
+				label: "DJs",
+				url: "#djs",
+				value: "DJ Alfa, DJ Indrung, DJ Pancho, DJ Billy, DJ Adhyn",
+			},
 			{ label: "GR", value: "11.00 - 14.00" },
 			{ label: "Open Gate", value: "17.00" },
 			{ label: "Social Dance", value: "17.00 - 19.00" },
@@ -121,6 +130,11 @@ const EVENTS: Event[] = [
 				value: "Taman Ismal Marzuki, Teater Wahyu Sihombing",
 				url: "https://maps.app.goo.gl/J29mYNTjrWcGjgLr9",
 			},
+			{
+				label: "DJs",
+				url: "#djs",
+				value: "DJ Alfa, DJ Rezack, DJ Billy, DJ Pancho, DJ Adhyn",
+			},
 			{ label: "GR", value: "10.00 - 13.00", bottomGutter: true },
 			{ label: "WS Kizomba", value: "13.00 - 14.00" },
 			{ label: "WS Salsa", value: "14.00 - 15.00" },
@@ -151,7 +165,11 @@ const EVENTS: Event[] = [
 		items: [
 			{ label: "Location", value: "To be announced" },
 			{ label: "Time", value: "To be announced" },
-			// { label: "Djs", value: "To be announced" },
+			{
+				label: "DJs",
+				url: "#djs",
+				value: "DJ Indrung, DJ Pancho, DJ Alfa, DJ Billy, DJ Rezack",
+			},
 		],
 	},
 ]
@@ -247,7 +265,7 @@ export function EventCarousel() {
 													{item.value}
 												</Link>
 											) : (
-												<p className="text-right text-neutral-400">
+												<p className="text-pretty text-right text-neutral-400">
 													{item.value}
 												</p>
 											)}

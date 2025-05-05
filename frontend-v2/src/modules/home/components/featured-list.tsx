@@ -200,7 +200,9 @@ export function FeaturedList() {
 					</div>
 				</div>
 				<div className="flex w-full flex-col gap-6">
-					<p className="font-semibold text-title-2 text-white">DJs</p>
+					<p id="djs" className="font-semibold text-title-2 text-white">
+						DJs
+					</p>
 					<div className="flex w-full flex-wrap gap-6">
 						{DJS.map((dj, index) => (
 							<FeaturedCard key={index} {...dj} />
