@@ -163,8 +163,12 @@ const EVENTS: Event[] = [
 			</p>
 		),
 		items: [
-			{ label: "Location", value: "To be announced" },
-			{ label: "Time", value: "To be announced" },
+			{
+				label: "Location",
+				value: "Al Jazeerah Signature Restaurant & Lounge",
+				url: "https://maps.app.goo.gl/LuJEQurXYP9owYSy6",
+			},
+			{ label: "Time", value: "20.00 - 24.00" },
 			{
 				label: "DJs",
 				url: "#djs",
