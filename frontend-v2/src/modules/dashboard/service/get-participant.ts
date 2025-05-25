@@ -29,9 +29,10 @@ export type Participant = {
 	city: NamedRecord & {
 		province: NamedRecord
 	}
+	event_participant_hotel_facility: null
 }
 
-type EventParticipantDetail = {
+export type EventParticipantDetail = {
 	id: string
 	event_type: {
 		id: string

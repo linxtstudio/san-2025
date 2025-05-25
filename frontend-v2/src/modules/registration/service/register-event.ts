@@ -1,18 +1,13 @@
 import { webRequest } from "@/lib/http"
 import type { APIResponse } from "@/lib/http.type"
+import type { EventParticipantDetail } from "@/modules/dashboard/service/get-participant"
 
 export type RegisterEventResponse = {
 	id: string
 	name: string
 	email: string
 	phone_number: string
-	event_participant_details: {
-		id: string
-		event_type: {
-			id: string
-			name: string
-		}
-	}[]
+	event_participant_details: EventParticipantDetail[]
 	event_participant_hotel_facility: null
 }
 
