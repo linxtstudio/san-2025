@@ -4,7 +4,6 @@ import type {
 	NamedRecord,
 	PaginatedResponseType,
 } from "@/lib/http.type"
-import type { RegisterEventResponse } from "@/modules/registration/service/register-event"
 import type { AxiosResponse } from "axios"
 import qs from "query-string"
 
@@ -19,19 +18,30 @@ type GetParticipantListParams = {
 
 export type Participant = {
 	id: string
-	event_participant: {
+	name: string
+	email: string
+	phone_number: string
+	is_verified: boolean
+	total_transaction: number
+	transfer_receipt_image: string
+	transfer_receipt_url: string
+	event_participant_details: EventParticipantDetail[]
+	city: NamedRecord & {
+		province: NamedRecord
+	}
+}
+
+type EventParticipantDetail = {
+	id: string
+	event_type: {
 		id: string
 		name: string
-		email: string
-		phone_number: string
-		is_verified: boolean
-		total_transaction: number
-		transfer_receipt_image: string
-		transfer_receipt_url: string
-		city: NamedRecord & {
-			province: NamedRecord
-		}
 	}
+}
+
+export type ParticipantList = {
+	id: string
+	event_participant: Omit<Participant, "event_participant_details">
 }
 
 export type TotalParticipantByCity = {
@@ -43,13 +53,13 @@ export type TotalParticipantByCity = {
 
 export async function getParticipantById(
 	id: string,
-): Promise<AxiosResponse<APIResponse<RegisterEventResponse>>> {
+): Promise<AxiosResponse<APIResponse<Participant>>> {
 	return await webRequest.get(`/admin/event/participants/${id}`)
 }
 
 export async function getParticipantList<P extends GetParticipantListParams>(
 	params: P,
-): Promise<AxiosResponse<PaginatedResponseType<Participant, P>>> {
+): Promise<AxiosResponse<PaginatedResponseType<ParticipantList, P>>> {
 	return await webRequest.get(
 		`/admin/event/participants?${qs.stringify(params)}`,
 	)

@@ -2,8 +2,9 @@
 
 import { LoadingSpinner } from "@/common/components/ui/loading-spinner"
 import { cn } from "@/lib/utils"
+import { TicketCardModal } from "@/modules/dashboard/components/ticket-card-modal"
 import {
-	type Participant,
+	type ParticipantList,
 	getParticipantList,
 } from "@/modules/dashboard/service/get-participant"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
@@ -31,12 +32,15 @@ export function EventParticipantTable({
 	...filter
 }: EventParticipantTableProps) {
 	const [pagination, setPagination] = useState({ page: 1, per_page: 10 })
+	const [selectedParticipantId, setSelectedParticipantId] = useState<
+		string | null
+	>(null)
 	const [isFolded, setIsFolded] = useState(defaultFolded)
 	function toggleFolded() {
 		setIsFolded((prev) => !prev)
 	}
 
-	const columns: ColumnDef<Participant>[] = useMemo(
+	const columns: ColumnDef<ParticipantList>[] = useMemo(
 		() => [
 			{
 				header: "No",
@@ -139,23 +143,30 @@ export function EventParticipantTable({
 								</svg>
 							</button>
 							<div className="invisible absolute right-0 z-100 mt-1 w-36 origin-top-right rounded-md bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5 group-focus-within:visible">
-								<div className="py-1">
-									<button
-										type="button"
-										disabled={true}
-										className="block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700 disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-neutral-800"
-									>
-										{isVerified ? "✔ Already Verified" : "✔ Verify"}
-									</button>
-									<Link
-										target="_blank"
-										rel="noopener noreferrer"
-										href={`/dashboard/ticket/${info.row.original.event_participant.id}`}
-										className="block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700"
-									>
-										Generate Ticket
-									</Link>
-								</div>
+								<button
+									type="button"
+									onClick={() =>
+										setSelectedParticipantId(
+											info.row.original.event_participant.id,
+										)
+									}
+									className={cn(
+										"block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-neutral-800",
+										isVerified
+											? "bg-red-500/5 text-red-500"
+											: "bg-green-500/5 text-green-500",
+									)}
+								>
+									{isVerified ? "✖ Unverify" : "✔ Verify"}
+								</button>
+								<Link
+									target="_blank"
+									rel="noopener noreferrer"
+									href={`/dashboard/ticket/${info.row.original.event_participant.id}`}
+									className="block w-full cursor-pointer rounded-md px-4 py-3 text-left text-sm text-white hover:bg-brand-700"
+								>
+									Generate Ticket
+								</Link>
 							</div>
 						</div>
 					)
@@ -320,6 +331,17 @@ export function EventParticipantTable({
 					) : null}
 				</>
 			) : null}
+			{selectedParticipantId && (
+				<TicketCardModal
+					participantId={selectedParticipantId}
+					open={!!selectedParticipantId}
+					onOpenChange={(open) => {
+						if (!open) {
+							setSelectedParticipantId(null)
+						}
+					}}
+				/>
+			)}
 		</div>
 	)
 }

@@ -97,6 +97,8 @@ const getParticipantDetailAdmin = async (req, res) => {
             name: participant.name,
             email: participant.email,
             phone_number: participant.phone_number,
+            is_verified: participant.is_verified,
+            total_transaction: participant.total_transaction,
             transfer_receipt_image: participant?.transfer_receipt_image,
             transfer_receipt_url: `${url.public.upload}/${participant?.transfer_receipt_image}`,
             event_participant_details: participant.event_participant_details.map((eventParticipantDetail) => ({
